@@ -1,0 +1,510 @@
+{
+  "contract": "MacroStance",
+  "source": "contracts/macro_stance.py",
+  "constructor": [
+    {
+      "name": "feed_a",
+      "type": "string"
+    },
+    {
+      "name": "feed_b",
+      "type": "string"
+    },
+    {
+      "name": "feed_c",
+      "type": "string"
+    }
+  ],
+  "abi": [
+    {
+      "type": "function",
+      "name": "activate_feed_rotation",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "slot",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "borrow_against_collateral",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "cancel_feed_rotation",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "slot",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "none"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "challenge_staged_epoch",
+      "stateMutability": "payable",
+      "inputs": [
+        {
+          "name": "epoch_id",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "claim_payout",
+      "stateMutability": "nonpayable",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "claimable_of",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "owner_hex",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "classify_feed_response",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "status",
+          "type": "uint256"
+        },
+        {
+          "name": "body",
+          "type": "string"
+        },
+        {
+          "name": "epoch_id",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "deposit_collateral",
+      "stateMutability": "payable",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "derive_stance",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "rate_change_bps",
+          "type": "uint256"
+        },
+        {
+          "name": "cpi_yoy_bps",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "execute_stance_transition",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "epoch_id",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "feed_prefix_error",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "url",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "get_account_health",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "owner_hex",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "get_active_params",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "get_epoch",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "epoch_id",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "get_epoch_by_index",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "get_epoch_count",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "get_feed_registry",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "array"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "get_protocol_overview",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "get_risk_table",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "stance",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "get_solvency",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "has_epoch",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "epoch_id",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "parse_epoch_id",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "epoch_id",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "propose_epoch_sync",
+      "stateMutability": "payable",
+      "inputs": [
+        {
+          "name": "epoch_id",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "repay",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "resolve_verdict",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "states_json",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "stage_feed_rotation",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "slot",
+          "type": "uint256"
+        },
+        {
+          "name": "url_prefix",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "transfer_governor",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "new_governor_hex",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "none"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "whoami",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "withdraw_collateral",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "withdraw_treasury",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "to_hex",
+          "type": "string"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}

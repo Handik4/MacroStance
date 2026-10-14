@@ -1,0 +1,66 @@
+{
+  "network": "studio-next",
+  "chain_id": 61997,
+  "rpc_url": "https://studio-next.genlayer.com/api",
+  "contract_address": "0x3AE6f881382c62811169921Fb77D97a0c18e49B3",
+  "explorer_url": "https://explorer-studio-next.genlayer.com/address/0x3AE6f881382c62811169921Fb77D97a0c18e49B3",
+  "deploy_tx": "0x5dfb93411ebb6de91c1f59e158d03ade0e6992a8e068391bd63b4160fba328fa",
+  "source": "contracts/macro_stance.py",
+  "runner": "py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng",
+  "source_sha256": "f077426394d7680d5d83b39d5b5edce1f600e77a2bd18391f66cad04e6ec5163",
+  "onchain_sha256": "f077426394d7680d5d83b39d5b5edce1f600e77a2bd18391f66cad04e6ec5163",
+  "source_matches_onchain": true,
+  "receipt": {
+    "status": "FINALIZED",
+    "execution": "FINISHED_WITH_RETURN",
+    "consensus": "MAJORITY_AGREE"
+  },
+  "constructor_args": [
+    "https://raw.githubusercontent.com/Handik4/MacroStance/main/deployments/mock_feeds/a/",
+    "https://cdn.jsdelivr.net/gh/Handik4/MacroStance@main/deployments/mock_feeds/b/",
+    "https://rawcdn.githack.com/Handik4/MacroStance/main/deployments/mock_feeds/c/"
+  ],
+  "constructor_readback": {
+    "status": "unverified",
+    "detail": "read failed: An internal error was received."
+  },
+  "fee_deposit_wei": "100000000000010352",
+  "tx_created_timestamp": "1792014721",
+  "recorded_at": "2026-10-14T21:59:43.536Z",
+  "public_methods": {
+    "views": [
+      "claimable_of",
+      "classify_feed_response",
+      "derive_stance",
+      "feed_prefix_error",
+      "get_account_health",
+      "get_active_params",
+      "get_epoch",
+      "get_epoch_by_index",
+      "get_epoch_count",
+      "get_feed_registry",
+      "get_protocol_overview",
+      "get_risk_table",
+      "get_solvency",
+      "has_epoch",
+      "parse_epoch_id",
+      "resolve_verdict",
+      "whoami"
+    ],
+    "writes": [
+      "activate_feed_rotation",
+      "borrow_against_collateral",
+      "cancel_feed_rotation",
+      "challenge_staged_epoch",
+      "claim_payout",
+      "deposit_collateral",
+      "execute_stance_transition",
+      "propose_epoch_sync",
+      "repay",
+      "stage_feed_rotation",
+      "transfer_governor",
+      "withdraw_collateral",
+      "withdraw_treasury"
+    ]
+  }
+}
