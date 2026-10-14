@@ -1,0 +1,6422 @@
+{
+ "classify": [
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "CONFIRMED",
+   "release_hash": "c2a8abad505dc866b680e2c4e3427017c7e0a7a1313a232a95ef262b0feac94e",
+   "stance": 2,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": -25, \"cpi_yoy_bps\": 190}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "CONFIRMED",
+   "release_hash": "cf9ad07c3bc30cef280cd12f9f700d6dbbe1c6190b9242e234825cae023ed42e",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 0, \"cpi_yoy_bps\": 250}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "CONFIRMED",
+   "release_hash": "dd883256fd671af69ae64c24032d26478e851eac9b6a2ee9c0ffedc8b9cf1fdf",
+   "stance": 1,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"RETRACTED\"}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "RETRACTED",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "NOT_FOUND",
+   "release_hash": "",
+   "stance": 0,
+   "status": 404
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 500
+  },
+  {
+   "body": "x",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 503
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 429
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 301
+  },
+  {
+   "body": "not json",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "[]",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": \"25\", \"cpi_yoy_bps\": 320}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": true, \"cpi_yoy_bps\": 320}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 25.5}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 2001, \"cpi_yoy_bps\": 320}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": -1001}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"PENDING\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q3-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"extra\": \"ignored\"}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "CONFIRMED",
+   "release_hash": "c2a8abad505dc866b680e2c4e3427017c7e0a7a1313a232a95ef262b0feac94e",
+   "stance": 2,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"pad\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 2000, \"cpi_yoy_bps\": 10000}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "CONFIRMED",
+   "release_hash": "d971462e3328f6068b4c41b0cec29e4de0cd3d3589afb968b847b4c9700d45ea",
+   "stance": 2,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25.0, \"cpi_yoy_bps\": 320}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 3.2e2}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 2.5E1, \"cpi_yoy_bps\": 320}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": -0, \"cpi_yoy_bps\": 250}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "CONFIRMED",
+   "release_hash": "dd883256fd671af69ae64c24032d26478e851eac9b6a2ee9c0ffedc8b9cf1fdf",
+   "stance": 1,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 0, \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "CONFIRMED",
+   "release_hash": "c2a8abad505dc866b680e2c4e3427017c7e0a7a1313a232a95ef262b0feac94e",
+   "stance": 2,
+   "status": 200
+  },
+  {
+   "body": "  \n{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}\n ",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "CONFIRMED",
+   "release_hash": "c2a8abad505dc866b680e2c4e3427017c7e0a7a1313a232a95ef262b0feac94e",
+   "stance": 2,
+   "status": 200
+  },
+  {
+   "body": "\ufeff{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": NaN, \"cpi_yoy_bps\": 320}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch\\u005fid\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "CONFIRMED",
+   "release_hash": "c2a8abad505dc866b680e2c4e3427017c7e0a7a1313a232a95ef262b0feac94e",
+   "stance": 2,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320} trailing",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"note\": \"caf\u00e9\"}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "CONFIRMED",
+   "release_hash": "c2a8abad505dc866b680e2c4e3427017c7e0a7a1313a232a95ef262b0feac94e",
+   "stance": 2,
+   "status": 200
+  }
+ ],
+ "epoch_ids": [
+  {
+   "epoch_id": "2026-Q4-FOMC",
+   "seq": 8107
+  },
+  {
+   "epoch_id": "2026-Q1-CPI",
+   "seq": 8104
+  },
+  {
+   "epoch_id": "2000-Q1-AB",
+   "seq": 8000
+  },
+  {
+   "epoch_id": "2200-Q4-ABCDEFGHIJKL",
+   "seq": 8803
+  },
+  {
+   "epoch_id": "2026-Q5-FOMC",
+   "seq": -1
+  },
+  {
+   "epoch_id": "2026-q4-FOMC",
+   "seq": -1
+  },
+  {
+   "epoch_id": "2026-Q4-F",
+   "seq": -1
+  },
+  {
+   "epoch_id": "../2026-Q4-FOMC",
+   "seq": -1
+  },
+  {
+   "epoch_id": "",
+   "seq": -1
+  },
+  {
+   "epoch_id": "2026-Q4-FOMC.json",
+   "seq": -1
+  },
+  {
+   "epoch_id": "1999-Q4-FOMC",
+   "seq": -1
+  }
+ ],
+ "resolve": [
+  {
+   "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+   "source_count": 3,
+   "stance": 2,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+   "source_count": 2,
+   "stance": 2,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+   "source_count": 2,
+   "stance": 2,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+   "source_count": 2,
+   "stance": 2,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+   "source_count": 2,
+   "stance": 2,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+   "source_count": 2,
+   "stance": 2,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+   "source_count": 2,
+   "stance": 2,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 1
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "RETRACTED",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "source_count": 0,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ],
+    [
+     "OUTAGE",
+     0,
+     ""
+    ]
+   ],
+   "verdict": 2
+  }
+ ],
+ "risk_table": [
+  {
+   "borrow_rate_bps": 350,
+   "max_ltv_bps": 8000,
+   "reserve_factor_bps": 1000,
+   "stance": 0,
+   "stance_name": "DOVISH"
+  },
+  {
+   "borrow_rate_bps": 550,
+   "max_ltv_bps": 7500,
+   "reserve_factor_bps": 1500,
+   "stance": 1,
+   "stance_name": "NEUTRAL"
+  },
+  {
+   "borrow_rate_bps": 900,
+   "max_ltv_bps": 6500,
+   "reserve_factor_bps": 2500,
+   "stance": 2,
+   "stance_name": "HAWKISH"
+  }
+ ],
+ "stance": [
+  {
+   "cpi_yoy_bps": -50,
+   "rate_change_bps": -100,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 0,
+   "rate_change_bps": -100,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 100,
+   "rate_change_bps": -100,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 199,
+   "rate_change_bps": -100,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 200,
+   "rate_change_bps": -100,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 201,
+   "rate_change_bps": -100,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 250,
+   "rate_change_bps": -100,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 299,
+   "rate_change_bps": -100,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 300,
+   "rate_change_bps": -100,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 301,
+   "rate_change_bps": -100,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 350,
+   "rate_change_bps": -100,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 500,
+   "rate_change_bps": -100,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 1000,
+   "rate_change_bps": -100,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": -50,
+   "rate_change_bps": -50,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 0,
+   "rate_change_bps": -50,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 100,
+   "rate_change_bps": -50,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 199,
+   "rate_change_bps": -50,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 200,
+   "rate_change_bps": -50,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 201,
+   "rate_change_bps": -50,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 250,
+   "rate_change_bps": -50,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 299,
+   "rate_change_bps": -50,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 300,
+   "rate_change_bps": -50,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 301,
+   "rate_change_bps": -50,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 350,
+   "rate_change_bps": -50,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 500,
+   "rate_change_bps": -50,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 1000,
+   "rate_change_bps": -50,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": -50,
+   "rate_change_bps": -26,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 0,
+   "rate_change_bps": -26,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 100,
+   "rate_change_bps": -26,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 199,
+   "rate_change_bps": -26,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 200,
+   "rate_change_bps": -26,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 201,
+   "rate_change_bps": -26,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 250,
+   "rate_change_bps": -26,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 299,
+   "rate_change_bps": -26,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 300,
+   "rate_change_bps": -26,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 301,
+   "rate_change_bps": -26,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 350,
+   "rate_change_bps": -26,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 500,
+   "rate_change_bps": -26,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 1000,
+   "rate_change_bps": -26,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": -50,
+   "rate_change_bps": -25,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 0,
+   "rate_change_bps": -25,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 100,
+   "rate_change_bps": -25,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 199,
+   "rate_change_bps": -25,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 200,
+   "rate_change_bps": -25,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 201,
+   "rate_change_bps": -25,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 250,
+   "rate_change_bps": -25,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 299,
+   "rate_change_bps": -25,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 300,
+   "rate_change_bps": -25,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 301,
+   "rate_change_bps": -25,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 350,
+   "rate_change_bps": -25,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 500,
+   "rate_change_bps": -25,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 1000,
+   "rate_change_bps": -25,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": -50,
+   "rate_change_bps": -24,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 0,
+   "rate_change_bps": -24,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 100,
+   "rate_change_bps": -24,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 199,
+   "rate_change_bps": -24,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 200,
+   "rate_change_bps": -24,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 201,
+   "rate_change_bps": -24,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 250,
+   "rate_change_bps": -24,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 299,
+   "rate_change_bps": -24,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 300,
+   "rate_change_bps": -24,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 301,
+   "rate_change_bps": -24,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 350,
+   "rate_change_bps": -24,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 500,
+   "rate_change_bps": -24,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 1000,
+   "rate_change_bps": -24,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": -50,
+   "rate_change_bps": -11,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 0,
+   "rate_change_bps": -11,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 100,
+   "rate_change_bps": -11,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 199,
+   "rate_change_bps": -11,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 200,
+   "rate_change_bps": -11,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 201,
+   "rate_change_bps": -11,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 250,
+   "rate_change_bps": -11,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 299,
+   "rate_change_bps": -11,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 300,
+   "rate_change_bps": -11,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 301,
+   "rate_change_bps": -11,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 350,
+   "rate_change_bps": -11,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 500,
+   "rate_change_bps": -11,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 1000,
+   "rate_change_bps": -11,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": -50,
+   "rate_change_bps": -10,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 0,
+   "rate_change_bps": -10,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 100,
+   "rate_change_bps": -10,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 199,
+   "rate_change_bps": -10,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 200,
+   "rate_change_bps": -10,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 201,
+   "rate_change_bps": -10,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 250,
+   "rate_change_bps": -10,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 299,
+   "rate_change_bps": -10,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 300,
+   "rate_change_bps": -10,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 301,
+   "rate_change_bps": -10,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 350,
+   "rate_change_bps": -10,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 500,
+   "rate_change_bps": -10,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 1000,
+   "rate_change_bps": -10,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": -50,
+   "rate_change_bps": -1,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 0,
+   "rate_change_bps": -1,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 100,
+   "rate_change_bps": -1,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 199,
+   "rate_change_bps": -1,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 200,
+   "rate_change_bps": -1,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 201,
+   "rate_change_bps": -1,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 250,
+   "rate_change_bps": -1,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 299,
+   "rate_change_bps": -1,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 300,
+   "rate_change_bps": -1,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 301,
+   "rate_change_bps": -1,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 350,
+   "rate_change_bps": -1,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 500,
+   "rate_change_bps": -1,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 1000,
+   "rate_change_bps": -1,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": -50,
+   "rate_change_bps": 0,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 0,
+   "rate_change_bps": 0,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 100,
+   "rate_change_bps": 0,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 199,
+   "rate_change_bps": 0,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 200,
+   "rate_change_bps": 0,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 201,
+   "rate_change_bps": 0,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 250,
+   "rate_change_bps": 0,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 299,
+   "rate_change_bps": 0,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 300,
+   "rate_change_bps": 0,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 301,
+   "rate_change_bps": 0,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 350,
+   "rate_change_bps": 0,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 500,
+   "rate_change_bps": 0,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 1000,
+   "rate_change_bps": 0,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": -50,
+   "rate_change_bps": 1,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 0,
+   "rate_change_bps": 1,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 100,
+   "rate_change_bps": 1,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 199,
+   "rate_change_bps": 1,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 200,
+   "rate_change_bps": 1,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 201,
+   "rate_change_bps": 1,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 250,
+   "rate_change_bps": 1,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 299,
+   "rate_change_bps": 1,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 300,
+   "rate_change_bps": 1,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 301,
+   "rate_change_bps": 1,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 350,
+   "rate_change_bps": 1,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 500,
+   "rate_change_bps": 1,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 1000,
+   "rate_change_bps": 1,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": -50,
+   "rate_change_bps": 10,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 0,
+   "rate_change_bps": 10,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 100,
+   "rate_change_bps": 10,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 199,
+   "rate_change_bps": 10,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 200,
+   "rate_change_bps": 10,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 201,
+   "rate_change_bps": 10,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 250,
+   "rate_change_bps": 10,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 299,
+   "rate_change_bps": 10,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 300,
+   "rate_change_bps": 10,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 301,
+   "rate_change_bps": 10,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 350,
+   "rate_change_bps": 10,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 500,
+   "rate_change_bps": 10,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 1000,
+   "rate_change_bps": 10,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": -50,
+   "rate_change_bps": 11,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 0,
+   "rate_change_bps": 11,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 100,
+   "rate_change_bps": 11,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 199,
+   "rate_change_bps": 11,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 200,
+   "rate_change_bps": 11,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 201,
+   "rate_change_bps": 11,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 250,
+   "rate_change_bps": 11,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 299,
+   "rate_change_bps": 11,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 300,
+   "rate_change_bps": 11,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 301,
+   "rate_change_bps": 11,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 350,
+   "rate_change_bps": 11,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 500,
+   "rate_change_bps": 11,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 1000,
+   "rate_change_bps": 11,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": -50,
+   "rate_change_bps": 24,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 0,
+   "rate_change_bps": 24,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 100,
+   "rate_change_bps": 24,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 199,
+   "rate_change_bps": 24,
+   "stance": 0
+  },
+  {
+   "cpi_yoy_bps": 200,
+   "rate_change_bps": 24,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 201,
+   "rate_change_bps": 24,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 250,
+   "rate_change_bps": 24,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 299,
+   "rate_change_bps": 24,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 300,
+   "rate_change_bps": 24,
+   "stance": 1
+  },
+  {
+   "cpi_yoy_bps": 301,
+   "rate_change_bps": 24,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 350,
+   "rate_change_bps": 24,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 500,
+   "rate_change_bps": 24,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 1000,
+   "rate_change_bps": 24,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": -50,
+   "rate_change_bps": 25,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 0,
+   "rate_change_bps": 25,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 100,
+   "rate_change_bps": 25,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 199,
+   "rate_change_bps": 25,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 200,
+   "rate_change_bps": 25,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 201,
+   "rate_change_bps": 25,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 250,
+   "rate_change_bps": 25,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 299,
+   "rate_change_bps": 25,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 300,
+   "rate_change_bps": 25,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 301,
+   "rate_change_bps": 25,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 350,
+   "rate_change_bps": 25,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 500,
+   "rate_change_bps": 25,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 1000,
+   "rate_change_bps": 25,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": -50,
+   "rate_change_bps": 26,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 0,
+   "rate_change_bps": 26,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 100,
+   "rate_change_bps": 26,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 199,
+   "rate_change_bps": 26,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 200,
+   "rate_change_bps": 26,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 201,
+   "rate_change_bps": 26,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 250,
+   "rate_change_bps": 26,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 299,
+   "rate_change_bps": 26,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 300,
+   "rate_change_bps": 26,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 301,
+   "rate_change_bps": 26,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 350,
+   "rate_change_bps": 26,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 500,
+   "rate_change_bps": 26,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 1000,
+   "rate_change_bps": 26,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": -50,
+   "rate_change_bps": 50,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 0,
+   "rate_change_bps": 50,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 100,
+   "rate_change_bps": 50,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 199,
+   "rate_change_bps": 50,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 200,
+   "rate_change_bps": 50,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 201,
+   "rate_change_bps": 50,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 250,
+   "rate_change_bps": 50,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 299,
+   "rate_change_bps": 50,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 300,
+   "rate_change_bps": 50,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 301,
+   "rate_change_bps": 50,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 350,
+   "rate_change_bps": 50,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 500,
+   "rate_change_bps": 50,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 1000,
+   "rate_change_bps": 50,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": -50,
+   "rate_change_bps": 100,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 0,
+   "rate_change_bps": 100,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 100,
+   "rate_change_bps": 100,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 199,
+   "rate_change_bps": 100,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 200,
+   "rate_change_bps": 100,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 201,
+   "rate_change_bps": 100,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 250,
+   "rate_change_bps": 100,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 299,
+   "rate_change_bps": 100,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 300,
+   "rate_change_bps": 100,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 301,
+   "rate_change_bps": 100,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 350,
+   "rate_change_bps": 100,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 500,
+   "rate_change_bps": 100,
+   "stance": 2
+  },
+  {
+   "cpi_yoy_bps": 1000,
+   "rate_change_bps": 100,
+   "stance": 2
+  }
+ ]
+}

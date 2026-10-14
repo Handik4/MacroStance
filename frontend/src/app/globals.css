@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #faf8f3;
+  --ink: #0b1220;
+}
+
+html,
+body {
+  background: var(--paper);
+  color: #1e293b;
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .panel {
+    @apply border border-slate-300 bg-white;
+  }
+  .panel-head {
+    @apply flex items-center justify-between border-b border-slate-300 bg-slate-950 px-4 py-2;
+  }
+  .panel-title {
+    @apply font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-100;
+  }
+  .label {
+    @apply font-mono text-[10px] uppercase tracking-[0.16em] text-slate-500;
+  }
+  .num {
+    @apply font-mono tabular-nums;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center border border-slate-950 bg-slate-950 px-3 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-slate-800 disabled:cursor-not-allowed disabled:border-slate-300 disabled:bg-slate-200 disabled:text-slate-500;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center border border-slate-400 bg-white px-3 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-800 transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:text-slate-400;
+  }
+  .field {
+    @apply w-full border border-slate-400 bg-white px-2 py-1.5 font-mono text-sm text-slate-900 outline-none focus:border-slate-950 focus:ring-1 focus:ring-slate-950;
+  }
+}
