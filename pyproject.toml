@@ -1,0 +1,7 @@
+# Pytest configuration for the MacroStance direct-mode suite.
+#
+#   uv venv --python 3.12
+#   uv pip install --prerelease=allow -r requirements-dev.txt
+#   .venv/bin/python -m pytest -q
+[tool.pytest.ini_options]
+testpaths = ["tests"]
