@@ -484,27 +484,6 @@
           "type": "json"
         }
       ]
-    },
-    {
-      "type": "function",
-      "name": "withdraw_treasury",
-      "stateMutability": "nonpayable",
-      "inputs": [
-        {
-          "name": "to_hex",
-          "type": "string"
-        },
-        {
-          "name": "amount",
-          "type": "uint256"
-        }
-      ],
-      "outputs": [
-        {
-          "name": "result",
-          "type": "string"
-        }
-      ]
     }
   ]
 }

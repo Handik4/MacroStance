@@ -21,7 +21,7 @@ def ov(c):
 
 def conserved(c, bonds):
     o = ov(c)
-    return int(o["total_escrow"]) + int(o["treasury"]) + int(o["total_claimable"]) == bonds
+    return int(o["total_escrow"]) + int(o["locked_protocol_reserve"]) + int(o["total_claimable"]) == bonds
 
 
 def test_retraction_cancels_and_slashes_reporter_to_challenger(direct_vm, staged, direct_bob, direct_charlie):
@@ -226,3 +226,80 @@ def test_reporter_can_claim_nothing_after_being_slashed(direct_vm, staged, direc
         staged.claim_payout()
     direct_vm.sender = direct_charlie
     assert staged.claim_payout() == str(2 * BOND)
+
+
+# ------------------------------------------------ upstream revisions are not faults
+def _newer(ep=EP, dt=600, rate=50, cpi=400):
+    return feed_doc(ep[0], rate, cpi, ts=default_ts(ep[0]) + dt)
+
+
+def _older(ep=EP, dt=600, rate=50, cpi=400):
+    return feed_doc(ep[0], rate, cpi, ts=default_ts(ep[0]) - dt)
+
+
+def test_challenge_with_newer_upstream_revision_cancels_and_refunds_bond_without_slash(
+    direct_vm, staged, direct_bob, direct_charlie
+):
+    """The official feeds publish a legitimate, strictly NEWER revision: the stale
+    stage is cancelled, but the honest reporter is made whole and the challenger
+    earns no bounty."""
+    before = staged.get_epoch(EP[0])
+    rev = _newer()
+    set_feeds(direct_vm, rev, rev, rev)
+    res = challenge(staged, direct_vm, direct_charlie, EP[0])
+    bob = addr_hex(staged, direct_vm, direct_bob)
+    ch = addr_hex(staged, direct_vm, direct_charlie)
+    assert res["challenge_outcome"] == "SUPERSEDED" and res["status"] == "CANCELLED"
+    assert res["challenge_superseded"] is True and res["challenge_contradicted"] is False
+    assert staged.claimable_of(bob) == str(BOND)  # 100% of the reporter bond back, no slash
+    assert staged.claimable_of(ch) == str(BOND)  # own bond only: no bounty
+    o = ov(staged)
+    assert o["pending_epoch"] == "" and o["total_escrow"] == "0" and o["locked_protocol_reserve"] == "0"
+    assert res["revision"] == before["revision"]  # the hash is not revoked
+    assert conserved(staged, 2 * BOND)
+
+
+def test_superseded_release_is_free_to_be_replaced_by_the_newer_revision(direct_vm, staged, direct_bob, direct_charlie):
+    rev = _newer()
+    set_feeds(direct_vm, rev, rev, rev)
+    challenge(staged, direct_vm, direct_charlie, EP[0])
+    propose(staged, direct_vm, direct_bob, EP[0])  # the newer revision stages normally
+    warp_by(direct_vm, DAY)
+    assert staged.execute_stance_transition(EP[0])["status"] == "EXECUTED"
+    assert staged.get_protocol_overview()["active_release_ts"] == default_ts(EP[0]) + 600
+
+
+def test_newer_and_older_conflict_is_still_not_a_slash(direct_vm, staged, direct_bob, direct_charlie):
+    set_feeds(direct_vm, _newer(), _older(), NOT_FOUND)
+    res = challenge(staged, direct_vm, direct_charlie, EP[0])
+    assert res["challenge_outcome"] == "SUPERSEDED"
+    assert staged.claimable_of(addr_hex(staged, direct_vm, direct_bob)) == str(BOND)
+
+
+def test_single_newer_source_is_no_proof(direct_vm, staged, direct_charlie):
+    set_feeds(direct_vm, _newer(), NOT_FOUND, NOT_FOUND)
+    res = challenge(staged, direct_vm, direct_charlie, EP[0])
+    assert res["challenge_outcome"] == "UPHELD" and res["status"] == "STAGED"
+
+
+def test_conflict_not_newer_than_the_stage_is_slashed_and_revoked(direct_vm, staged, direct_bob, direct_charlie):
+    set_feeds(direct_vm, _older(), _older(), NOT_FOUND)
+    before = staged.get_epoch(EP[0])
+    res = challenge(staged, direct_vm, direct_charlie, EP[0])
+    assert res["challenge_outcome"] == "CANCELLED" and res["challenge_contradicted"] is True
+    assert staged.claimable_of(addr_hex(staged, direct_vm, direct_charlie)) == str(2 * BOND)
+    assert staged.claimable_of(addr_hex(staged, direct_vm, direct_bob)) == "0"
+    assert res["revision"] == before["revision"] + 1
+
+
+def test_equal_timestamp_conflict_is_slashed(direct_vm, staged, direct_charlie):
+    other = feed_doc(EP[0], 50, 400)  # same release_ts as the staged release
+    set_feeds(direct_vm, other, other, other)
+    assert challenge(staged, direct_vm, direct_charlie, EP[0])["challenge_outcome"] == "CANCELLED"
+
+
+def test_retraction_is_slashed_even_beside_a_newer_revision(direct_vm, staged, direct_bob, direct_charlie):
+    set_feeds(direct_vm, retracted_doc(EP[0]), _newer(), _newer())
+    res = challenge(staged, direct_vm, direct_charlie, EP[0])
+    assert res["challenge_outcome"] == "CANCELLED"
+    assert staged.claimable_of(addr_hex(staged, direct_vm, direct_bob)) == "0"

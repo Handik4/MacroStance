@@ -2,13 +2,13 @@
   "network": "studio-next",
   "chain_id": 61997,
   "rpc_url": "https://studio-next.genlayer.com/api",
-  "contract_address": "0xab10d3fc63cB2598870f3A06d183e4fca6156A4d",
-  "explorer_url": "https://explorer-studio-next.genlayer.com/address/0xab10d3fc63cB2598870f3A06d183e4fca6156A4d",
-  "deploy_tx": "0x211500cababbd3b2d2468617e256de707b4637ec4285998dbcbf34d228cde74d",
+  "contract_address": "0xEb67367E61EA385B21Cb0174f276d2EED17d6B08",
+  "explorer_url": "https://explorer-studio-next.genlayer.com/address/0xEb67367E61EA385B21Cb0174f276d2EED17d6B08",
+  "deploy_tx": "0x7131b7481e19ed28421c5e00b84398306e0c48aa66855bedf5a760d29a740cc2",
   "source": "contracts/macro_stance.py",
   "runner": "py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng",
-  "source_sha256": "5b14ef72692e0a596e02014f0cd7b51ae6c6df95ca4c94e63fd97712fe4b52a3",
-  "onchain_sha256": "5b14ef72692e0a596e02014f0cd7b51ae6c6df95ca4c94e63fd97712fe4b52a3",
+  "source_sha256": "540bdb3886029f06138aad2d4f136df3a171afeb8bf3a971892e38c55864c815",
+  "onchain_sha256": "540bdb3886029f06138aad2d4f136df3a171afeb8bf3a971892e38c55864c815",
   "source_matches_onchain": true,
   "receipt": {
     "status": "ACCEPTED",
@@ -21,12 +21,12 @@
     "https://rawcdn.githack.com/Handik4/MacroStance/e2cd0c0216747473a90d5cd738e7675f97a9b6cd/deployments/mock_feeds/c/"
   ],
   "constructor_readback": {
-    "status": "calldata_verified",
-    "detail": "state read failed (read failed: An internal error was received.); the deployment transaction's calldata carries exactly the three constructor arguments"
+    "status": "verified",
+    "detail": "get_feed_registry returned the three constructor arguments"
   },
   "fee_deposit_wei": "100000000000010352",
-  "tx_created_timestamp": "1792057157",
-  "recorded_at": "2026-10-15T09:39:26.430Z",
+  "tx_created_timestamp": "1792059756",
+  "recorded_at": "2026-10-15T10:22:46.022Z",
   "public_methods": {
     "views": [
       "claimable_of",
@@ -59,8 +59,7 @@
       "repay",
       "stage_feed_rotation",
       "transfer_governor",
-      "withdraw_collateral",
-      "withdraw_treasury"
+      "withdraw_collateral"
     ]
   }
 }

@@ -28,7 +28,7 @@ export const EXPLORER_URL =
  * The Studio Next deployment recorded in deployments/studio-next.json. The
  * address is public; override per environment with NEXT_PUBLIC_MACROSTANCE_ADDRESS.
  */
-export const DEPLOYED_ADDRESS = "0xab10d3fc63cB2598870f3A06d183e4fca6156A4d";
+export const DEPLOYED_ADDRESS = "0xEb67367E61EA385B21Cb0174f276d2EED17d6B08";
 export const CONTRACT_ADDRESS = (process.env.NEXT_PUBLIC_MACROSTANCE_ADDRESS ?? DEPLOYED_ADDRESS) as string;
 
 export interface Eip1193Provider {
@@ -64,7 +64,7 @@ export interface Overview {
   current_quarter: number;
   active_release_ts: number;
   epoch_count: number;
-  treasury: string;
+  locked_protocol_reserve: string;
   total_escrow: string;
   total_claimable: string;
   total_collateral: string;

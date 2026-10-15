@@ -126,7 +126,7 @@ ATTO = 10**18
 REPORTER_BOND = ATTO // 10  # 0.1 GEN minimum
 MAX_BOND = 10 * ATTO
 CHALLENGER_BOND = ATTO // 10
-KEEPER_REWARD = ATTO // 100  # paid from forfeited bonds, never from escrow
+KEEPER_REWARD = ATTO // 100  # paid from the locked reserve to the reporter of an executed release, never from escrow
 
 # --- Time --------------------------------------------------------------------
 ACTIVATION_TIMELOCK = 24 * 3600
@@ -354,26 +354,44 @@ def _resolve_quorum(states) -> dict:
 
 
 PAYLOAD_KEYS = ("verdict", "stance", "source_count", "release_hash", "release_ts")
-# A challenge round carries one extra field: positive proof that the STAGED
-# release is invalid. Proposal rounds never carry it.
+# A challenge round carries one extra field, `contradicted`, describing what the
+# feeds prove about the STAGED release. Proposal rounds never carry it.
 CHALLENGE_KEY = "contradicted"
+PROOF_NONE = 0        # no proof either way (404 / lag / outage / fewer than 2 conflicts)
+PROOF_FAULT = 1       # adversarial fault: RETRACTED, or a conflict not newer than the stage
+PROOF_SUPERSEDED = 2  # an honest upstream revision: a strictly NEWER conflicting release
 
 
-def _contradicts(states, staged_hash: str) -> int:
-    """1 only on POSITIVE proof against the staged release:
-      * at least one source serves an explicit RETRACTED record, or
-      * at least two sources serve a CONFIRMED release whose hash (which binds
-        epoch, rate, cpi, stance AND release_ts) differs from the staged one.
+def _contradicts(states, staged_hash: str, staged_ts: int) -> int:
+    """What the feeds prove against the staged release.
+
+    PROOF_FAULT (slash + revoke) is reserved for adversarial faults:
+      * any source serves an explicit RETRACTED record, or
+      * at least two sources serve a CONFIRMED release whose hash differs from
+        the staged one and whose `release_ts` is NOT newer than the staged
+        release's (a conflicting release that is not a later revision).
+    PROOF_SUPERSEDED (cancel, refund the reporter in full, no slash) is an
+      honest upstream revision: at least two sources serve conflicting
+      CONFIRMED releases and fewer than two of them are non-newer, i.e. the
+      conflict is (at least partly) a strictly newer `release_ts`. A reporter
+      who staged the then-current release is never punished for that.
     404s, 5xx, timeouts and every other lag/outage symptom are absence of
-    evidence and never count, so a CDN purge or propagation delay can not
-    cancel a valid release or slash its reporter."""
-    differing = 0
-    for kind, _stance, rhash, _rts in states:
+    evidence and count for nothing (PROOF_NONE)."""
+    stale_or_equal = 0
+    newer = 0
+    for kind, _stance, rhash, rts in states:
         if kind == SRC_RETRACTED:
-            return 1
+            return PROOF_FAULT
         if kind == SRC_CONFIRMED and rhash != staged_hash:
-            differing += 1
-    return 1 if differing >= 2 else 0
+            if rts > staged_ts:
+                newer += 1
+            else:
+                stale_or_equal += 1
+    if stale_or_equal >= 2:
+        return PROOF_FAULT
+    if stale_or_equal + newer >= 2:
+        return PROOF_SUPERSEDED
+    return PROOF_NONE
 
 
 def _payload_ok(p) -> bool:
@@ -387,7 +405,7 @@ def _payload_ok(p) -> bool:
         return False
     if extra == 1:
         c = p.get(CHALLENGE_KEY)
-        if not _is_int(c) or c not in (0, 1):
+        if not _is_int(c) or c not in (PROOF_NONE, PROOF_FAULT, PROOF_SUPERSEDED):
             return False
     for k in PAYLOAD_KEYS:
         if k not in p:
@@ -406,10 +424,10 @@ def _payload_ok(p) -> bool:
     return s == 0 and h == "" and t == 0
 
 
-def _with_proof(states, against: str) -> dict:
+def _with_proof(states, against: str, staged_ts: int) -> dict:
     payload = _resolve_quorum(states)
     if against != "":
-        payload[CHALLENGE_KEY] = _contradicts(states, against)
+        payload[CHALLENGE_KEY] = _contradicts(states, against, staged_ts)
     return payload
 
 
@@ -544,7 +562,11 @@ class MacroStance(gl.contract.Contract):
     claimable: TreeMap[str, u256]
     total_claimable: u256
     total_escrow: u256
-    treasury: u256
+    # Forfeited reporter bonds (REJECTED_RELEASE). Permanently non-withdrawable:
+    # there is NO method that debits it to an arbitrary address, and the
+    # governor has no extraction path. The only outflow is KEEPER_REWARD to the
+    # reporter of a release that was verified, staged and executed.
+    locked_protocol_reserve: u256
     total_collateral: u256
 
     # Vault
@@ -594,7 +616,7 @@ class MacroStance(gl.contract.Contract):
         self.active_since = (self._now())
         self.total_claimable = (0)
         self.total_escrow = (0)
-        self.treasury = (0)
+        self.locked_protocol_reserve = (0)
         self.total_collateral = (0)
         self.borrow_index = (RAY)
         self.index_updated_at = (self._now())
@@ -628,7 +650,7 @@ class MacroStance(gl.contract.Contract):
             "current_quarter": _quarter_seq_of(self._now()) % 4 + 1,
             "active_release_ts": int(self.active_release_ts),
             "epoch_count": int(self.epoch_count),
-            "treasury": str(self.treasury),
+            "locked_protocol_reserve": str(self.locked_protocol_reserve),
             "total_escrow": str(self.total_escrow),
             "total_claimable": str(self.total_claimable),
             "total_collateral": str(self.total_collateral),
@@ -723,7 +745,7 @@ class MacroStance(gl.contract.Contract):
         owed = (
             int(self.total_claimable)
             + int(self.total_escrow)
-            + int(self.treasury)
+            + int(self.locked_protocol_reserve)
             + int(self.total_collateral)
         )
         return {"owed": str(owed), "balance": str(self.balance), "solvent": int(self.balance) >= owed}
@@ -886,7 +908,7 @@ class MacroStance(gl.contract.Contract):
             self._credit(_key(sender), bond)
         else:
             status = EP_REJECTED
-            self.treasury += bond
+            self.locked_protocol_reserve += bond
         self._store_epoch(
             epoch_id,
             Epoch(
@@ -927,9 +949,11 @@ class MacroStance(gl.contract.Contract):
         if now > int(ep.activates_at) + PROPOSAL_VALIDITY_WINDOW:
             raise gl.vm.UserError(f"{ERR_WINDOW}")
 
-        res = self._run_quorum(epoch_id, ep.release_hash)
+        res = self._run_quorum(epoch_id, ep.release_hash, int(ep.release_ts))
         verdict = int(res["verdict"])
-        contradicted = int(res[CHALLENGE_KEY]) == 1
+        proof = int(res[CHALLENGE_KEY])
+        contradicted = proof == PROOF_FAULT
+        superseded = proof == PROOF_SUPERSEDED
         challenger = _key(gl.message.sender_address)
         reporter_hex = _key(ep.reporter)
         reporter_bond = int(ep.bond)
@@ -940,9 +964,10 @@ class MacroStance(gl.contract.Contract):
         )
         outcome = "UPHELD"
         if contradicted:
-            # POSITIVE proof of invalidity (an explicit RETRACTED record, or
-            # two sources serving a conflicting CONFIRMED release): cancel,
-            # slash the reporter to the challenger, revoke the release.
+            # POSITIVE proof of an adversarial fault (an explicit RETRACTED
+            # record, or two sources serving a conflicting CONFIRMED release
+            # that is not newer than the stage): cancel, slash the reporter to
+            # the challenger, revoke the release.
             self.total_escrow -= reporter_bond
             self._credit(challenger, bond + reporter_bond)
             ep.status = EP_CANCELLED
@@ -956,6 +981,23 @@ class MacroStance(gl.contract.Contract):
             self.epochs[epoch_id] = ep
             self.pending_epoch = ""
             outcome = "CANCELLED"
+        elif superseded:
+            # An honest upstream revision (a strictly newer release_ts): the
+            # staged release is stale through no fault of the reporter. Cancel
+            # it, return 100% of the reporter's bond, and pay the challenger
+            # no bounty (their own bond comes back). The hash is NOT revoked
+            # and the revision does not advance: this is not an adversarial
+            # fault, and the newer release is free to be proposed.
+            self.total_escrow -= reporter_bond
+            self._credit(reporter_hex, reporter_bond)
+            self._credit(challenger, bond)
+            ep.status = EP_CANCELLED
+            ep.bond = (0)
+            ep.resolved_by = challenger
+            ep.last_verdict = (verdict)
+            self.epochs[epoch_id] = ep
+            self.pending_epoch = ""
+            outcome = "SUPERSEDED"
         elif same:
             # Feeds still confirm the staged release: frivolous challenge,
             # its bond compensates the reporter.
@@ -976,6 +1018,7 @@ class MacroStance(gl.contract.Contract):
         view["challenge_outcome"] = outcome
         view["challenge_verdict"] = verdict
         view["challenge_contradicted"] = contradicted
+        view["challenge_superseded"] = superseded
         return view
 
     @gl.public.write
@@ -1029,8 +1072,8 @@ class MacroStance(gl.contract.Contract):
         self.active_epoch_revision = (int(ep.revision))
         self.pending_epoch = ""
         bond = int(ep.bond)
-        reward = KEEPER_REWARD if int(self.treasury) >= KEEPER_REWARD else int(self.treasury)
-        self.treasury -= reward
+        reward = KEEPER_REWARD if int(self.locked_protocol_reserve) >= KEEPER_REWARD else int(self.locked_protocol_reserve)
+        self.locked_protocol_reserve -= reward
         self.total_escrow -= bond
         self._credit(_key(ep.reporter), bond + reward)
         ep.status = EP_EXECUTED
@@ -1121,16 +1164,6 @@ class MacroStance(gl.contract.Contract):
         if new_gov == self.governor:
             raise gl.vm.UserError(f"{ERR_UNAUTHORIZED} already governor")
         self.governor = new_gov
-
-    @gl.public.write
-    def withdraw_treasury(self, to_hex: str, amount: u256) -> str:
-        self._only_governor()
-        amt = int(amount)
-        if amt <= 0 or amt > int(self.treasury):
-            raise gl.vm.UserError(f"{ERR_AMOUNT}")
-        self.treasury -= amt
-        self._pay(Address(to_hex), amt, restore_treasury=True)
-        return str(amt)
 
     # ----------------------------------------------------------- vault
     @gl.public.write.payable
@@ -1239,7 +1272,7 @@ class MacroStance(gl.contract.Contract):
         self.claimable[owner_hex] = (cur + amount)
         self.total_claimable += amount
 
-    def _pay(self, dest: Address, amount: int, restore_claimable: str = "", restore_treasury: bool = False) -> None:
+    def _pay(self, dest: Address, amount: int, restore_claimable: str = "") -> None:
         # Debit-before-transfer; an enqueue-time failure restores the debit.
         try:
             gl.chain.Account(dest).emit_transfer(amount, on="finalized")
@@ -1247,8 +1280,6 @@ class MacroStance(gl.contract.Contract):
             if restore_claimable != "":
                 self.claimable[restore_claimable] = (amount)
                 self.total_claimable += amount
-            if restore_treasury:
-                self.treasury += amount
             raise gl.vm.UserError(f"{ERR_TRANSFER}")
 
     def _position(self, key: str) -> tuple:
@@ -1346,9 +1377,10 @@ class MacroStance(gl.contract.Contract):
             return 0
         return (x_max * idx) // RAY
 
-    def _run_quorum(self, epoch_id: str, against: str = "") -> dict:
+    def _run_quorum(self, epoch_id: str, against: str = "", staged_ts: int = 0) -> dict:
         """One 2-of-3 round. With `against` (a staged release hash) the payload
-        also carries `contradicted`: positive proof the staged release is invalid."""
+        also carries `contradicted` (see `_contradicts`): what the feeds prove
+        against the staged release, given its hash and `release_ts`."""
         urls: list = []
         for i in range(SLOT_COUNT):
             urls.append(str(self.feed_url[(i)]) + epoch_id + ".json")
@@ -1357,7 +1389,7 @@ class MacroStance(gl.contract.Contract):
             states = []
             for u in urls:
                 states.append(_fetch_source(u, epoch_id))
-            return _with_proof(states, against)
+            return _with_proof(states, against, staged_ts)
 
         def validator_fn(leaders_res: gl.vm.Result) -> bool:
             if not isinstance(leaders_res, gl.vm.Return):
@@ -1365,7 +1397,7 @@ class MacroStance(gl.contract.Contract):
             states = []
             for u in urls:
                 states.append(_fetch_source(u, epoch_id))
-            return _validator_agrees(leaders_res.calldata, _with_proof(states, against))
+            return _validator_agrees(leaders_res.calldata, _with_proof(states, against, staged_ts))
 
         res = gl.vm.run_nondet(leader_fn, validator_fn)
         if not _payload_ok(res):

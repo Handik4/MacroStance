@@ -12,12 +12,12 @@ def c(direct_vm, direct_deploy, direct_alice):
 
 def owed(c):
     o = c.get_protocol_overview()
-    return sum(int(o[k]) for k in ("total_escrow", "total_claimable", "treasury", "total_collateral"))
+    return sum(int(o[k]) for k in ("total_escrow", "total_claimable", "locked_protocol_reserve", "total_collateral"))
 
 
 def test_buckets_sum_to_everything_ever_paid_in(direct_vm, c, direct_alice, direct_bob, direct_charlie):
     paid = 0
-    # a verified proposal (escrow), a rejected one (treasury), a QF (claimable), collateral
+    # a verified proposal (escrow), a rejected one (reserve), a QF (claimable), collateral
     all_feeds(direct_vm, EP_HAWKISH)
     propose(c, direct_vm, direct_bob, EP_HAWKISH[0], 2 * BOND)
     paid += 2 * BOND
@@ -67,4 +67,4 @@ def test_vault_never_touches_bond_buckets(direct_vm, c, direct_alice, direct_bob
     c.repay(ATTO)
     c.withdraw_collateral(ATTO)
     o = c.get_protocol_overview()
-    assert (o["total_escrow"], o["total_claimable"], o["treasury"]) == (str(BOND), "0", "0")
+    assert (o["total_escrow"], o["total_claimable"], o["locked_protocol_reserve"]) == (str(BOND), "0", "0")

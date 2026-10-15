@@ -102,7 +102,7 @@ def test_stale_release_reverts_so_the_reporter_keeps_the_bond(direct_vm, c, dire
     with direct_vm.expect_revert("ERR_STALE_RELEASE"):
         propose(c, direct_vm, direct_bob, EID)
     after = ov(c)
-    for k in ("treasury", "total_escrow", "total_claimable"):
+    for k in ("locked_protocol_reserve", "total_escrow", "total_claimable"):
         assert before[k] == after[k]
 
 
@@ -198,13 +198,13 @@ def test_execution_before_the_timelock_is_still_refused(direct_vm, c, direct_bob
 
 def test_expiry_releases_bond_without_a_keeper_reward(direct_vm, c, direct_bob, direct_charlie):
     set_feeds(direct_vm, NOT_FOUND, NOT_FOUND, NOT_FOUND)
-    propose(c, direct_vm, direct_charlie, "2026-Q1-FOMC")  # fund the treasury
+    propose(c, direct_vm, direct_charlie, "2026-Q1-FOMC")  # fund the reserve
     three(direct_vm, H1)
     propose(c, direct_vm, direct_bob, EID)
     warp_by(direct_vm, DAY + WEEK + 5)
     res = c.execute_stance_transition(EID)
     assert res["keeper_reward"] == "0"
-    assert ov(c)["treasury"] == str(BOND)  # the reward was NOT paid out
+    assert ov(c)["locked_protocol_reserve"] == str(BOND)  # the reward was NOT paid out
     assert c.claimable_of(addr_hex(c, direct_vm, direct_bob)) == str(BOND)
 
 

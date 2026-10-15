@@ -176,17 +176,17 @@ def test_full_flow_verdict_and_bond_routing(direct_vm, direct_deploy, direct_ali
     bob = addr_hex(c, direct_vm, direct_bob)
     if verdict == 1:  # VERIFIED: bond escrowed, nothing paid or forfeited
         assert res["status"] == "STAGED"
-        assert (ov["total_escrow"], ov["treasury"], c.claimable_of(bob)) == (str(BOND), "0", "0")
+        assert (ov["total_escrow"], ov["locked_protocol_reserve"], c.claimable_of(bob)) == (str(BOND), "0", "0")
         assert ov["pending_epoch"] == EP[0] and res["stance"] == EP[3]
     elif verdict == 2:  # QUORUM_FAILURE: bond comes straight back, retryable
         assert res["status"] == "QUORUM_FAILED"
-        assert (ov["total_escrow"], ov["treasury"], c.claimable_of(bob)) == ("0", "0", str(BOND))
+        assert (ov["total_escrow"], ov["locked_protocol_reserve"], c.claimable_of(bob)) == ("0", "0", str(BOND))
         assert ov["pending_epoch"] == ""
-    else:  # REJECTED_RELEASE: bond forfeited to the treasury
+    else:  # REJECTED_RELEASE: bond forfeited to the locked reserve
         assert res["status"] == "REJECTED"
-        assert (ov["total_escrow"], ov["treasury"], c.claimable_of(bob)) == ("0", str(BOND), "0")
+        assert (ov["total_escrow"], ov["locked_protocol_reserve"], c.claimable_of(bob)) == ("0", str(BOND), "0")
     # Whatever happened, the bond is conserved.
-    total = int(ov["total_escrow"]) + int(ov["treasury"]) + int(ov["total_claimable"])
+    total = int(ov["total_escrow"]) + int(ov["locked_protocol_reserve"]) + int(ov["total_claimable"])
     assert total == BOND
 
 
@@ -196,7 +196,7 @@ def test_spec_headline_confirmed_404_outage_is_quorum_failure(direct_vm, direct_
     res = propose(c, direct_vm, direct_bob, EP[0])
     assert res["verdict_name"] == "QUORUM_FAILURE"
     assert c.claimable_of(addr_hex(c, direct_vm, direct_bob)) == str(BOND)
-    assert c.get_protocol_overview()["treasury"] == "0"
+    assert c.get_protocol_overview()["locked_protocol_reserve"] == "0"
 
 
 def test_unmocked_host_counts_as_outage_not_vote(direct_vm, direct_deploy, direct_alice, direct_bob):

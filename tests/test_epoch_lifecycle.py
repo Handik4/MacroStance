@@ -176,35 +176,35 @@ def test_full_year_sequence_applies_each_tier_in_turn(direct_vm, c, direct_alice
 # ---------------------------------------------------------------- rewards
 def test_keeper_reward_is_paid_from_forfeited_bonds(direct_vm, c, direct_bob, direct_charlie):
     set_feeds(direct_vm, NOT_FOUND, NOT_FOUND, NOT_FOUND)
-    propose(c, direct_vm, direct_charlie, "2026-Q1-FOMC")  # bond forfeited -> treasury
-    assert ov(c)["treasury"] == str(BOND)
+    propose(c, direct_vm, direct_charlie, "2026-Q1-FOMC")  # bond forfeited -> locked reserve
+    assert ov(c)["locked_protocol_reserve"] == str(BOND)
     all_feeds(direct_vm, EP)
     propose(c, direct_vm, direct_bob, EP[0])
     warp_by(direct_vm, DAY)
     r = c.execute_stance_transition(EP[0])
     assert r["keeper_reward"] == str(KEEPER_REWARD)
     assert c.claimable_of(addr_hex(c, direct_vm, direct_bob)) == str(BOND + KEEPER_REWARD)
-    assert ov(c)["treasury"] == str(BOND - KEEPER_REWARD)
+    assert ov(c)["locked_protocol_reserve"] == str(BOND - KEEPER_REWARD)
 
 
-def test_no_reward_when_treasury_is_empty(staged, direct_vm):
+def test_no_reward_when_reserve_is_empty(staged, direct_vm):
     warp_by(direct_vm, DAY)
     assert staged.execute_stance_transition(EP[0])["keeper_reward"] == "0"
 
 
-def test_reward_is_capped_by_treasury_balance(direct_vm, c, direct_alice, direct_bob, direct_charlie):
+def test_reward_never_exceeds_the_reserve_and_is_its_only_outflow(direct_vm, c, direct_bob, direct_charlie):
     set_feeds(direct_vm, NOT_FOUND, NOT_FOUND, NOT_FOUND)
     propose(c, direct_vm, direct_charlie, "2026-Q1-FOMC")
-    direct_vm.sender = direct_alice
-    c.withdraw_treasury(addr_hex(c, direct_vm, direct_alice), BOND - 5)  # leave 5 wei
+    before = int(ov(c)["locked_protocol_reserve"])
     all_feeds(direct_vm, EP)
     propose(c, direct_vm, direct_bob, EP[0])
     warp_by(direct_vm, DAY)
-    assert c.execute_stance_transition(EP[0])["keeper_reward"] == "5"
-    assert ov(c)["treasury"] == "0"
+    paid = int(c.execute_stance_transition(EP[0])["keeper_reward"])
+    assert 0 < paid <= KEEPER_REWARD
+    assert int(ov(c)["locked_protocol_reserve"]) == before - paid
 
 
-# ------------------------------------------------------ claims & treasury
+# ------------------------------------------------------ claims & locked reserve
 def test_claim_payout_pays_once(direct_vm, staged, direct_bob):
     warp_by(direct_vm, DAY)
     staged.execute_stance_transition(EP[0])
@@ -235,19 +235,26 @@ def test_quorum_failure_refund_is_claimable(direct_vm, c, direct_bob):
     assert c.claim_payout() == str(BOND)
 
 
-def test_treasury_withdrawal_is_governor_only_and_bounded(direct_vm, c, direct_alice, direct_bob):
+def test_governor_has_no_path_to_forfeited_bonds(direct_vm, c, direct_alice, direct_bob):
+    """Forfeited bonds sit in `locked_protocol_reserve`: no method withdraws it."""
     set_feeds(direct_vm, NOT_FOUND, NOT_FOUND, NOT_FOUND)
     propose(c, direct_vm, direct_bob, EP[0])
-    to = addr_hex(c, direct_vm, direct_alice)
-    direct_vm.sender = direct_bob
-    with direct_vm.expect_revert("ERR_UNAUTHORIZED"):
-        c.withdraw_treasury(to, 1)
-    direct_vm.sender = direct_alice
-    for bad in (0, BOND + 1):
-        with direct_vm.expect_revert("ERR_INVALID_AMOUNT"):
-            c.withdraw_treasury(to, bad)
-    assert c.withdraw_treasury(to, BOND) == str(BOND)
-    assert ov(c)["treasury"] == "0"
+    assert ov(c)["locked_protocol_reserve"] == str(BOND)
+    direct_vm.sender = direct_alice  # the governor
+    assert c.get_protocol_overview()["governor"].lower() == addr_hex(c, direct_vm, direct_alice).lower()
+    for name in ("withdraw_treasury", "withdraw_reserve", "withdraw_locked_protocol_reserve"):
+        with pytest.raises(AttributeError):
+            getattr(c, name)
+    assert c.claimable_of(addr_hex(c, direct_vm, direct_alice)) == "0"
+    assert ov(c)["locked_protocol_reserve"] == str(BOND)
+
+
+def test_reserve_has_exactly_one_debit_site_and_no_governor_path():
+    import pathlib, re
+    src = pathlib.Path(__file__).resolve().parents[1].joinpath("contracts", "macro_stance.py").read_text()
+    assert len(re.findall(r"self\.locked_protocol_reserve\s*-=", src)) == 1
+    assert "withdraw_treasury" not in src
+    assert "restore_treasury" not in src
 
 
 # ------------------------------------------------------------- views

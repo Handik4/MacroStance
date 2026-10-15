@@ -15,9 +15,9 @@ single discrete output and a human-scale window to object.
 | | |
 |---|---|
 | Network | GenLayer **Studio Next**, chain `61997` |
-| Contract | [`0xab10d3fc63cB2598870f3A06d183e4fca6156A4d`](https://explorer-studio-next.genlayer.com/address/0xab10d3fc63cB2598870f3A06d183e4fca6156A4d) |
-| Source SHA-256 (local == on-chain) | `5b14ef72692e0a596e02014f0cd7b51ae6c6df95ca4c94e63fd97712fe4b52a3` |
-| Deploy tx | `0x211500cababbd3b2d2468617e256de707b4637ec4285998dbcbf34d228cde74d` |
+| Contract | [`0xEb67367E61EA385B21Cb0174f276d2EED17d6B08`](https://explorer-studio-next.genlayer.com/address/0xEb67367E61EA385B21Cb0174f276d2EED17d6B08) |
+| Source SHA-256 (local == on-chain) | `540bdb3886029f06138aad2d4f136df3a171afeb8bf3a971892e38c55864c815` |
+| Deploy tx | `0x7131b7481e19ed28421c5e00b84398306e0c48aa66855bedf5a760d29a740cc2` |
 | Runner pin | `py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng` |
 
 ---
@@ -41,7 +41,7 @@ single discrete output and a human-scale window to object.
               ┌──────────────────────────────┬───────────────────┴──────────────┐
               ▼                              ▼                                  ▼
        0 REJECTED_RELEASE            2 QUORUM_FAILURE                    1 VERIFIED_STANCE
-       bond → treasury               bond → reporter (retry)             stage 24 h, bond escrowed
+       bond → locked reserve         bond → reporter (retry)             stage 24 h, bond escrowed
                                                                                 │
                               challenge_staged_epoch (bonded) ◄── until executed or expired ┤
                               RETRACTED / 2 conflicting sources ⇒ CANCELLED,    │ after 24 h, anyone
@@ -66,7 +66,7 @@ deploy/deploy_macro_stance.ts    `genlayer deploy` script with strict receipt + 
 scripts/export_abi.py            ABI export and frontend call-site check
 scripts/gen_mock_feeds.py        regenerates deployments/mock_feeds
 scripts/verify_feeds.py           live HTTP check: every fixture on every registry host
-tests/                           870 direct-mode tests (pytest)
+tests/                           878 direct-mode tests (pytest)
 frontend/                        Next.js 16.4.1 + React 19 + Tailwind 4 terminal UI, 806 vitest tests
 ```
 
@@ -190,21 +190,31 @@ ordered combinations replayed byte-for-byte by the TypeScript port.)
 |---|---|---|
 | `VERIFIED`, then executed | escrowed → refunded + keeper reward (≤ 0.01 GEN, paid from forfeited bonds) | — |
 | `QUORUM_FAILURE` | returned immediately | — |
-| `REJECTED_RELEASE` | forfeited → treasury | — |
-| challenge succeeds — **positive proof**: ≥ 1 explicit `RETRACTED` record, or ≥ 2 sources serving a `CONFIRMED` release whose hash differs | slashed → challenger; release hash revoked | returned |
+| `REJECTED_RELEASE` | forfeited → `locked_protocol_reserve` (non-withdrawable) | — |
+| challenge succeeds — **adversarial fault**: ≥ 1 explicit `RETRACTED` record, or ≥ 2 sources serving a conflicting `CONFIRMED` release with `release_ts` ≤ the staged release's | slashed → challenger; release hash revoked | returned |
+| challenge → **`SUPERSEDED`** (honest upstream revision: ≥ 2 sources serve a conflicting `CONFIRMED` release and fewer than 2 are non-newer, i.e. a strictly newer `release_ts`) | **refunded 100%** (stage cancelled, hash **not** revoked) | returned, no bounty |
 | challenge fails (still confirmed by quorum) | kept | forfeited → reporter |
 | challenge fails (**no proof**: 404 / propagation lag / mixed outage, e.g. 1 `CONFIRMED` + 2× 404) | kept; stage stays `STAGED`, hash **not** revoked | returned |
 | challenge inconclusive (outage, quorum still reachable) | stays escrowed | returned |
 
-A challenge only cancels on evidence *against* the staged release. Absence of
+A challenge only cancels on evidence *against* the staged release; whether the
+reporter is slashed depends on *what kind* of evidence (see the table). Absence of
 evidence (a `404` from a CDN purge or lagging mirror, a 5xx, a timeout) never
 slashes the reporter and never revokes the release. The challenge round carries
 a sixth payload field, `contradicted`, that validators recompute and must agree
 on; proposal rounds keep the 5-key payload.
 
 Payouts are pull-pattern (`claim_payout`); every wei sits in exactly one of
-`total_escrow`, `total_claimable`, `treasury`, `total_collateral`
-(`get_solvency`). The treasury is governor-withdrawable.
+`total_escrow`, `total_claimable`, `locked_protocol_reserve`, `total_collateral`
+(`get_solvency`).
+
+**Invariant — the governor has no extraction path from forfeited bonds.** Forfeited
+reporter bonds go to `locked_protocol_reserve`, which no method can withdraw:
+`withdraw_treasury` no longer exists, and the reserve has exactly one debit site,
+the keeper reward (≤ 0.01 GEN) credited to the *reporter* of a release that was
+verified by 2-of-3 feeds, staged for 24 h and executed. That reward is permissionless
+(any address can be a reporter) and not governor-specific; it is the reserve's only
+outflow. The governor can still rotate feeds (7-day timelock) and `transfer_governor`.
 
 ---
 
@@ -228,7 +238,8 @@ Payouts are pull-pattern (`claim_payout`); every wei sits in exactly one of
 | Account key confusion (checksum vs lowercase) | One canonical lowercase key (found and fixed by a probe test) | — |
 | GitHub / CDN caching serves a stale file | Validators agree on whatever they observe; disagreement forces rotation | `raw.githubusercontent.com` caches ~5 min: a retraction can be visible late |
 | Governor key compromise or malicious governor | Rotations are timelocked (7 days) and `transfer_governor` exists | **The timelock is an advance warning and a capital-exit window for borrowers and lenders, not an on-chain veto**: nothing on-chain can block a single malicious governor from activating a staged rotation once the delay elapses. Single key; no multisig. **The deployed governor is the CLI deployer (see §6).** For production use a decentralized multisig (e.g. Safe) or a DAO timelock as governor |
-| Governor incentive to harvest reporter bonds | `REJECTED_RELEASE` (3× 404, i.e. unreleased proposals) forfeits the bond into `treasury`, which only the governor can withdraw | **Forfeited reporter bonds accrue to the protocol treasury controlled by the deployer key**, so the governor has a standing (if small) incentive to see premature proposals rejected. Mainnet should route forfeited bonds to an unspendable burn address or a reserve / insurance backstop, removing that incentive |
+| Governor incentive to harvest reporter bonds | `REJECTED_RELEASE` (3× 404, i.e. unreleased proposals) forfeits the bond into `locked_protocol_reserve`, which has **no withdrawal method** (the governor has zero extraction path; only the ≤ 0.01 GEN keeper reward to a verified reporter leaves it) | The reserve is *locked*, not burned: it funds keeper rewards and otherwise sits idle. A production deployment could route it to an explicit burn address or an insurance backstop, but no key can take it |
+| Honest reporter slashed for an upstream revision | A conflicting `CONFIRMED` release with a strictly newer `release_ts` is `SUPERSEDED`: stage cancelled, reporter refunded 100%, no bounty, hash not revoked. Slashing needs `RETRACTED`, or two conflicting sources whose `release_ts` is not newer | `release_ts` is publisher-supplied: a mirror that forges a newer timestamp can cancel a stage (liveness grief, no loss of bond). A conflict with `release_ts` ≤ the stage is treated as a fault, so two stale mirrors serving an *older* release do slash |
 | Emitted native transfer fails after the tx | Debit-before-transfer with restore on enqueue failure | Async settlement failures are outside the frame (same as any `emit_transfer`) |
 
 **What the vault is not.** Debt is a **ledger of notional units**: collateral is
@@ -250,10 +261,10 @@ to demonstrate stance-bound risk parameters, not to be a money market.
 | `tests/test_epoch_ids.py` | 42 | grammar |
 | `tests/test_audit_recheck.py` | 47 | **recheck**: release-timestamp rollback guard, challenge window through the validity window, current-quarter bound (incl. every quarter boundary) |
 | `tests/test_temporal_invariants.py` | 27 | **audit #1 #2 #7**: revoked releases, proposal expiry, large-index borrow ceiling |
-| `tests/test_epoch_lifecycle.py` | 36 | bonds, 24 h timelock, monotonic epochs, rewards, claims |
-| `tests/test_challenge.py` | 27 | retraction slashing, windows, frivolous / inconclusive challenges, **404-lag / no-proof challenges never slash** |
+| `tests/test_epoch_lifecycle.py` | 37 | bonds, 24 h timelock, monotonic epochs, rewards, claims |
+| `tests/test_challenge.py` | 34 | retraction slashing, windows, frivolous / inconclusive challenges, **404-lag / no-proof challenges never slash**, upstream revisions refund (`SUPERSEDED`) |
 | `tests/test_mock_feeds.py`, `test_pickling.py`, `test_accounting.py`, `test_vectors.py` | 20 | fixtures, cloudpickle closures, value conservation, TS parity vectors |
-| **pytest total** | **870** | |
+| **pytest total** | **878** | |
 | `frontend/src/lib/*.test.ts` | **806** | stance/quorum/classification parity vectors incl. `release_ts` and the quarter bound (535), input parsing (76), receipts (39), lending math incl. large-index ceiling (38), strict JSON (34), SDK fee + receipt flow (32), SerialLoader incl. `readAt` (21), account-keyed tx status (14), monotone chain clock (10), unknown-state display (7) |
 
 Roughly 280 of the pytest cases and ~470 of the vitest cases are exhaustive or
@@ -269,7 +280,7 @@ export GENVM_VERSION=v0.6.0-rc3      # see "Runner pin" below
 .venv/bin/genvm-lint check     contracts/macro_stance.py   # 0 errors
 .venv/bin/genvm-lint typecheck contracts/macro_stance.py   # 0 errors
 .venv/bin/python scripts/export_abi.py --check
-.venv/bin/python -m pytest -q                              # 870 passed
+.venv/bin/python -m pytest -q                              # 878 passed
 
 # Frontend
 cd frontend
@@ -312,7 +323,8 @@ a new transaction.
 
 | | Address | Source SHA-256 | Status |
 |---|---|---|---|
-| **Current** (challenge proof-of-invalidity, after `8d48086`) | `0xab10d3fc63cB2598870f3A06d183e4fca6156A4d` | `5b14ef72…52a3` | live; tx `0x211500ca…e74d`; positive-proof challenge slashing; commit-pinned registry |
+| **Current** (upstream-revision refund + locked reserve) | `0xEb67367E61EA385B21Cb0174f276d2EED17d6B08` | `540bdb38…c815` | live; tx `0x7131b748…0cc2`; registry state **read back live** (`verified`); commit-pinned registry |
+| Superseded (governor-withdrawable treasury; revisions slashed) | `0xab10d3fc63cB2598870f3A06d183e4fca6156A4d` | `5b14ef72…52a3` | `deployments/history/studio-next.6809745.json` |
 | Superseded (challenge cancelled on 404 lag) | `0x6F5836e013b56738e1c27BDbFA36fB001369D867` | `43d82465…af0e8` | `deployments/history/studio-next.8d48086.json` |
 | Superseded (branch-URL registry) | `0xd13BF8a675565E0cA08383f94dD350cbf70B74F0` | `43d82465…af0e8` | same source, branch prefixes; `deployments/history/studio-next.549ee91.json` |
 | Superseded (recheck of `dda2887`) | `0xdb529461aaD3511d6454e93764FE074746286966` | `2e3384c3…bdd3` | `deployments/history/studio-next.0b2cdb2.json` |
@@ -325,20 +337,17 @@ Superseded contracts are not upgradable and remain callable; point nothing at th
 * The current deployment was **decided `ACCEPTED`**, `FINISHED_WITH_RETURN`,
   `MAJORITY_AGREE`, and the script's strict receipt gate passed on the first try.
   Local and on-chain source SHA-256 are identical (step 4 ✔).
-* **Registry state read-back is unavailable; calldata verification stands in.**
-  Studio Next's `gen_call` has returned a server-side SQLAlchemy session error
-  (`Can't reconnect until invalid transaction is rolled back`) for *every*
-  contract, including an unrelated known-good one, and for both
-  `latest-nonfinal` and `latest-final`. The deploy script therefore records
-  `constructor_readback.status`:
-  `verified` (live `get_feed_registry` equals the constructor arguments),
+* **Registry state was read back live for the current deployment.** The deploy
+  script records `constructor_readback.status`: `verified` (live
+  `get_feed_registry` equals the constructor arguments — **the current level**),
   `calldata_verified` (the deploy transaction's own calldata carries exactly the
-  three arguments; an *input* check, not a state read — **this is the current
-  level**) or `unverified`. Non-`gen_call` RPCs work and were used: the
-  transaction (`FINALIZED`, `MAJORITY_AGREE`, 3 AGREE / 2 IDLE), the deployed
-  source (`gen_getContractCode`, hash equal) and the schema (30 methods).
-  Re-run `MACROSTANCE_RECORD_TX=0x7473… genlayer deploy --rpc …` once the RPC
-  recovers to upgrade to `verified`.
+  three arguments; an input check, not a state read) or `unverified`.
+  Studio Next's `gen_call` returned a server-side SQLAlchemy session error
+  (`Can't reconnect until invalid transaction is rolled back`) for earlier
+  deployments, which therefore recorded `calldata_verified`; it recovered for this
+  one, and `get_protocol_overview` (incl. `locked_protocol_reserve: "0"`,
+  `governor`, the three timelocks) was read back through `genlayer call`.
+  The schema has 29 methods.
 * **The deployer / governor is the CLI's active account**
   `0x6Ec5cb7469a661B8E23B4867359893A25116eA19` (the keystore was named for a
   different project). It paid the 0.1 GEN fee deposit and is the contract's
@@ -451,15 +460,17 @@ a ref instead of read from loader state) and is fixed rather than suppressed.
 * **Fixtures are commit-pinned, so they are immutable by design.** Updating a
   fixture means a new commit and a registry rotation (7-day timelock) or a new
   deployment. Epoch ids already executed are unaffected.
-* Studio Next's `gen_call` read path was unavailable throughout; live state
-  (`get_protocol_overview`, `get_feed_registry`) has not been read back (§6).
+* Studio Next's `gen_call` read path has been intermittent (it failed for earlier
+  deployments); only the initial state was read back live — no write has been
+  exercised against a live validator network (§6).
 * An executed epoch can be revised: re-proposing it succeeds only with a strictly
   newer `release_ts`, and a cancelled or expired revision leaves the previously
   executed stance live.
 * Single governor key; no multisig. The 7-day registry timelock gives users
   time to exit; it does **not** veto a malicious governor (§4).
-* Forfeited reporter bonds (`REJECTED_RELEASE`) go to the treasury, withdrawable
-  by the governor key (§4); production should burn or ring-fence them.
+* Forfeited reporter bonds (`REJECTED_RELEASE`) are locked in
+  `locked_protocol_reserve` and are not withdrawable by anyone (§3, §4); they
+  are not burned, and only fund the ≤ 0.01 GEN keeper reward.
 * Registrable-domain uniqueness is approximated by the last two labels.
 * One pending transition at a time: a staged-but-unexecuted epoch blocks new
   proposals until anyone executes it after 24 h.

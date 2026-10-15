@@ -106,7 +106,7 @@ export default function EpochSyncDesk({ overview, epochs, account, claimable, cl
             {account ? "Post bond & sync" : "Connect wallet"}
           </button>
           <p className="mt-2 font-mono text-[11px] text-slate-500">
-            Verified: bond held until execution. Outage: bond returned. Rejected: bond forfeited to treasury.
+            Verified: bond held until execution. Outage: bond returned. Rejected: bond forfeited to the locked protocol reserve.
           </p>
         </form>
 
