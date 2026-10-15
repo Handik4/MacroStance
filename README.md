@@ -15,9 +15,9 @@ single discrete output and a human-scale window to object.
 | | |
 |---|---|
 | Network | GenLayer **Studio Next**, chain `61997` |
-| Contract | [`0xdb529461aaD3511d6454e93764FE074746286966`](https://explorer-studio-next.genlayer.com/address/0xdb529461aaD3511d6454e93764FE074746286966) |
-| Source SHA-256 (local == on-chain) | `2e3384c3d6e13bf560cfa0739aba76697236e27f44ba153d295094f0a8a1bdd3` |
-| Deploy tx | `0x4822dfca1cba3bb33446207e49129939ddc77a2b1abc141c03a9d1a0cf34f9f5` |
+| Contract | [`0xd13BF8a675565E0cA08383f94dD350cbf70B74F0`](https://explorer-studio-next.genlayer.com/address/0xd13BF8a675565E0cA08383f94dD350cbf70B74F0) |
+| Source SHA-256 (local == on-chain) | `43d824659dbc7cf11d7863eeb29ac8101c4930118ae89ca65ab1ce81625af0e8` |
+| Deploy tx | `0xcf2e869cc4d4557f573fa58792046e5cf5b2d7fad2db373665f24b0475a65ab3` |
 | Runner pin | `py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng` |
 
 ---
@@ -35,15 +35,15 @@ single discrete output and a human-scale window to object.
    (bond ≥ 0.1 GEN, epoch id only)  CONFIRMED / RETRACTED / 404 / OUTAGE   per source, classified identically
                                       └──────────────────────────┬───────────────────────────┘
                                                                  ▼
-                             leader: {verdict, stance, source_count, release_hash}   (exactly 4 keys)
-                             validators: re-fetch independently, require exact equality on all four
+                             leader: {verdict, stance, source_count, release_hash, release_ts}   (exactly 5 keys)
+                             validators: re-fetch independently, require exact equality on all five
                                                                  │
               ┌──────────────────────────────┬───────────────────┴──────────────┐
               ▼                              ▼                                  ▼
        0 REJECTED_RELEASE            2 QUORUM_FAILURE                    1 VERIFIED_STANCE
        bond → treasury               bond → reporter (retry)             stage 24 h, bond escrowed
                                                                                 │
-                              challenge_staged_epoch (bonded) ◄── inside window ┤
+                              challenge_staged_epoch (bonded) ◄── until executed or expired ┤
                               retraction / conflict ⇒ CANCELLED,                │ after 24 h, anyone
                               reporter bond → challenger                        ▼
                                                                   execute_stance_transition
@@ -65,8 +65,8 @@ deployments/
 deploy/deploy_macro_stance.ts    `genlayer deploy` script with strict receipt + source-hash verification
 scripts/export_abi.py            ABI export and frontend call-site check
 scripts/gen_mock_feeds.py        regenerates deployments/mock_feeds
-tests/                           794 direct-mode tests (pytest)
-frontend/                        Next.js 14.2.35 + Tailwind terminal UI, 776 vitest tests
+tests/                           864 direct-mode tests (pytest)
+frontend/                        Next.js 14.2.35 + Tailwind terminal UI, 806 vitest tests
 ```
 
 ---
@@ -77,11 +77,11 @@ frontend/                        Next.js 14.2.35 + Tailwind terminal UI, 776 vit
 |---|---|---|---|
 | 1 | Callers never pass URLs; hosts unique across active **and** staged slots; 7-day rotation timelock | `propose_epoch_sync(epoch_id)` takes only an id (grammar `YYYY-Qn-TAG`, which is also what makes it URL-safe); `stage_feed_rotation` checks every other slot's active and staged host **and registrable domain**; `activate_feed_rotation` re-checks | `test_feed_registry.py`, `test_epoch_ids.py` |
 | 2 | Deterministic stance buckets; parameters bound to the tier only | `_derive_stance` (integer math, HAWKISH → DOVISH → NEUTRAL); `RISK_TABLE` indexed by stance | `test_stance_rules.py`, TS parity vectors |
-| 3 | 2-of-3 quorum; an outage that could complete quorum never costs the reporter | `_resolve_quorum`; exact 4-key payload in `_payload_ok` / `_validator_agrees` | `test_quorum_resolution.py` (independent oracle, exhaustive), `test_validator.py` |
-| 4 | 24 h activation timelock; retraction breaks it | `activates_at`; `challenge_staged_epoch` re-queries; only one pending transition; epochs monotonic by quarter | `test_epoch_lifecycle.py`, `test_challenge.py` |
-| 4a | A revised release can never be rolled back to its older version | per-epoch `revision`, `revoked_hashes` (every cancelled release), contract-wide `active_version`; a staged release records the version it was staged against | `test_temporal_invariants.py` |
+| 3 | 2-of-3 quorum; an outage that could complete quorum never costs the reporter | `_resolve_quorum`; exact 5-key payload in `_payload_ok` / `_validator_agrees` | `test_quorum_resolution.py` (independent oracle, exhaustive), `test_validator.py` |
+| 4 | 24 h activation timelock; a retraction aborts the transition **at any time before execution** | `activates_at`; `challenge_staged_epoch` re-queries the feeds and is callable throughout the 7-day validity window; only one pending transition; epochs monotonic by quarter | `test_epoch_lifecycle.py`, `test_challenge.py`, `test_audit_recheck.py` |
+| 4a | An older release can never replace a newer one | feed documents carry `release_ts`; nothing at or below `active_release_ts` (or the epoch's own `executed_epoch_releases` entry) can be staged or executed (`ERR_STALE_REVISION_ROLLBACK`); a challenge also revokes the exact cancelled release | `test_audit_recheck.py`, `test_temporal_invariants.py` |
 | 4b | A staged transition cannot be applied arbitrarily late | `PROPOSAL_VALIDITY_WINDOW` = 7 d after `activates_at`; past it `execute_stance_transition` *commits* an `EXPIRED` status and releases the bond | `test_temporal_invariants.py` |
-| 4c | Epoch ids cannot name a distant future | year ≤ block-clock year + 1, checked before any network or bond handling | `test_temporal_invariants.py` |
+| 4c | An epoch cannot name a quarter that has not begun | `seq ≤ quarter(block clock)`, else `ERR_FUTURE_EPOCH`; checked before any network or bond handling | `test_audit_recheck.py` |
 | 5 | Vault enforces the active tier in integer BPS, zero dust | RAY-scaled global index, ceil in the protocol's favour, LTV checked by cross-multiplication | `test_vault.py`, `test_accounting.py` |
 
 **On "step-change guard".** The brief names it without defining it. It is
@@ -104,12 +104,26 @@ A cut with hot CPI (stagflation) resolves HAWKISH. Feed documents carry the raw
 `rate_change_bps` and `cpi_yoy_bps`; the contract derives the stance and rejects
 a document that tries to assert one.
 
+A `CONFIRMED` feed document is:
+
+```json
+{ "epoch_id": "2026-Q3-FOMC", "status": "CONFIRMED",
+  "rate_change_bps": 25, "cpi_yoy_bps": 320, "release_ts": 1789587600 }
+```
+
+`release_ts` (integer unix seconds, 2000–2100) is the release's identity for
+ordering and is folded into `release_hash`
+(`sha256("epoch|rate|cpi|stance|release_ts")`): a re-publication with identical
+numbers and a later timestamp is a *newer* release, and sources only match when
+they agree on it. A document without it is a schema error (an outage of that
+source). A `RETRACTED` document needs only `epoch_id` and `status`.
+
 ---
 
 ## 3. Verdict resolution `[A, B, C]`
 
-Per source: **C** = `200` + valid schema + `CONFIRMED` (same stance and release
-hash as its peers), **D** = `CONFIRMED` with a *different* stance from C (C and D are symmetric: `3×D` verifies exactly like `3×C`), **R** =
+Per source: **C** = `200` + valid schema + `CONFIRMED` (same stance, release
+hash and `release_ts` as its peers), **D** = `CONFIRMED` with a *different* stance from C (C and D are symmetric: `3×D` verifies exactly like `3×C`), **R** =
 `200` + `RETRACTED`, **N** = `404`, **O** = outage (5xx, 429, redirect, timeout,
 transport fault, bad JSON, wrong schema, wrong epoch id, out-of-range or
 non-integer numerics, body > 4 KiB).
@@ -192,15 +206,16 @@ Payouts are pull-pattern (`claim_payout`); every wei sits in exactly one of
 |---|---|---|
 | Caller injects a malicious URL (SSRF, path traversal) | No URL parameter exists; epoch id grammar is `^\d{4}-Q[1-4]-[A-Z0-9]{2,12}$`; URL = registry prefix + id + `.json` | Governor can register any `https` host (timelocked) |
 | One host registered under several names to fake a quorum | Exact host *and* last-two-label domain unique across active + staged slots, re-checked at activation | The two-label approximation also rejects distinct hosts under `co.uk`-style suffixes (fails safe) |
-| Leader smuggles free text or a forged verdict | Payload is exactly 4 typed keys with cross-field invariants; validators recompute and require equality; contract re-validates before touching state | — |
+| Leader smuggles free text or a forged verdict | Payload is exactly 5 typed keys with cross-field invariants; validators recompute and require equality; contract re-validates before touching state | — |
 | Outage forfeits an honest reporter | Rule 6 / oracle-checked; unreachable ⇒ retryable | A *persistent* outage of 2 hosts blocks syncing (liveness, not safety) |
-| Stale or replayed epoch rolls parameters back | `seq` monotonic by quarter; executed epochs terminal | Same-quarter re-releases allowed under a different tag |
-| Bad release activates before anyone can react | 24 h timelock + bonded challenge re-query | Challenger must act within the window; one retracting source is enough to cancel (fail-closed), so a compromised mirror can grief the reporter's bond |
+| Stale or replayed release rolls parameters back | `seq` monotonic by quarter **and** `release_ts` strictly greater than the live release's, for the same epoch id or any other id; cancelled releases are revoked | The feeds must carry an honest, monotone `release_ts`; a publisher that back-dates a revision cannot supersede (it only fails to apply) |
+| Bad release activates before anyone can react | 24 h timelock + bonded challenge re-query, which stays available until the stage executes or expires (a retraction on day 2 or day 5 still aborts it) | Challenger must act within the window; one retracting source is enough to cancel (fail-closed), so a compromised mirror can grief the reporter's bond |
 | Feed numbers differ but stance matches | Release hash binds `epoch|rate|cpi|stance`; a differing hash is a different release | — |
 | Rounding exploits in the vault | Scaled debt and debt are `ceil`; repay scaled is `floor`; index growth `ceil`; LTV by cross-multiplication; dust repays refused; `available_to_borrow` is a **closed-form inverse** of the borrow rule (exact at any index) | Borrowing exactly `floor(collateral·ltv)` can fail by ≤ `idx/RAY + 1` wei — use `available_to_borrow` |
 | Stale mirror re-serves a release a challenge already cancelled | Cancelled hashes are revoked per epoch; proposing one reverts `ERR_STALE_RELEASE` (reporter keeps the bond); execute re-checks | Only *revoked* releases are ordered. Two unrelated hashes for one epoch have no feed-supplied order (see §8) |
 | A stage nobody executes sits forever, then applies stale data | 7-day validity window; expired stages release the bond; a stuck stage auto-expires on the next proposal so it cannot block the protocol | — |
-| Year-2200 / far-future epoch ids | Rejected as malformed when the year exceeds block-clock year + 1 | Ids for the *current or next* year are still unverifiable until published |
+| Far-future epoch ids (e.g. `2027-Q4` in 2026) staging and locking out every earlier quarter | Rejected `ERR_FUTURE_EPOCH` unless the quarter has begun on the block clock | The *current* quarter's id is accepted as soon as feeds publish it |
+| A far-future `release_ts` becoming a high-water mark that blocks every later release | Static bounds (2000–2100) in every validator, plus a contract guard: more than 24 h ahead of the block clock reverts `ERR_FUTURE_RELEASE` | A release dated up to 24 h ahead is accepted and raises the mark accordingly |
 | Account key confusion (checksum vs lowercase) | One canonical lowercase key (found and fixed by a probe test) | — |
 | GitHub / CDN caching serves a stale file | Validators agree on whatever they observe; disagreement forces rotation | `raw.githubusercontent.com` caches ~5 min: a retraction can be visible late |
 | Governor key compromise | Rotations timelocked; `transfer_governor`; treasury withdrawal | Single key; no multisig. **The deployed governor is the CLI deployer (see §6)** |
@@ -216,19 +231,20 @@ to demonstrate stance-bound risk parameters, not to be a money market.
 
 | Suite | Count | What it covers |
 |---|---|---|
-| `tests/test_quorum_resolution.py` | 314 | 216 source-state combos vs independent oracle; 64 HTTP-level combos with bond routing; spec cases |
+| `tests/test_quorum_resolution.py` | 317 | 216 source-state combos vs independent oracle; 64 HTTP-level combos with bond routing; spec cases |
 | `tests/test_stance_rules.py` | 91 | boundaries, priority, grid vs reference, tier binding |
 | `tests/test_feed_registry.py` | 67 | URL validation, duplicate host (active/staged/apex/case), 7-day timelock |
-| `tests/test_feed_classification.py` | 61 | per-source schema/status/bounds |
-| `tests/test_validator.py` | 54 | forged payloads, wrong types, extra keys, validator disagreement |
+| `tests/test_feed_classification.py` | 78 | per-source schema/status/bounds |
+| `tests/test_validator.py` | 66 | forged payloads, wrong types, extra keys, validator disagreement |
 | `tests/test_vault.py` | 52 | LTV boundaries, exact interest, reserve factor, rounding, tightening |
 | `tests/test_epoch_ids.py` | 42 | grammar |
-| `tests/test_temporal_invariants.py` | 36 | **audit findings #1 #2 #3 #7**: revision rollback, proposal expiry, future-year bound, large-index borrow ceiling |
+| `tests/test_audit_recheck.py` | 47 | **recheck**: release-timestamp rollback guard, challenge window through the validity window, current-quarter bound (incl. every quarter boundary) |
+| `tests/test_temporal_invariants.py` | 27 | **audit #1 #2 #7**: revoked releases, proposal expiry, large-index borrow ceiling |
 | `tests/test_epoch_lifecycle.py` | 36 | bonds, 24 h timelock, monotonic epochs, rewards, claims |
 | `tests/test_challenge.py` | 21 | retraction slashing, windows, frivolous / inconclusive challenges |
 | `tests/test_mock_feeds.py`, `test_pickling.py`, `test_accounting.py`, `test_vectors.py` | 20 | fixtures, cloudpickle closures, value conservation, TS parity vectors |
-| **pytest total** | **794** | |
-| `frontend/src/lib/*.test.ts` | **776** | stance/quorum/classification parity vectors (505), input parsing (76), receipts (39), lending math incl. large-index ceiling (38), strict JSON (34), SDK fee + receipt flow (32), SerialLoader incl. `readAt` (21), account-keyed tx status (14), monotone chain clock (10), unknown-state display (7) |
+| **pytest total** | **864** | |
+| `frontend/src/lib/*.test.ts` | **806** | stance/quorum/classification parity vectors incl. `release_ts` and the quarter bound (535), input parsing (76), receipts (39), lending math incl. large-index ceiling (38), strict JSON (34), SDK fee + receipt flow (32), SerialLoader incl. `readAt` (21), account-keyed tx status (14), monotone chain clock (10), unknown-state display (7) |
 
 Roughly 280 of the pytest cases and ~470 of the vitest cases are exhaustive or
 golden-vector enumerations; the hand-written scenario tests are the remainder.
@@ -243,13 +259,13 @@ export GENVM_VERSION=v0.6.0-rc3      # see "Runner pin" below
 .venv/bin/genvm-lint check     contracts/macro_stance.py   # 0 errors
 .venv/bin/genvm-lint typecheck contracts/macro_stance.py   # 0 errors
 .venv/bin/python scripts/export_abi.py --check
-.venv/bin/python -m pytest -q                              # 794 passed
+.venv/bin/python -m pytest -q                              # 864 passed
 
 # Frontend
 cd frontend
 npm ci
 npx tsc --noEmit
-npm test                      # 776 passed
+npm test                      # 806 passed
 npm run build                 # static export -> out/
 ```
 
@@ -285,10 +301,11 @@ a new transaction.
 
 | | Address | Source SHA-256 | Status |
 |---|---|---|---|
-| **Current** (audit hardening) | `0xdb529461aaD3511d6454e93764FE074746286966` | `2e3384c3…bdd3` | live; tx `0x4822dfca…f9f5` |
-| Superseded (audited commit `dda2887`) | `0x3AE6f881382c62811169921Fb77D97a0c18e49B3` | `f0774263…c5163` | still on-chain; record in `deployments/history/` |
+| **Current** (recheck of `0b2cdb2`) | `0xd13BF8a675565E0cA08383f94dD350cbf70B74F0` | `43d82465…af0e8` | live; tx `0xcf2e869c…5ab3` |
+| Superseded (audit of `dda2887`) | `0xdb529461aaD3511d6454e93764FE074746286966` | `2e3384c3…bdd3` | still on-chain; `deployments/history/studio-next.0b2cdb2.json` |
+| Superseded (original) | `0x3AE6f881382c62811169921Fb77D97a0c18e49B3` | `f0774263…c5163` | still on-chain; `deployments/history/studio-next.dda2887.json` |
 
-The superseded contract is not upgradable and remains callable; point nothing at it.
+Superseded contracts are not upgradable and remain callable; point nothing at them.
 
 ### What to know about the recorded deployment
 
@@ -300,7 +317,7 @@ The superseded contract is not upgradable and remains callable; point nothing at
   (`Can't reconnect until invalid transaction is rolled back`) for *every*
   contract, including an unrelated known-good one. `gen_getContractSchema` works.
   The record therefore carries `constructor_readback.status = "unverified"`;
-  rerun `MACROSTANCE_RECORD_TX=0x4822… genlayer deploy --rpc …` to upgrade it
+  rerun `MACROSTANCE_RECORD_TX=0xcf2e… genlayer deploy --rpc …` to upgrade it
   once the RPC recovers.
 * **The deployer / governor is the CLI's active account**
   `0x6Ec5cb7469a661B8E23B4867359893A25116eA19` (the keystore was named for a
@@ -392,13 +409,17 @@ endpoint): **12 findings (1 critical, 9 high, 2 moderate); production-only: 2
 ## 8. Known limitations
 
 * Untested on a live validator network (§6).
-* **Release ordering is only partial.** A challenge revokes the *specific* release it
-  cancels, so a stale mirror can never re-stage it. But two unrelated hashes for the
-  same epoch have no order unless the feeds carry a monotone version, and the
-  four-key validator payload deliberately has no field for one. Same-quarter
-  epochs with different tags are likewise unordered.
-* An executed epoch is terminal: a post-execution revision of the *same* epoch id
-  cannot be applied (it can only be rejected as stale), by design.
+* **Release ordering depends on the feeds' `release_ts`.** The contract enforces
+  "strictly newer" but cannot know a publisher's timestamp is honest; a mirror that
+  serves an old document with a *forged newer* timestamp would still need 2-of-3
+  matching sources and survive the bonded challenge to be applied.
+* **Feed documents must carry `release_ts`** (integer unix seconds, 2000–2100);
+  a document without it is a schema error, i.e. an outage of that source. The
+  committed mock feeds were regenerated accordingly, and jsDelivr caches `@main`
+  for hours, so a purge may be needed after editing fixtures.
+* An executed epoch can be revised: re-proposing it succeeds only with a strictly
+  newer `release_ts`, and a cancelled or expired revision leaves the previously
+  executed stance live.
 * Single governor key; no multisig.
 * Registrable-domain uniqueness is approximated by the last two labels.
 * One pending transition at a time: a staged-but-unexecuted epoch blocks new
