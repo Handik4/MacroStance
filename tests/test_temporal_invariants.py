@@ -60,7 +60,7 @@ def test_older_revision_cannot_roll_back_revised_stance(direct_vm, c, direct_bob
     assert (o["active_stance"], o["active_version"], o["active_epoch_revision"]) == (NEUTRAL, 1, 1)
 
     three(direct_vm, H1)
-    with direct_vm.expect_revert("ERR_INVALID_EPOCH_STATE"):  # EXECUTED is terminal
+    with direct_vm.expect_revert("ERR_STALE_RELEASE"):  # revoked, and not newer than the live release
         propose(c, direct_vm, direct_bob, EID)
     assert ov(c)["active_stance"] == NEUTRAL
 
@@ -238,12 +238,11 @@ def test_a_live_stage_still_blocks_new_proposals(direct_vm, c, direct_bob, direc
         propose(c, direct_vm, direct_charlie, EP_Q4[0])
 
 
-def test_challenge_window_is_still_only_the_first_24_hours(direct_vm, c, direct_bob, direct_charlie):
+def test_challenge_window_outlives_the_24h_timelock(direct_vm, c, direct_bob, direct_charlie):
     three(direct_vm, H1)
     propose(c, direct_vm, direct_bob, EID)
     warp_by(direct_vm, DAY + 1)
-    with direct_vm.expect_revert("ERR_CHALLENGE_WINDOW_CLOSED"):
-        challenge(c, direct_vm, direct_charlie, EID)
+    assert challenge(c, direct_vm, direct_charlie, EID)["challenge_outcome"] == "UPHELD"
 
 
 def test_overview_and_epoch_views_expose_the_window(direct_vm, c, direct_bob):
@@ -251,41 +250,6 @@ def test_overview_and_epoch_views_expose_the_window(direct_vm, c, direct_bob):
     three(direct_vm, H1)
     e = propose(c, direct_vm, direct_bob, EID)
     assert e["expires_at"] == e["activates_at"] + WEEK
-
-
-# ============================================================ finding #3
-@pytest.mark.parametrize("year", [2028, 2030, 2100, 2200])
-def test_distant_future_epoch_year_rejected(direct_vm, c, direct_bob, year):
-    eid = f"{year}-Q1-FOMC"
-    all_feeds(direct_vm, (eid, 25, 320, HAWKISH))  # perfectly valid data
-    with direct_vm.expect_revert("ERR_INVALID_EPOCH_ID"):
-        propose(c, direct_vm, direct_bob, eid)
-    assert c.get_epoch_count() == 0 and ov(c)["total_escrow"] == "0"
-
-
-@pytest.mark.parametrize("year", [2026, 2027])
-def test_current_and_next_year_are_accepted(direct_vm, c, direct_bob, year):
-    eid = f"{year}-Q4-FOMC"
-    all_feeds(direct_vm, (eid, 25, 320, HAWKISH))
-    assert propose(c, direct_vm, direct_bob, eid)["verdict"] == 1
-
-
-def test_the_bound_follows_the_block_clock(direct_vm, c, direct_bob):
-    all_feeds(direct_vm, ("2028-Q1-FOMC", 25, 320, HAWKISH))
-    with direct_vm.expect_revert("ERR_INVALID_EPOCH_ID"):
-        propose(c, direct_vm, direct_bob, "2028-Q1-FOMC")
-    direct_vm.warp("2027-01-01T00:00:00Z")  # now 2028 is "next year"
-    assert propose(c, direct_vm, direct_bob, "2028-Q1-FOMC")["verdict"] == 1
-
-
-def test_overview_reports_the_current_maximum_year(c):
-    assert ov(c)["max_epoch_year"] == 2027
-
-
-def test_year_boundary_is_checked_before_any_network_or_bond_handling(direct_vm, c, direct_bob):
-    direct_vm.clear_mocks()
-    with direct_vm.expect_revert("ERR_INVALID_EPOCH_ID"):
-        propose(c, direct_vm, direct_bob, "2200-Q4-FOMC", value=0)
 
 
 # ============================================================ finding #7

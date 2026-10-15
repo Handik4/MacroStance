@@ -146,15 +146,16 @@ def test_same_quarter_different_tag_is_allowed(direct_vm, staged, direct_bob):
     warp_by(direct_vm, DAY)
     staged.execute_stance_transition(EP[0])
     other = ("2026-Q3-CPI", 0, 250, NEUTRAL)
-    all_feeds(direct_vm, other)
+    # a later release in the same quarter: it must carry a LATER timestamp
+    all_feeds(direct_vm, other, ts=default_ts(EP[0]) + 3600)
     assert propose(staged, direct_vm, direct_bob, other[0])["verdict"] == 1
 
 
 def test_executed_epoch_cannot_be_re_proposed(direct_vm, staged, direct_bob):
     warp_by(direct_vm, DAY)
     staged.execute_stance_transition(EP[0])
-    all_feeds(direct_vm, EP)
-    with direct_vm.expect_revert("ERR_INVALID_EPOCH_STATE"):
+    all_feeds(direct_vm, EP)  # the very same release, same timestamp
+    with direct_vm.expect_revert("ERR_STALE_REVISION_ROLLBACK"):
         propose(staged, direct_vm, direct_bob, EP[0])
 
 

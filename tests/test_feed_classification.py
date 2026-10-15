@@ -15,7 +15,8 @@ def c(direct_vm, direct_deploy, direct_alice):
 
 
 def doc(**over):
-    d = {"epoch_id": EID, "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 320}
+    d = {"epoch_id": EID, "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 320,
+         "release_ts": 1_790_000_000}
     d.update(over)
     return json.dumps(d)
 
@@ -57,8 +58,10 @@ def test_every_other_status_is_an_outage(c, status):
         json.dumps({"epoch_id": EID, "status": "confirmed", "rate_change_bps": 0, "cpi_yoy_bps": 250}),
         json.dumps({"status": "CONFIRMED", "rate_change_bps": 0, "cpi_yoy_bps": 250}),
         json.dumps({"epoch_id": "2026-Q3-FOMC", "status": "CONFIRMED", "rate_change_bps": 0, "cpi_yoy_bps": 250}),
-        json.dumps({"epoch_id": EID, "status": "CONFIRMED", "cpi_yoy_bps": 250}),
-        json.dumps({"epoch_id": EID, "status": "CONFIRMED", "rate_change_bps": 0}),
+        json.dumps({"epoch_id": EID, "status": "CONFIRMED", "cpi_yoy_bps": 250, "release_ts": 1_790_000_000}),
+        json.dumps({"epoch_id": EID, "status": "CONFIRMED", "rate_change_bps": 0, "release_ts": 1_790_000_000}),
+        # release_ts is mandatory: without it a release has no order
+        json.dumps({"epoch_id": EID, "status": "CONFIRMED", "rate_change_bps": 0, "cpi_yoy_bps": 250}),
     ],
 )
 def test_schema_errors_are_outages(c, body):
@@ -116,5 +119,33 @@ def test_release_hash_is_deterministic_and_epoch_bound(c):
 def test_release_hash_matches_documented_canonical_form(c):
     import hashlib
 
-    expect = hashlib.sha256(f"{EID}|25|320|2".encode()).hexdigest()
+    expect = hashlib.sha256(f"{EID}|25|320|2|1790000000".encode()).hexdigest()
     assert c.classify_feed_response(200, doc(), EID)["release_hash"] == expect
+
+
+# ----------------------------------------------------- release_ts (rollback guard)
+@pytest.mark.parametrize(
+    "value",
+    ["1790000000", 1790000000.0, 1.79e9, True, None, [1790000000], -1, 0, 946684799, 4102444801, 10**15],
+)
+def test_release_ts_must_be_a_bounded_integer(c, value):
+    assert kind(c, 200, doc(release_ts=value)) == "OUTAGE"
+
+
+@pytest.mark.parametrize("value", [946684800, 1790000000, 4102444800])
+def test_release_ts_bounds_are_inclusive(c, value):
+    r = c.classify_feed_response(200, doc(release_ts=value), EID)
+    assert r["kind"] == "CONFIRMED" and r["release_ts"] == value
+
+
+def test_release_ts_is_part_of_the_release_identity(c):
+    a = c.classify_feed_response(200, doc(release_ts=1_790_000_000), EID)
+    b = c.classify_feed_response(200, doc(release_ts=1_790_000_001), EID)
+    assert a["stance"] == b["stance"] and a["release_hash"] != b["release_hash"]
+
+
+def test_a_republished_release_with_identical_numbers_is_a_newer_release(c):
+    a = c.classify_feed_response(200, doc(), EID)
+    b = c.classify_feed_response(200, doc(release_ts=1_790_086_400), EID)
+    assert (a["release_ts"], b["release_ts"]) == (1_790_000_000, 1_790_086_400)
+    assert a["release_hash"] != b["release_hash"]

@@ -19,9 +19,12 @@
 #      indexed by stance only.
 #   3. Quorum verdicts are exactly {0 REJECTED, 1 VERIFIED, 2 QUORUM_FAILURE};
 #      an outage that could still complete 2-of-3 never costs the reporter.
-#   4. VERIFIED stances are staged 24h before activation; a retraction inside
-#      the window cancels the transition and pays the reporter's bond to the
-#      challenger. The step-change guard is the combination of: one pending
+#   4. VERIFIED stances are staged 24h before activation; a retraction at any
+#      time before execution (through the 7-day validity window) cancels the
+#      transition and pays the reporter's bond to the challenger. Feed
+#      documents carry a `release_ts`; nothing at or below the live release's
+#      timestamp can be staged or executed, so a stale mirror cannot roll a
+#      revised stance back. Epochs cannot name a quarter that has not begun. The step-change guard is the combination of: one pending
 #      transition at a time, epochs monotonic by quarter (a stale quarter can
 #      never roll parameters back), execution only after the full timelock,
 #      and parameters drawn only from the fixed per-tier table.
@@ -65,6 +68,9 @@ ERR_TRANSFER = "ERR_TRANSFER_FAILED_RESTORED"
 ERR_PAYLOAD = "ERR_FORGED_PAYLOAD"
 ERR_STANCE = "ERR_INVALID_STANCE"
 ERR_STALE_RELEASE = "ERR_STALE_RELEASE"
+ERR_STALE_REVISION = "ERR_STALE_REVISION_ROLLBACK"
+ERR_FUTURE_EPOCH = "ERR_FUTURE_EPOCH"
+ERR_FUTURE_RELEASE = "ERR_FUTURE_RELEASE"
 
 # --- Stance tiers and their bound risk tables (basis points) ------------------
 DOVISH = 0
@@ -128,8 +134,14 @@ ACTIVATION_TIMELOCK = 24 * 3600
 # PROPOSAL_VALIDITY_WINDOW]. Past it the release is too old to apply blindly:
 # the call expires it, releases the bond and leaves the stance untouched.
 PROPOSAL_VALIDITY_WINDOW = 7 * 24 * 3600
-# Epoch ids may name at most the next calendar year (block clock).
-MAX_EPOCH_YEARS_AHEAD = 1
+# Release timestamps (unix seconds) carried by feed documents. The static
+# bounds are checked identically by every validator; the contract additionally
+# refuses a timestamp more than a day ahead of the block clock, because the
+# executed release timestamp becomes a high-water mark and a far-future value
+# would lock out every later release.
+RELEASE_TS_MIN = 946684800  # 2000-01-01
+RELEASE_TS_MAX = 4102444800  # 2100-01-01
+RELEASE_FUTURE_SLACK = 24 * 3600
 FEED_ROTATION_TIMELOCK = 7 * 24 * 3600
 SECONDS_PER_YEAR = 365 * 24 * 3600
 
@@ -173,8 +185,10 @@ def _derive_stance(rate_change_bps: int, cpi_yoy_bps: int) -> int:
     return NEUTRAL
 
 
-def _release_hash(epoch_id: str, rate_change_bps: int, cpi_yoy_bps: int, stance: int) -> str:
-    canon = f"{epoch_id}|{rate_change_bps}|{cpi_yoy_bps}|{stance}"
+def _release_hash(epoch_id: str, rate_change_bps: int, cpi_yoy_bps: int, stance: int, release_ts: int) -> str:
+    # The release timestamp is part of the identity: a re-published release with
+    # the same numbers but a later timestamp is a different (newer) release.
+    canon = f"{epoch_id}|{rate_change_bps}|{cpi_yoy_bps}|{stance}|{release_ts}"
     return hashlib.sha256(canon.encode("utf-8")).hexdigest()
 
 
@@ -201,8 +215,11 @@ def _parse_epoch_id(epoch_id: str) -> int:
     return y * 4 + (int(quarter[1]) - 1)
 
 
-def _year_of(ts: int) -> int:
-    return datetime.fromtimestamp(ts, timezone.utc).year
+def _quarter_seq_of(ts: int) -> int:
+    """Epoch-sequence value (year*4 + quarter-1) of the calendar quarter that
+    contains `ts`; comparable with `_parse_epoch_id`."""
+    d = datetime.fromtimestamp(ts, timezone.utc)
+    return d.year * 4 + (d.month - 1) // 3
 
 
 def _is_hex64(s) -> bool:
@@ -210,16 +227,16 @@ def _is_hex64(s) -> bool:
 
 
 def _classify_response(status, body, epoch_id: str) -> tuple:
-    """(kind, stance, release_hash) for one HTTP response. Only a clean 200
+    """(kind, stance, release_hash, release_ts) for one HTTP response. Only a clean 200
     with a schema-valid document is a CONFIRMED / RETRACTED vote; a 404 is the
     release not being published (yet); EVERYTHING else -- 5xx, 429, redirects,
     transport faults, non-JSON, wrong schema, wrong epoch -- is an OUTAGE, which
     can never be mistaken for a vote and never forfeits a bond on its own."""
-    out = (SRC_OUTAGE, 0, "")
+    out = (SRC_OUTAGE, 0, "", 0)
     if not _is_int(status):
         return out
     if status == 404:
-        return (SRC_NOT_FOUND, 0, "")
+        return (SRC_NOT_FOUND, 0, "", 0)
     if status != 200:
         return out
     if isinstance(body, str):
@@ -240,7 +257,7 @@ def _classify_response(status, body, epoch_id: str) -> tuple:
         return out
     st = doc.get("status")
     if st == "RETRACTED":
-        return (SRC_RETRACTED, 0, "")
+        return (SRC_RETRACTED, 0, "", 0)
     if st != "CONFIRMED":
         return out
     rate = doc.get("rate_change_bps")
@@ -252,8 +269,13 @@ def _classify_response(status, body, epoch_id: str) -> tuple:
         return out
     if rate < RATE_MIN_BPS or rate > RATE_MAX_BPS or cpi < CPI_MIN_BPS or cpi > CPI_MAX_BPS:
         return out
+    rts = doc.get("release_ts")
+    if not isinstance(rts, int) or isinstance(rts, bool):
+        return out
+    if rts < RELEASE_TS_MIN or rts > RELEASE_TS_MAX:
+        return out
     stance = _derive_stance(rate, cpi)
-    return (SRC_CONFIRMED, stance, _release_hash(epoch_id, rate, cpi, stance))
+    return (SRC_CONFIRMED, stance, _release_hash(epoch_id, rate, cpi, stance, rts), rts)
 
 
 def _fetch_source(url: str, epoch_id: str) -> tuple:
@@ -262,12 +284,12 @@ def _fetch_source(url: str, epoch_id: str) -> tuple:
         status = res.status
         body = res.body
     except Exception:
-        return (SRC_OUTAGE, 0, "")
+        return (SRC_OUTAGE, 0, "", 0)
     return _classify_response(status, body, epoch_id)
 
 
 def _resolve_quorum(states) -> dict:
-    """Fold the three per-source states into the 4-field validator payload.
+    """Fold the three per-source states into the 5-field validator payload.
 
     Resolution order (see README verdict table):
       1. any RETRACTED                              -> REJECTED
@@ -285,7 +307,8 @@ def _resolve_quorum(states) -> dict:
     retracted = 0
     groups: dict = {}
     stances: list = []
-    for kind, stance, rhash in states:
+    stamps: dict = {}
+    for kind, stance, rhash, rts in states:
         if kind == SRC_OUTAGE:
             outages += 1
             continue
@@ -294,10 +317,17 @@ def _resolve_quorum(states) -> dict:
             retracted += 1
         elif kind == SRC_CONFIRMED:
             groups[(stance, rhash)] = groups.get((stance, rhash), 0) + 1
+            stamps[(stance, rhash)] = rts  # the hash binds the timestamp
             stances.append(stance)
 
-    def out(verdict: int, stance: int, count: int, rhash: str) -> dict:
-        return {"verdict": verdict, "stance": stance, "source_count": count, "release_hash": rhash}
+    def out(verdict: int, stance: int, count: int, rhash: str, rts: int = 0) -> dict:
+        return {
+            "verdict": verdict,
+            "stance": stance,
+            "source_count": count,
+            "release_hash": rhash,
+            "release_ts": rts,
+        }
 
     if retracted >= 1:
         return out(REJECTED_RELEASE, 0, clean, "")
@@ -312,7 +342,7 @@ def _resolve_quorum(states) -> dict:
     if best_key is not None and best_n >= 2:
         if any(s != best_key[0] for s in stances):
             return out(REJECTED_RELEASE, 0, clean, "")
-        return out(VERIFIED_STANCE, best_key[0], best_n, best_key[1])
+        return out(VERIFIED_STANCE, best_key[0], best_n, best_key[1], stamps[best_key])
 
     if len(set(stances)) > 1:
         return out(REJECTED_RELEASE, 0, clean, "")
@@ -323,14 +353,14 @@ def _resolve_quorum(states) -> dict:
     return out(QUORUM_FAILURE, 0, clean, "")
 
 
-PAYLOAD_KEYS = ("verdict", "stance", "source_count", "release_hash")
+PAYLOAD_KEYS = ("verdict", "stance", "source_count", "release_hash", "release_ts")
 
 
 def _payload_ok(p) -> bool:
-    """Exact 4-key schema + types + cross-field invariants. Used by the
+    """Exact 5-key schema + types + cross-field invariants. Used by the
     validator on the leader's result and by the contract before it trusts the
     consensus output (defence in depth against a forged payload)."""
-    if not isinstance(p, dict) or len(p) != 4:
+    if not isinstance(p, dict) or len(p) != len(PAYLOAD_KEYS):
         return False
     for k in PAYLOAD_KEYS:
         if k not in p:
@@ -339,18 +369,19 @@ def _payload_ok(p) -> bool:
     s = p["stance"]
     n = p["source_count"]
     h = p["release_hash"]
-    if not (_is_int(v) and _is_int(s) and _is_int(n) and isinstance(h, str)):
+    t = p["release_ts"]
+    if not (_is_int(v) and _is_int(s) and _is_int(n) and _is_int(t) and isinstance(h, str)):
         return False
     if v not in (0, 1, 2) or s not in (0, 1, 2) or n < 0 or n > SLOT_COUNT:
         return False
     if v == VERIFIED_STANCE:
-        return n >= 2 and _is_hex64(h)
-    return s == 0 and h == ""
+        return n >= 2 and _is_hex64(h) and RELEASE_TS_MIN <= t <= RELEASE_TS_MAX
+    return s == 0 and h == "" and t == 0
 
 
 def _validator_agrees(leader_payload, mine) -> bool:
     """`run_validator` core: leader payload must be schema-valid and equal to
-    the validator's own independent re-derivation on all four fields."""
+    the validator's own independent re-derivation on all five fields."""
     if not _payload_ok(leader_payload) or not _payload_ok(mine):
         return False
     for k in PAYLOAD_KEYS:
@@ -447,6 +478,7 @@ class Epoch:
     resolved_by: str  # challenger address hex on cancellation, else ""
     base_version: u256  # contract active_version when this release was staged
     revision: u256  # times a release of this epoch was revoked by a challenge
+    release_ts: u256  # publication timestamp of the staged release
 
 
 @allow_storage
@@ -496,6 +528,11 @@ class MacroStance(gl.contract.Contract):
     active_version: u256
     active_epoch_revision: u256
     revoked_hashes: TreeMap[str, bool]
+    # Release-timestamp high-water marks. `active_release_ts` is the timestamp
+    # of the release that set the live stance: nothing at or below it may be
+    # staged or executed again. `executed_epoch_releases` records it per epoch.
+    active_release_ts: u256
+    executed_epoch_releases: TreeMap[str, u256]
 
     def __init__(self, feed_a: str, feed_b: str, feed_c: str):
         self.governor = gl.message.sender_address
@@ -531,6 +568,7 @@ class MacroStance(gl.contract.Contract):
         self.reserves_accrued = (0)
         self.active_version = (0)
         self.active_epoch_revision = (0)
+        self.active_release_ts = (0)
 
     # ------------------------------------------------------------------ views
     @gl.public.view
@@ -551,7 +589,10 @@ class MacroStance(gl.contract.Contract):
             "active_version": int(self.active_version),
             "active_epoch_revision": int(self.active_epoch_revision),
             "proposal_validity_window": PROPOSAL_VALIDITY_WINDOW,
-            "max_epoch_year": _year_of(self._now()) + MAX_EPOCH_YEARS_AHEAD,
+            "max_epoch_seq": _quarter_seq_of(self._now()),
+            "current_year": _quarter_seq_of(self._now()) // 4,
+            "current_quarter": _quarter_seq_of(self._now()) % 4 + 1,
+            "active_release_ts": int(self.active_release_ts),
             "epoch_count": int(self.epoch_count),
             "treasury": str(self.treasury),
             "total_escrow": str(self.total_escrow),
@@ -708,7 +749,7 @@ class MacroStance(gl.contract.Contract):
 
     @gl.public.view
     def resolve_verdict(self, states_json: str) -> dict:
-        """Fold three per-source states `[[kind, stance, hash], x3]` exactly as
+        """Fold three per-source states `[[kind, stance, hash, ts], x3]` exactly as
         the quorum round does. Pure; used to publish the verdict table."""
         try:
             raw = json.loads(states_json)
@@ -720,20 +761,22 @@ class MacroStance(gl.contract.Contract):
         for item in raw:
             if (
                 not isinstance(item, list)
-                or len(item) != 3
+                or len(item) != 4
                 or item[0] not in SOURCE_KINDS
                 or not _is_int(item[1])
                 or item[1] not in (0, 1, 2)
                 or not isinstance(item[2], str)
+                or not _is_int(item[3])
+                or item[3] < 0
             ):
                 raise gl.vm.UserError(f"{ERR_PAYLOAD} bad state")
-            states.append((item[0], item[1], item[2]))
+            states.append((item[0], item[1], item[2], item[3]))
         return _resolve_quorum(states)
 
     @gl.public.view
     def classify_feed_response(self, status: int, body: str, epoch_id: str) -> dict:
-        kind, stance, rhash = _classify_response(status, body, epoch_id)
-        return {"kind": kind, "stance": stance, "release_hash": rhash}
+        kind, stance, rhash, rts = _classify_response(status, body, epoch_id)
+        return {"kind": kind, "stance": stance, "release_hash": rhash, "release_ts": rts}
 
     # --------------------------------------------------- epoch: propose / sync
     @gl.public.write.payable
@@ -742,9 +785,11 @@ class MacroStance(gl.contract.Contract):
         if seq < 0:
             raise gl.vm.UserError(f"{ERR_EPOCH_ID}")
         now = self._now()
-        # A release cannot be published for a year that has not nearly begun.
-        if seq // 4 > _year_of(now) + MAX_EPOCH_YEARS_AHEAD:
-            raise gl.vm.UserError(f"{ERR_EPOCH_ID} year beyond next calendar year")
+        # An epoch cannot name a quarter that has not begun. A future id would
+        # otherwise stage, and the monotonic-quarter rule would then lock out
+        # every earlier quarter until it executed.
+        if seq > _quarter_seq_of(now):
+            raise gl.vm.UserError(f"{ERR_FUTURE_EPOCH}")
         bond = int(gl.message.value)
         if bond < REPORTER_BOND:
             raise gl.vm.UserError(f"{ERR_BOND} reporter bond below minimum")
@@ -764,7 +809,9 @@ class MacroStance(gl.contract.Contract):
         revision = 0
         if epoch_id in self.epochs:
             prev = self.epochs[epoch_id]
-            if prev.status not in RETRYABLE:
+            # An EXECUTED epoch may be re-proposed only as a strictly newer
+            # revision (release_ts is checked after consensus, below).
+            if prev.status not in RETRYABLE and prev.status != EP_EXECUTED:
                 raise gl.vm.UserError(f"{ERR_EPOCH_STATE} {prev.status}")
             attempts = int(prev.attempts)
             revision = int(prev.revision)
@@ -776,6 +823,20 @@ class MacroStance(gl.contract.Contract):
             # cancelled (stale cache, or a replayed retraction). Revert so the
             # honest reporter keeps the bond; the revoked release never stages.
             raise gl.vm.UserError(f"{ERR_STALE_RELEASE}")
+        release_ts = int(res["release_ts"])
+        if verdict == VERIFIED_STANCE:
+            if release_ts > now + RELEASE_FUTURE_SLACK:
+                raise gl.vm.UserError(f"{ERR_FUTURE_RELEASE}")
+            # Never stage a release that is not strictly newer than what is
+            # live, nor one not newer than the last release executed for this
+            # same epoch. This is the rollback guard: a stale mirror serving an
+            # older (but never revoked) release for the same quarter reverts.
+            if release_ts <= int(self.active_release_ts):
+                raise gl.vm.UserError(f"{ERR_STALE_REVISION}")
+            if epoch_id in self.executed_epoch_releases and release_ts <= int(
+                self.executed_epoch_releases[epoch_id]
+            ):
+                raise gl.vm.UserError(f"{ERR_STALE_REVISION}")
         sender = gl.message.sender_address
         status = EP_QUORUM_FAILED
         activates_at = 0
@@ -808,6 +869,7 @@ class MacroStance(gl.contract.Contract):
                 resolved_by="",
                 base_version=(int(self.active_version)),
                 revision=(revision),
+                release_ts=(release_ts),
             ),
         )
         return self._epoch_view(epoch_id)
@@ -825,7 +887,10 @@ class MacroStance(gl.contract.Contract):
         if ep.status != EP_STAGED:
             raise gl.vm.UserError(f"{ERR_EPOCH_STATE} {ep.status}")
         now = self._now()
-        if now >= int(ep.activates_at):
+        # A staged release stays challengeable until it is executed or expires,
+        # not just for the first 24h: a retraction on day 2 or day 5 must still
+        # be able to abort the transition.
+        if now > int(ep.activates_at) + PROPOSAL_VALIDITY_WINDOW:
             raise gl.vm.UserError(f"{ERR_WINDOW}")
 
         res = self._run_quorum(epoch_id)
@@ -900,6 +965,12 @@ class MacroStance(gl.contract.Contract):
             raise gl.vm.UserError(f"{ERR_STALE_RELEASE}")
         if self._is_revoked(epoch_id, ep.release_hash):
             raise gl.vm.UserError(f"{ERR_STALE_RELEASE}")
+        if int(ep.release_ts) <= int(self.active_release_ts):
+            raise gl.vm.UserError(f"{ERR_STALE_REVISION}")
+        if epoch_id in self.executed_epoch_releases and int(ep.release_ts) <= int(
+            self.executed_epoch_releases[epoch_id]
+        ):
+            raise gl.vm.UserError(f"{ERR_STALE_REVISION}")
         # Interest through `now` accrues at the OLD stance's rate.
         self._accrue_global()
         stance = int(ep.stance)
@@ -908,6 +979,8 @@ class MacroStance(gl.contract.Contract):
         self.active_since = (self._now())
         self.last_executed_seq = (seq)
         self.active_version = (int(self.active_version) + 1)
+        self.active_release_ts = (int(ep.release_ts))
+        self.executed_epoch_releases[epoch_id] = (int(ep.release_ts))
         self.active_epoch_revision = (int(ep.revision))
         self.pending_epoch = ""
         bond = int(ep.bond)
@@ -1179,6 +1252,7 @@ class MacroStance(gl.contract.Contract):
             "activates_at": int(e.activates_at),
             "attempts": int(e.attempts),
             "resolved_by": e.resolved_by,
+            "release_ts": int(e.release_ts),
             "base_version": int(e.base_version),
             "revision": int(e.revision),
             "expires_at": (int(e.activates_at) + PROPOSAL_VALIDITY_WINDOW) if int(e.activates_at) > 0 else 0,
@@ -1254,4 +1328,5 @@ class MacroStance(gl.contract.Contract):
             "stance": int(res["stance"]),
             "source_count": int(res["source_count"]),
             "release_hash": str(res["release_hash"]),
+            "release_ts": int(res["release_ts"]),
         }

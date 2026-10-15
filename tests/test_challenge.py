@@ -124,8 +124,10 @@ def test_cancelled_epoch_can_be_re_proposed_after_a_corrected_release(direct_vm,
     assert res["verdict"] == 1 and res["stance"] == NEUTRAL and res["attempts"] == 2
 
 
-def test_window_closes_exactly_at_activation(direct_vm, staged, direct_charlie):
-    warp_by(direct_vm, DAY - 1)
+def test_window_stays_open_after_the_timelock_until_the_stage_expires(direct_vm, staged, direct_charlie):
+    warp_by(direct_vm, DAY + 1)  # the 24 h timelock is over; still not executed
+    assert challenge(staged, direct_vm, direct_charlie, EP[0])["challenge_outcome"] == "UPHELD"
+    warp_by(direct_vm, 7 * DAY - 1)  # exactly the last second of the validity window
     assert challenge(staged, direct_vm, direct_charlie, EP[0])["challenge_outcome"] == "UPHELD"
     warp_by(direct_vm, 1)
     with direct_vm.expect_revert("ERR_CHALLENGE_WINDOW_CLOSED"):

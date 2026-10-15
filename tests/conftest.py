@@ -47,9 +47,31 @@ def iso(ts: int) -> str:
     return datetime.fromtimestamp(ts, tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def feed_doc(epoch_id, rate, cpi, status="CONFIRMED") -> dict:
+def default_ts(epoch_id: str) -> int:
+    """Deterministic publication time for a fixture epoch.
+
+    Strictly increasing with the quarter, and always within 17 h of the
+    quarter's first instant so it is never "in the future" for a test clock
+    that sits at the start of the quarter (the contract allows 24 h of slack).
+    Different tags in one quarter get different offsets; tests that need a
+    specific order pass `ts=` explicitly.
+    """
+    from datetime import datetime, timezone
+
+    year, quarter, tag = int(epoch_id[:4]), int(epoch_id[6]), epoch_id[8:]
+    start = datetime(year, (quarter - 1) * 3 + 1, 1, tzinfo=timezone.utc)
+    return int(start.timestamp()) + 3600 + (sum(map(ord, tag)) % 1000) * 60
+
+
+def feed_doc(epoch_id, rate, cpi, status="CONFIRMED", ts=None) -> dict:
     return {"status": 200, "body": json.dumps(
-        {"epoch_id": epoch_id, "status": status, "rate_change_bps": rate, "cpi_yoy_bps": cpi}
+        {
+            "epoch_id": epoch_id,
+            "status": status,
+            "rate_change_bps": rate,
+            "cpi_yoy_bps": cpi,
+            "release_ts": default_ts(epoch_id) if ts is None else ts,
+        }
     )}
 
 
@@ -68,8 +90,8 @@ def set_feeds(vm, a, b, c):
         vm.mock_web(rf"https://{HOSTS[slot]}/.*", resp)
 
 
-def all_feeds(vm, ep, **kw):
-    doc = feed_doc(ep[0], ep[1], ep[2])
+def all_feeds(vm, ep, ts=None, **kw):
+    doc = feed_doc(ep[0], ep[1], ep[2], ts=ts)
     set_feeds(vm, doc, doc, doc)
 
 

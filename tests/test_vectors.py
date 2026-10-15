@@ -19,14 +19,16 @@ RATES = [-100, -50, -26, -25, -24, -11, -10, -1, 0, 1, 10, 11, 24, 25, 26, 50, 1
 CPIS = [-50, 0, 100, 199, 200, 201, 250, 299, 300, 301, 350, 500, 1000]
 H = ["a" * 64, "b" * 64, "c" * 64]
 SYMS = {
-    "C0": ["CONFIRMED", 0, H[0]], "C0b": ["CONFIRMED", 0, H[1]], "C2": ["CONFIRMED", 2, H[2]],
-    "R": ["RETRACTED", 0, ""], "N": ["NOT_FOUND", 0, ""], "O": ["OUTAGE", 0, ""],
+    "C0": ["CONFIRMED", 0, H[0], 1790000000], "C0b": ["CONFIRMED", 0, H[1], 1790000500],
+    "C2": ["CONFIRMED", 2, H[2], 1790001000],
+    "R": ["RETRACTED", 0, "", 0], "N": ["NOT_FOUND", 0, "", 0], "O": ["OUTAGE", 0, "", 0],
 }
 EID = "2026-Q4-FOMC"
 
 
 def doc(**o):
-    d = {"epoch_id": EID, "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 320}
+    d = {"epoch_id": EID, "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 320,
+         "release_ts": 1790000000}
     d.update(o)
     return json.dumps(d)
 
@@ -42,18 +44,25 @@ CLASSIFY = [
     (200, doc(cpi_yoy_bps=-1001), EID), (200, doc(status="PENDING"), EID),
     (200, doc(epoch_id="2026-Q3-FOMC"), EID), (200, doc(extra="ignored"), EID),
     (200, doc(pad="x" * 5000), EID), (200, doc(rate_change_bps=2000, cpi_yoy_bps=10000), EID),
+    # release_ts is mandatory, integer-lexeme only, and bounded
+    (200, doc(release_ts=None), EID), (200, doc(release_ts="1790000000"), EID),
+    (200, doc(release_ts=True), EID), (200, doc(release_ts=0), EID),
+    (200, doc(release_ts=946684800), EID), (200, doc(release_ts=946684799), EID),
+    (200, doc(release_ts=4102444800), EID), (200, doc(release_ts=4102444801), EID),
+    (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 320, "release_ts": 1790000000.0}' % EID, EID),
+    (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 320}' % EID, EID),
     # Lexeme-level cases where a naive JSON.parse port would diverge from Python:
-    (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 25.0, "cpi_yoy_bps": 320}' % EID, EID),
-    (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 3.2e2}' % EID, EID),
-    (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 2.5E1, "cpi_yoy_bps": 320}' % EID, EID),
-    (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": -0, "cpi_yoy_bps": 250}' % EID, EID),
-    (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 0, "rate_change_bps": 25, "cpi_yoy_bps": 320}' % EID, EID),
+    (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 25.0, "cpi_yoy_bps": 320, "release_ts": 1790000000}' % EID, EID),
+    (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 3.2e2, "release_ts": 1790000000}' % EID, EID),
+    (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 2.5E1, "cpi_yoy_bps": 320, "release_ts": 1790000000}' % EID, EID),
+    (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": -0, "cpi_yoy_bps": 250, "release_ts": 1790000000}' % EID, EID),
+    (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 0, "rate_change_bps": 25, "cpi_yoy_bps": 320, "release_ts": 1790000000}' % EID, EID),
     (200, '  \n{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 320}\n ' % EID, EID),
-    (200, '\ufeff{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 320}' % EID, EID),
-    (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": NaN, "cpi_yoy_bps": 320}' % EID, EID),
-    (200, '{"epoch\\u005fid": "%s", "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 320}' % EID, EID),
-    (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 320} trailing' % EID, EID),
-    (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 1' + "0" * 400 + '}' % EID if False else '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 1%s}' % (EID, "0" * 400), EID),
+    (200, '\ufeff{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 320, "release_ts": 1790000000}' % EID, EID),
+    (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": NaN, "cpi_yoy_bps": 320, "release_ts": 1790000000}' % EID, EID),
+    (200, '{"epoch\\u005fid": "%s", "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 320, "release_ts": 1790000000}' % EID, EID),
+    (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 320, "release_ts": 1790000000} trailing' % EID, EID),
+    (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 1' + "0" * 400 + '}' % EID if False else '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 1%s, "release_ts": 1790000000}' % (EID, "0" * 400), EID),
     (200, '{"epoch_id": "%s", "status": "CONFIRMED", "rate_change_bps": 25, "cpi_yoy_bps": 320, "note": "caf\u00e9"}' % EID, EID),
 ]
 

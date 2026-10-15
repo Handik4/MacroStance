@@ -2,6 +2,7 @@
   "cpi_yoy_bps": 190,
   "epoch_id": "2026-Q1-FOMC",
   "rate_change_bps": -25,
+  "release_ts": 1769625600,
   "source": "FRED-MIRROR",
   "status": "CONFIRMED"
 }

@@ -35,6 +35,9 @@ def response(slot, epoch):
 
 @pytest.mark.parametrize("epoch", sorted(EXPECT))
 def test_committed_feed_files_resolve_as_documented(direct_vm, c, direct_bob, epoch):
+    # The fixtures are dated up to 2026-10-14; a release may not be dated in
+    # the future of the block clock, so the demo clock is the day after.
+    direct_vm.warp("2026-10-15T00:00:00Z")
     set_feeds(direct_vm, *(response(s, epoch) for s in "abc"))
     res = propose(c, direct_vm, direct_bob, epoch)
     verdict, stance, count = EXPECT[epoch]

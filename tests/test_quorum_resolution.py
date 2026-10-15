@@ -20,13 +20,14 @@ H0 = "a" * 64
 H1 = "b" * 64
 H2 = "c" * 64
 # Symbolic per-source states used for exhaustive enumeration.
+TS0, TS1, TS2 = 1_790_000_000, 1_790_000_500, 1_790_001_000
 SYMS = {
-    "C0": ("CONFIRMED", 0, H0),   # stance 0, hash H0
-    "C0b": ("CONFIRMED", 0, H1),  # same stance, DIFFERENT release hash
-    "C2": ("CONFIRMED", 2, H2),   # conflicting stance
-    "R": ("RETRACTED", 0, ""),
-    "N": ("NOT_FOUND", 0, ""),
-    "O": ("OUTAGE", 0, ""),
+    "C0": ("CONFIRMED", 0, H0, TS0),   # stance 0, hash H0
+    "C0b": ("CONFIRMED", 0, H1, TS1),  # same stance, DIFFERENT release hash
+    "C2": ("CONFIRMED", 2, H2, TS2),   # conflicting stance
+    "R": ("RETRACTED", 0, "", 0),
+    "N": ("NOT_FOUND", 0, "", 0),
+    "O": ("OUTAGE", 0, "", 0),
 }
 
 
@@ -35,7 +36,7 @@ def oracle(states):
     kinds = [s[0] for s in states]
     if "RETRACTED" in kinds:
         return 0
-    confirmed = [(s[1], s[2]) for s in states if s[0] == "CONFIRMED"]
+    confirmed = [(s[1], s[2]) for s in states if s[0] == "CONFIRMED"]  # (stance, hash)
     outages = kinds.count("OUTAGE")
     # a matching pair already exists?
     pair = any(a == b for a, b in itertools.combinations(confirmed, 2))
@@ -66,8 +67,10 @@ def test_resolution_matches_independent_oracle(c, combo):
     assert got["verdict"] == oracle(states), combo
     if got["verdict"] == 1:
         assert got["source_count"] >= 2 and len(got["release_hash"]) == 64
+        # the verified release's timestamp is the matching group's own
+        assert got["release_ts"] in (TS0, TS1, TS2)
     else:
-        assert got["stance"] == 0 and got["release_hash"] == ""
+        assert got["stance"] == 0 and got["release_hash"] == "" and got["release_ts"] == 0
 
 
 @pytest.mark.parametrize(
@@ -112,7 +115,7 @@ def test_verified_source_count_is_size_of_matching_group(c):
 
 def test_verified_carries_the_matching_hash_and_stance(c):
     got = c.resolve_verdict(json.dumps([list(SYMS["C2"]), list(SYMS["C2"]), list(SYMS["O"])]))
-    assert (got["verdict"], got["stance"], got["release_hash"]) == (1, 2, H2)
+    assert (got["verdict"], got["stance"], got["release_hash"], got["release_ts"]) == (1, 2, H2, TS2)
 
 
 def test_resolution_is_order_independent(c):
@@ -127,12 +130,15 @@ def test_resolution_is_order_independent(c):
 @pytest.mark.parametrize(
     "bad",
     [
-        "not json", "{}", "[]", json.dumps([["CONFIRMED", 0, H0]] * 2),
-        json.dumps([["CONFIRMED", 0, H0]] * 4),
-        json.dumps([["BOGUS", 0, ""]] * 3),
-        json.dumps([["CONFIRMED", 7, H0]] * 3),
-        json.dumps([["CONFIRMED", True, H0]] * 3),
+        "not json", "{}", "[]", json.dumps([["CONFIRMED", 0, H0, TS0]] * 2),
+        json.dumps([["CONFIRMED", 0, H0, TS0]] * 4),
+        json.dumps([["BOGUS", 0, "", 0]] * 3),
+        json.dumps([["CONFIRMED", 7, H0, TS0]] * 3),
+        json.dumps([["CONFIRMED", True, H0, TS0]] * 3),
         json.dumps([["CONFIRMED", 0]] * 3),
+        json.dumps([["CONFIRMED", 0, H0]] * 3),  # the old 3-field shape
+        json.dumps([["CONFIRMED", 0, H0, -1]] * 3),
+        json.dumps([["CONFIRMED", 0, H0, "x"]] * 3),
     ],
 )
 def test_resolve_verdict_rejects_malformed_input(direct_vm, c, bad):

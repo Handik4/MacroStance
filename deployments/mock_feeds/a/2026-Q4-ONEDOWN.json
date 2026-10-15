@@ -2,6 +2,7 @@
   "cpi_yoy_bps": 330,
   "epoch_id": "2026-Q4-ONEDOWN",
   "rate_change_bps": 25,
+  "release_ts": 1792004000,
   "source": "FOMC-MIRROR",
   "status": "CONFIRMED"
 }
