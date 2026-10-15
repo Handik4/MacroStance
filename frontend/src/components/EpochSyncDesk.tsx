@@ -5,8 +5,9 @@ import { useState } from "react";
 import type { EpochRecord, Overview, WriteOutcome } from "@/lib/contract";
 import type { MacroStanceClient } from "@/lib/contract";
 import { formatGen, parseGenAmount, parseWei } from "@/lib/inputs";
-import type { WriteState } from "@/lib/useMacroStance";
-import { parseEpochId } from "@/lib/stance";
+import { displayGen } from "@/lib/display";
+import type { TxStatus } from "@/lib/txStatus";
+import { epochIdProblem, parseEpochId } from "@/lib/stance";
 import { StanceBadge } from "./StanceMonitor";
 
 interface Props {
@@ -14,15 +15,19 @@ interface Props {
   epochs: EpochRecord[];
   account: string | null;
   claimable: bigint | null;
+  /** the latest claimable read failed */
+  claimableFailed: boolean;
   /** chain-time "now" in seconds, advanced locally between reads */
   chainNow: number | null;
-  write: WriteState;
+  /** the connected account's own latest action status (never another account's) */
+  write: TxStatus | null;
   run(label: string, fn: (c: MacroStanceClient) => Promise<WriteOutcome>): Promise<boolean>;
 }
 
 const STATUS_STYLE: Record<string, string> = {
   STAGED: "bg-neutral-soft text-neutral-ink border-neutral",
   EXECUTED: "bg-dovish-soft text-dovish-ink border-dovish",
+  EXPIRED: "bg-slate-200 text-slate-700 border-slate-500",
   CANCELLED: "bg-hawkish-soft text-hawkish-ink border-hawkish",
   REJECTED: "bg-hawkish-soft text-hawkish-ink border-hawkish",
   QUORUM_FAILED: "bg-amber-50 text-amber-900 border-amber-600",
@@ -36,7 +41,7 @@ function countdown(seconds: number): string {
   return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
 }
 
-export default function EpochSyncDesk({ overview, epochs, account, claimable, chainNow, write, run }: Props) {
+export default function EpochSyncDesk({ overview, epochs, account, claimable, claimableFailed, chainNow, write, run }: Props) {
   const [epochId, setEpochId] = useState("2026-Q4-FOMC");
   const [bond, setBond] = useState("0.1");
   const [challengeBond, setChallengeBond] = useState("0.1");
@@ -45,10 +50,11 @@ export default function EpochSyncDesk({ overview, epochs, account, claimable, ch
   const minBond = parseWei(overview?.reporter_bond) ?? 10n ** 17n;
   const bondParsed = parseGenAmount(bond);
   const challengeParsed = parseGenAmount(challengeBond);
-  const busy = write.phase === "pending";
+  const busy = write?.phase === "pending";
 
   const proposalError = (() => {
-    if (seq < 0) return "Epoch id must look like 2026-Q4-FOMC.";
+    const idProblem = epochIdProblem(epochId, overview?.max_epoch_year ?? null);
+    if (idProblem) return idProblem;
     if (overview?.pending_epoch) return `Epoch ${overview.pending_epoch} is already staged; wait for it to execute or be challenged.`;
     if (overview && seq < overview.last_executed_seq) return "That quarter is older than the last executed epoch (stale).";
     if (!bondParsed.ok) return bondParsed.error;
@@ -58,6 +64,10 @@ export default function EpochSyncDesk({ overview, epochs, account, claimable, ch
 
   const staged = epochs.find((e) => e.status === "STAGED") ?? null;
   const remaining = staged && chainNow !== null ? staged.activates_at - chainNow : null;
+  // Past the validity window an execute call EXPIRES the stage (bond released,
+  // parameters untouched) instead of applying a stale release.
+  const untilExpiry = staged && chainNow !== null ? staged.expires_at - chainNow : null;
+  const expired = untilExpiry !== null && untilExpiry < 0;
 
   return (
     <section className="panel" aria-labelledby="desk-title">
@@ -106,9 +116,13 @@ export default function EpochSyncDesk({ overview, epochs, account, claimable, ch
                 <StanceBadge stance={staged.stance} />
               </div>
               <div>
-                <div className="label">Activation in</div>
+                <div className="label">{expired ? "Expired" : remaining !== null && remaining > 0 ? "Activation in" : "Execute within"}</div>
                 <div className="num text-3xl font-semibold text-slate-950" aria-live="off">
-                  {remaining === null ? "—" : countdown(remaining)}
+                  {remaining === null || untilExpiry === null
+                    ? "—"
+                    : expired
+                      ? "stale"
+                      : countdown(remaining > 0 ? remaining : untilExpiry)}
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -117,7 +131,7 @@ export default function EpochSyncDesk({ overview, epochs, account, claimable, ch
                   disabled={!account || busy || remaining === null || remaining > 0}
                   onClick={() => void run(`Execute ${staged.epoch_id}`, (c) => c.executeStanceTransition(staged.epoch_id))}
                 >
-                  Execute transition
+                  {expired ? "Expire & release bond" : "Execute transition"}
                 </button>
               </div>
               <div className="border-t border-slate-200 pt-3">
@@ -162,21 +176,22 @@ export default function EpochSyncDesk({ overview, epochs, account, claimable, ch
         <div>
           <div className="label">Your claimable balance</div>
           <div className="num text-lg font-semibold text-slate-950">
-            {account ? (claimable === null ? "…" : `${formatGen(claimable)} GEN`) : "connect a wallet"}
+            {account ? displayGen(claimableFailed ? null : claimable, " GEN") : "connect a wallet"}
           </div>
         </div>
         <button
           className="btn"
-          disabled={!account || busy || !claimable || claimable === 0n}
+          disabled={!account || busy || claimableFailed || !claimable || claimable === 0n}
           onClick={() => void run("Claim payout", (c) => c.claimPayout())}
         >
           Claim payout
         </button>
       </div>
 
-      {write.phase !== "idle" && (
+      {write && (
         <div
           role="status"
+          data-account={write.account}
           className={`border-t px-4 py-2 font-mono text-xs ${
             write.phase === "failed"
               ? "border-hawkish bg-hawkish-soft text-hawkish-ink"
@@ -186,7 +201,7 @@ export default function EpochSyncDesk({ overview, epochs, account, claimable, ch
           }`}
         >
           {write.phase === "pending" && `${write.label}: awaiting wallet and consensus…`}
-          {write.phase === "done" && `${write.label}: accepted by a validator majority · ${write.hash.slice(0, 18)}…`}
+          {write.phase === "done" && `${write.label}: accepted by a validator majority · ${(write.hash ?? "").slice(0, 18)}…`}
           {write.phase === "failed" && `${write.label}: ${write.message}`}
         </div>
       )}

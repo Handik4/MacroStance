@@ -23,6 +23,8 @@ export interface LoaderState<T> {
   readonly values: ReadonlyMap<string, T>;
   readonly failedIds: ReadonlySet<string>;
   readonly errors: ReadonlyMap<string, string>;
+  /** per-item time of the last SUCCESSFUL read (not of the last attempt) */
+  readonly readAt: ReadonlyMap<string, number>;
   readonly loading: boolean;
   readonly generation: number;
   readonly lastCompletedAt: number | null;
@@ -34,6 +36,7 @@ export class SerialLoader<T> {
   private values = new Map<string, T>();
   private failed = new Set<string>();
   private errors = new Map<string, string>();
+  private readAtMap = new Map<string, number>();
   private generation = 0;
   private running: Promise<void> | null = null;
   private rerun: string[] | null = null;
@@ -61,6 +64,7 @@ export class SerialLoader<T> {
       values: new Map(this.values),
       failedIds: new Set(this.failed),
       errors: new Map(this.errors),
+      readAt: new Map(this.readAtMap),
       loading,
       generation: this.generation,
       lastCompletedAt: this.lastCompletedAt,
@@ -108,7 +112,12 @@ export class SerialLoader<T> {
     const unique = [...new Set(ids)];
     // Items that left the requested set are dropped together with their
     // failure: they are no longer shown, so they cannot be masked.
-    for (const k of [...this.values.keys()]) if (!unique.includes(k)) this.values.delete(k);
+    for (const k of [...this.values.keys()]) {
+      if (!unique.includes(k)) {
+        this.values.delete(k);
+        this.readAtMap.delete(k);
+      }
+    }
     for (const k of [...this.failed]) {
       if (!unique.includes(k)) {
         this.failed.delete(k);
@@ -121,6 +130,7 @@ export class SerialLoader<T> {
       const id = unique[idx];
       if (res.status === "fulfilled") {
         this.values.set(id, res.value);
+        this.readAtMap.set(id, this.now());
         this.failed.delete(id);
         this.errors.delete(id);
       } else {
@@ -140,6 +150,7 @@ export class SerialLoader<T> {
     this.values = new Map();
     this.failed = new Set();
     this.errors = new Map();
+    this.readAtMap = new Map();
     this.rerun = null;
     this.lastCompletedAt = null;
     this.publish(false);

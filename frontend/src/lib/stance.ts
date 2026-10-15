@@ -71,6 +71,26 @@ export function isValidEpochId(epochId: string): boolean {
   return parseEpochId(epochId) >= 0;
 }
 
+/** Calendar year named by an epoch id, or -1 when malformed. */
+export function epochYear(epochId: string): number {
+  const seq = parseEpochId(epochId);
+  return seq < 0 ? -1 : Math.floor(seq / 4);
+}
+
+/**
+ * Why the contract would refuse `epochId`, or null. `maxYear` is the
+ * overview's `max_epoch_year` (current chain year + 1): ids naming a later
+ * year are rejected as malformed on-chain, so the form refuses them first.
+ */
+export function epochIdProblem(epochId: string, maxYear: number | null): string | null {
+  const seq = parseEpochId(epochId);
+  if (seq < 0) return "Epoch id must look like 2026-Q4-FOMC.";
+  if (maxYear !== null && Math.floor(seq / 4) > maxYear) {
+    return `Year ${Math.floor(seq / 4)} is beyond the next calendar year (${maxYear}).`;
+  }
+  return null;
+}
+
 // ------------------------------------------------------------ source states
 export type SourceKind = "CONFIRMED" | "RETRACTED" | "NOT_FOUND" | "OUTAGE";
 export interface SourceState {

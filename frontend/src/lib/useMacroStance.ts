@@ -23,17 +23,13 @@ import {
   type Overview,
   type WriteOutcome,
 } from "./contract";
+import { ChainClock } from "./chainClock";
 import { isAddress, normalizeAddress } from "./inputs";
 import { SerialLoader, type LoaderState } from "./serialLoader";
+import { TxStatusStore, type TxStatus } from "./txStatus";
 
 const POLL_MS = 15_000;
 const CHAIN_HEX = "0x" + CHAIN_ID.toString(16);
-
-export type WriteState =
-  | { phase: "idle" }
-  | { phase: "pending"; label: string }
-  | { phase: "done"; label: string; hash: string }
-  | { phase: "failed"; label: string; message: string };
 
 type PublicValue = Overview | FeedSlot[] | EpochRecord;
 type AccountValue = AccountHealth | bigint;
@@ -54,7 +50,12 @@ export interface Terminal {
   publicState: LoaderState<PublicValue>;
   accountState: LoaderState<AccountValue>;
   readAtMs: number | null;
-  write: WriteState;
+  /** Verified-chain-time estimate (seconds); monotone; null before the first read. */
+  chainNow: number | null;
+  /** The status of the CONNECTED account's latest action; never another account's. */
+  write: TxStatus | null;
+  /** Connected, but the position has neither been read nor failed (still syncing). */
+  accountUnknown: boolean;
   run(label: string, fn: (c: MacroStanceClient) => Promise<WriteOutcome>): Promise<boolean>;
   refresh(): void;
   client: MacroStanceClient;
@@ -70,8 +71,10 @@ export function useMacroStance(): Terminal {
   const [chainOk, setChainOk] = useState<boolean | null>(null);
   const [connecting, setConnecting] = useState(false);
   const [walletError, setWalletError] = useState<string | null>(null);
-  const [write, setWrite] = useState<WriteState>({ phase: "idle" });
   const [readAtMs, setReadAtMs] = useState<number | null>(null);
+  const txStore = useMemo(() => new TxStatusStore(), []);
+  const clock = useMemo(() => new ChainClock(), []);
+  useSyncExternalStore(txStore.subscribe, txStore.getVersion, txStore.getVersion);
   const epochCount = useRef(0);
 
   // ---- public loader (stable for the page lifetime)
@@ -108,6 +111,19 @@ export function useMacroStance(): Terminal {
   const publicState = useLoaderState(publicLoader);
   const accountState = useLoaderState(accountLoader);
 
+  // Anchor the clock ONLY on a verified overview read. `readAt` is stamped on
+  // success, so a failed poll (which leaves the stale overview in place) can
+  // never re-anchor the countdown backward.
+  const overviewReadAt = publicState.readAt.get("overview") ?? null;
+  const observedAt = useRef<number | null>(null);
+  const ov = publicState.values.get("overview") as Overview | undefined;
+  useEffect(() => {
+    if (overviewReadAt !== null && overviewReadAt !== observedAt.current && ov) {
+      observedAt.current = overviewReadAt;
+      clock.observe(ov.now);
+    }
+  }, [overviewReadAt, ov, clock]);
+
   const refresh = useCallback(() => {
     if (!client.configured) return;
     const ids = ["overview", "registry"];
@@ -136,14 +152,18 @@ export function useMacroStance(): Terminal {
   const bind = useCallback(
     (addr: string | null) => {
       if (addr && isAddress(addr) && window.ethereum) {
+        // Purge BEFORE the new account becomes visible: no render may pair the
+        // new address with the previous account's banner.
+        txStore.purgeExcept(normalizeAddress(addr));
         client.connect(addr, window.ethereum);
         setAccount(normalizeAddress(addr));
       } else {
+        txStore.purgeExcept(null);
         client.disconnect();
         setAccount(null);
       }
     },
-    [client],
+    [client, txStore],
   );
 
   useEffect(() => {
@@ -204,18 +224,23 @@ export function useMacroStance(): Terminal {
 
   const run = useCallback(
     async (label: string, fn: (c: MacroStanceClient) => Promise<WriteOutcome>) => {
-      setWrite({ phase: "pending", label });
+      const origin = client.account;
+      if (!origin) return false;
+      // The status belongs to the account that started the action. If the
+      // wallet switches mid-flight the entry is purged and these completions
+      // are ignored (ids no longer match), so nothing leaks to the new account.
+      const id = txStore.begin(origin, label);
       try {
         const out = await fn(client);
-        setWrite({ phase: "done", label, hash: out.hash });
+        txStore.succeed(origin, id, out.hash);
         refresh();
         return true;
       } catch (e) {
-        setWrite({ phase: "failed", label, message: (e as Error)?.message ?? "Transaction failed." });
+        txStore.fail(origin, id, (e as Error)?.message ?? "Transaction failed.");
         return false;
       }
     },
-    [client, refresh],
+    [client, refresh, txStore],
   );
 
   const overview = (publicState.values.get("overview") as Overview | undefined) ?? null;
@@ -228,6 +253,8 @@ export function useMacroStance(): Terminal {
   const health = (accountState.values.get("health") as AccountHealth | undefined) ?? null;
   const claimableRaw = accountState.values.get("claimable");
   const claimable = typeof claimableRaw === "bigint" ? claimableRaw : null;
+  const accountUnknown =
+    account !== null && health === null && !accountState.loading && !accountState.failedIds.has("health");
 
   return {
     configured: client.configured,
@@ -245,7 +272,9 @@ export function useMacroStance(): Terminal {
     publicState,
     accountState,
     readAtMs,
-    write,
+    chainNow: clock.estimate(),
+    write: txStore.get(account),
+    accountUnknown,
     run,
     refresh,
     client,

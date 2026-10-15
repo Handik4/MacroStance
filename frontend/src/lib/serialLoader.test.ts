@@ -238,3 +238,45 @@ describe("SerialLoader: account switching", () => {
     expect([...l.getState().values.entries()]).toEqual([["b", 5]]);
   });
 });
+
+describe("SerialLoader: readAt is stamped on SUCCESS only", () => {
+  it("records the time of each successful read", async () => {
+    let clock = 100;
+    const l = new SerialLoader<number>(async () => 1, () => clock);
+    await l.refresh(["a"]);
+    expect(l.getState().readAt.get("a")).toBe(100);
+    clock = 250;
+    await l.refresh(["a"]);
+    expect(l.getState().readAt.get("a")).toBe(250);
+  });
+
+  it("a failed re-read leaves the previous success time untouched", async () => {
+    let clock = 100;
+    let fail = false;
+    const l = new SerialLoader<number>(async () => {
+      if (fail) throw new Error("rpc down");
+      return 1;
+    }, () => clock);
+    await l.refresh(["a"]);
+    fail = true;
+    clock = 900;
+    await l.refresh(["a"]);
+    expect(l.getState().readAt.get("a")).toBe(100); // not 900
+    expect(l.getState().failedIds.has("a")).toBe(true);
+  });
+
+  it("an item that never succeeded has no readAt", async () => {
+    const l = new SerialLoader<number>(async () => {
+      throw new Error("x");
+    });
+    await l.refresh(["a"]);
+    expect(l.getState().readAt.has("a")).toBe(false);
+  });
+
+  it("reset clears readAt", async () => {
+    const l = new SerialLoader<number>(async () => 1);
+    await l.refresh(["a"]);
+    l.reset();
+    expect(l.getState().readAt.size).toBe(0);
+  });
+});

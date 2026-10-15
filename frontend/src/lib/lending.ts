@@ -40,19 +40,20 @@ export function ltvBps(collateral: bigint, debt: bigint): number {
   return Number((debt * BPS) / collateral);
 }
 
-/** Largest borrow that passes the contract's check (walks down the rounding overshoot). */
+/**
+ * Exact largest borrow the contract accepts, in closed form.
+ *
+ * The check is `ceil((scaled + ceil(a*RAY/idx)) * idx / RAY) <= D` with
+ * `D = floor(collateral * ltv / BPS)`. Inverting both ceilings:
+ *   X = floor(D*RAY/idx) - scaled ;  a_max = floor(X * idx / RAY).
+ * No search and no assumption about how far `idx` has drifted from RAY (the
+ * previous 4-step walk-down returned 0 once idx exceeded ~3.0 RAY).
+ */
 export function maxBorrow(collateral: bigint, scaled: bigint, index: bigint, maxLtvBps: number): bigint {
-  const cap = capacity(collateral, maxLtvBps);
-  const debt = debtFromScaled(scaled, index);
-  let cand = cap - debt;
-  if (cand <= 0n) return 0n;
-  for (let i = 0; i < 4; i++) {
-    const after = debtFromScaled(scaled + scaledFromBorrow(cand, index), index);
-    if (!isOverLtv(collateral, after, maxLtvBps)) return cand;
-    cand -= 1n;
-    if (cand <= 0n) return 0n;
-  }
-  return 0n;
+  const dMax = capacity(collateral, maxLtvBps);
+  const xMax = (dMax * RAY) / index - scaled;
+  if (xMax <= 0n) return 0n;
+  return (xMax * index) / RAY;
 }
 
 /** Index after `dt` seconds at `rateBps`; rounds UP like the contract. */

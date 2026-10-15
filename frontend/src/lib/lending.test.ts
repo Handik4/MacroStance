@@ -124,3 +124,52 @@ describe("index projection mirrors the contract formula", () => {
     expect(idx).toBeGreaterThanOrEqual(projectIndex(RAY, 550, 200n));
   });
 });
+
+describe("maxBorrow is exact at any index magnitude (audit finding #7)", () => {
+  // Reference: the largest `a` the contract's borrow rule accepts, by bisection.
+  function brute(collateral: bigint, scaled: bigint, idx: bigint, ltv: number): bigint {
+    const dMax = capacity(collateral, ltv);
+    let lo = 0n;
+    let hi = dMax;
+    while (lo < hi) {
+      const mid = (lo + hi + 1n) / 2n;
+      const debt = debtFromScaled(scaled + scaledFromBorrow(mid, idx), idx);
+      if (debt <= dMax) lo = mid;
+      else hi = mid - 1n;
+    }
+    return lo;
+  }
+
+  it.each([1n, 2n, 3n, 5n, 25n, 500n, 5000n, 10n ** 6n])("index = %sx RAY", (mult) => {
+    for (const idx of [RAY * mult, RAY * mult + 123456789012345678901n, RAY * mult + 1n]) {
+      for (const [c, s, ltv] of [
+        [GEN, 0n, 7500],
+        [3n * GEN + 17n, 0n, 8000],
+        [10n * GEN, scaledFromBorrow(GEN, idx), 6500],
+        [999_999_999_999_999n, 0n, 7500],
+      ] as [bigint, bigint, number][]) {
+        const got = maxBorrow(c, s, idx, ltv);
+        expect(got).toBe(brute(c, s, idx, ltv));
+        // and it is borrowable, one more is not
+        if (got > 0n) expect(previewBorrow(c, s, idx, got, ltv).ok).toBe(true);
+        expect(previewBorrow(c, s, idx, got + 1n, ltv).ok).toBe(false);
+      }
+    }
+  });
+
+  it("does not report 0 for a borrowable position once the index passed 3x (old walk-down bug)", () => {
+    const idx = RAY * 25n;
+    expect(maxBorrow(10n * GEN, 0n, idx, 7500)).toBeGreaterThan(0n);
+  });
+
+  it("is zero when already over the ceiling", () => {
+    expect(maxBorrow(GEN, scaledFromBorrow(GEN, RAY), RAY, 7500)).toBe(0n);
+  });
+
+  it("never exceeds the ideal floor(collateral * ltv)", () => {
+    for (const mult of [1n, 7n, 90n]) {
+      const idx = RAY * mult;
+      expect(maxBorrow(GEN, 0n, idx, 7500)).toBeLessThanOrEqual(capacity(GEN, 7500));
+    }
+  });
+});

@@ -20,9 +20,10 @@ export default function Page() {
     return () => clearInterval(id);
   }, []);
 
-  // Chain time advanced locally from the last read, so countdowns tick between polls.
-  const chainNow =
-    t.overview && t.readAtMs !== null ? t.overview.now + Math.max(0, Math.floor((tick - t.readAtMs) / 1000)) : null;
+  // `tick` only forces a re-render each second; chain time comes from the
+  // monotone clock anchored on verified reads (see lib/chainClock.ts).
+  const chainNow = t.chainNow;
+  void tick;
   const short = t.account ? `${t.account.slice(0, 6)}…${t.account.slice(-4)}` : null;
 
   return (
@@ -59,6 +60,7 @@ export default function Page() {
         publicState={t.publicState}
         accountState={t.accountState}
         account={t.account}
+        accountUnknown={t.accountUnknown}
         now={tick}
       />
 
@@ -75,6 +77,7 @@ export default function Page() {
             epochs={t.epochs}
             account={t.account}
             claimable={t.claimable}
+            claimableFailed={t.accountState.failedIds.has("claimable")}
             chainNow={chainNow}
             write={t.write}
             run={t.run}
@@ -84,7 +87,8 @@ export default function Page() {
             account={t.account}
             health={t.health}
             overview={t.overview}
-            busy={t.write.phase === "pending"}
+            busy={t.write?.phase === "pending"}
+            healthFailed={t.accountState.failedIds.has("health")}
             run={t.run}
           />
         </div>

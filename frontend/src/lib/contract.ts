@@ -28,7 +28,7 @@ export const EXPLORER_URL =
  * The Studio Next deployment recorded in deployments/studio-next.json. The
  * address is public; override per environment with NEXT_PUBLIC_MACROSTANCE_ADDRESS.
  */
-export const DEPLOYED_ADDRESS = "0x3AE6f881382c62811169921Fb77D97a0c18e49B3";
+export const DEPLOYED_ADDRESS = "0xdb529461aaD3511d6454e93764FE074746286966";
 export const CONTRACT_ADDRESS = (process.env.NEXT_PUBLIC_MACROSTANCE_ADDRESS ?? DEPLOYED_ADDRESS) as string;
 
 export interface Eip1193Provider {
@@ -56,6 +56,10 @@ export interface Overview {
   reserve_factor_bps: number;
   pending_epoch: string;
   last_executed_seq: number;
+  active_version: number;
+  active_epoch_revision: number;
+  proposal_validity_window: number;
+  max_epoch_year: number;
   epoch_count: number;
   treasury: string;
   total_escrow: string;
@@ -82,7 +86,7 @@ export interface FeedSlot {
 
 export interface EpochRecord {
   epoch_id: string;
-  status: "STAGED" | "EXECUTED" | "CANCELLED" | "REJECTED" | "QUORUM_FAILED";
+  status: "STAGED" | "EXECUTED" | "EXPIRED" | "CANCELLED" | "REJECTED" | "QUORUM_FAILED";
   verdict: number;
   verdict_name: string;
   stance: number;
@@ -95,6 +99,9 @@ export interface EpochRecord {
   activates_at: number;
   attempts: number;
   resolved_by: string;
+  base_version: number;
+  revision: number;
+  expires_at: number;
   seq: number;
 }
 

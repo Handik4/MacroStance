@@ -8,6 +8,8 @@ interface Props {
   publicState: LoaderState<unknown>;
   accountState: LoaderState<unknown>;
   account: string | null;
+  /** connected, but the position has not been read yet and has not failed */
+  accountUnknown?: boolean;
   now: number;
 }
 
@@ -22,7 +24,7 @@ function ago(ms: number | null, now: number): string {
  * and it keeps reporting it: a later successful read of another item never
  * clears a failure (SerialLoader tracks failedIds per item).
  */
-export default function SyncAlert({ configured, chainOk, publicState, accountState, account, now }: Props) {
+export default function SyncAlert({ configured, chainOk, publicState, accountState, account, accountUnknown = false, now }: Props) {
   const notes: { tone: "warn" | "bad" | "info"; text: string }[] = [];
 
   if (!configured) {
@@ -49,7 +51,13 @@ export default function SyncAlert({ configured, chainOk, publicState, accountSta
   if (account && accFailed.length > 0) {
     notes.push({
       tone: "warn",
-      text: `Account read failure — ${accFailed.join(", ")} could not be read for your wallet. Displayed account figures may be stale.`,
+      text: `Account read failure — ${accFailed.join(", ")} could not be read for your wallet. Collateral, debt and balances are shown as — until a read succeeds.`,
+    });
+  }
+  if (account && accountUnknown) {
+    notes.push({
+      tone: "warn",
+      text: "Your collateral and debt are not known yet. They are shown as — (never 0) until the first successful read.",
     });
   }
   if (configured && pubFailed.length === 0 && publicState.lastCompletedAt === null && !publicState.loading) {

@@ -10,6 +10,8 @@ import {
   buildFeedUrl,
   classifyResponse,
   deriveStance,
+  epochIdProblem,
+  epochYear,
   isValidEpochId,
   parseEpochId,
   releaseHash,
@@ -133,5 +135,30 @@ describe("release hash", () => {
     expect((await classifyResponse(200, body, "2026-Q4-FOMC")).kind).toBe("CONFIRMED");
     const over = JSON.stringify({ epoch_id: "2026-Q4-FOMC", status: "CONFIRMED", rate_change_bps: 0, cpi_yoy_bps: CPI_MAX_BPS + 1 });
     expect((await classifyResponse(200, over, "2026-Q4-FOMC")).kind).toBe("OUTAGE");
+  });
+});
+
+describe("epoch year bound mirrors the contract (audit finding #3)", () => {
+  it("epochYear extracts the year or -1", () => {
+    expect(epochYear("2026-Q4-FOMC")).toBe(2026);
+    expect(epochYear("2200-Q1-AB")).toBe(2200);
+    expect(epochYear("bogus")).toBe(-1);
+  });
+  it.each([
+    ["2026-Q4-FOMC", 2027, null],
+    ["2027-Q4-FOMC", 2027, null],
+    ["2028-Q1-FOMC", 2027, "beyond the next calendar year"],
+    ["2200-Q4-FOMC", 2027, "beyond the next calendar year"],
+    ["2000-Q1-AB", 2027, null],
+  ])("%s with max year %i", (id, maxYear, problem) => {
+    const got = epochIdProblem(id, maxYear);
+    if (problem === null) expect(got).toBeNull();
+    else expect(got).toContain(problem);
+  });
+  it("malformed ids are reported before the year", () => {
+    expect(epochIdProblem("2026-q4-fomc", 2027)).toContain("2026-Q4-FOMC");
+  });
+  it("without a known chain year only the grammar applies", () => {
+    expect(epochIdProblem("2200-Q4-FOMC", null)).toBeNull();
   });
 });
