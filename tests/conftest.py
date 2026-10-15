@@ -18,9 +18,11 @@ DAY = 24 * 3600
 YEAR = 365 * DAY
 T0 = "2026-10-01T00:00:00Z"
 
-FEED_A = "https://raw.githubusercontent.com/Handik4/MacroStance/main/deployments/mock_feeds/a/"
-FEED_B = "https://cdn.jsdelivr.net/gh/Handik4/MacroStance@main/deployments/mock_feeds/b/"
-FEED_C = "https://rawcdn.githack.com/Handik4/MacroStance/main/deployments/mock_feeds/c/"
+# Mirrors the deployed registry: every prefix is pinned to the fixture commit.
+FIXTURE_COMMIT = "e2cd0c0216747473a90d5cd738e7675f97a9b6cd"
+FEED_A = f"https://raw.githubusercontent.com/Handik4/MacroStance/{FIXTURE_COMMIT}/deployments/mock_feeds/a/"
+FEED_B = f"https://cdn.jsdelivr.net/gh/Handik4/MacroStance@{FIXTURE_COMMIT}/deployments/mock_feeds/b/"
+FEED_C = f"https://rawcdn.githack.com/Handik4/MacroStance/{FIXTURE_COMMIT}/deployments/mock_feeds/c/"
 HOSTS = {
     "a": r"raw\.githubusercontent\.com",
     "b": r"cdn\.jsdelivr\.net",

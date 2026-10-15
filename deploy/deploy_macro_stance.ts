@@ -32,12 +32,22 @@ const DEFAULT_RPC = "https://studio-next.genlayer.com/api";
 const EXPLORER = "https://explorer-studio-next.genlayer.com";
 const CHAIN_ID = 61997;
 
-// Genesis feed registry: three independent hosts. Rotations later go through
-// the 7-day timelock; these are the only URLs a caller can never change.
+// Genesis feed registry: three independent hosts, each URL PINNED TO A COMMIT.
+//
+// A branch URL (`.../main/...`, `...@main/...`) names mutable content that three
+// different CDNs cache on three different clocks, so a fixture edit leaves the
+// slots disagreeing for minutes to a year (observed: jsDelivr stale while
+// GitHack fresh, then the reverse). A commit SHA names immutable bytes: nothing
+// can be stale and nothing needs purging. The price is that fixture changes
+// need a new commit and therefore a registry rotation (7-day timelock).
+//
+// FIXTURE_COMMIT is the commit that last touched deployments/mock_feeds/;
+// scripts/verify_feeds.py checks every document on every host against it.
+const FIXTURE_COMMIT = "e2cd0c0216747473a90d5cd738e7675f97a9b6cd";
 const FEEDS = [
-  "https://raw.githubusercontent.com/Handik4/MacroStance/main/deployments/mock_feeds/a/",
-  "https://cdn.jsdelivr.net/gh/Handik4/MacroStance@main/deployments/mock_feeds/b/",
-  "https://rawcdn.githack.com/Handik4/MacroStance/main/deployments/mock_feeds/c/",
+  `https://raw.githubusercontent.com/Handik4/MacroStance/${FIXTURE_COMMIT}/deployments/mock_feeds/a/`,
+  `https://cdn.jsdelivr.net/gh/Handik4/MacroStance@${FIXTURE_COMMIT}/deployments/mock_feeds/b/`,
+  `https://rawcdn.githack.com/Handik4/MacroStance/${FIXTURE_COMMIT}/deployments/mock_feeds/c/`,
 ];
 
 interface Receipt {
@@ -187,7 +197,14 @@ export default async function main(client: DeployClient): Promise<string> {
   // contract (Studio Next's gen_call has been seen failing server-side for
   // every contract), so it is recorded as "unverified" and reported loudly
   // rather than discarding a deployment whose source hash already verified.
-  let readback: { status: "verified" | "unverified"; detail: string } = {
+  //
+  // Levels, strongest first:
+  //   verified           get_feed_registry (live contract state) == FEEDS
+  //   calldata_verified  the deploy transaction's own calldata == FEEDS. This is
+  //                      the INPUT the constructor received, not a state read;
+  //                      it is used only when the state read is unavailable.
+  //   unverified         neither could be checked.
+  let readback: { status: "verified" | "calldata_verified" | "unverified"; detail: string } = {
     status: "unverified",
     detail: "not attempted",
   };
@@ -206,7 +223,21 @@ export default async function main(client: DeployClient): Promise<string> {
     const msg = (e as Error).message ?? String(e);
     if (msg.startsWith("Registry read-back mismatch")) throw e;
     readback = { status: "unverified", detail: `read failed: ${msg.split("\n")[0].slice(0, 200)}` };
-    console.warn(`WARNING: registry read-back could not be performed: ${readback.detail}`);
+    console.warn(`WARNING: registry state read-back could not be performed: ${readback.detail}`);
+    const b64 = (receipt.data as { calldata?: { base64?: string } } | undefined)?.calldata?.base64;
+    if (b64) {
+      const text = Buffer.from(b64, "base64").toString("latin1");
+      const sent = [...text.matchAll(/https:\/\/[A-Za-z0-9._~\/@:-]+\//g)].map((m) => m[0]);
+      if (sent.length === 3 && sent.every((u, i) => u === FEEDS[i])) {
+        readback = {
+          status: "calldata_verified",
+          detail: `state read failed (${readback.detail}); the deployment transaction's calldata carries exactly the three constructor arguments`,
+        };
+        console.warn("Constructor arguments verified from the transaction calldata (not from contract state).");
+      } else {
+        throw new Error(`Constructor calldata mismatch: ${JSON.stringify(sent)}`);
+      }
+    }
   }
 
   // --- record ------------------------------------------------------------
