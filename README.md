@@ -415,8 +415,17 @@ endpoint): **12 findings (1 critical, 9 high, 2 moderate); production-only: 2
   matching sources and survive the bonded challenge to be applied.
 * **Feed documents must carry `release_ts`** (integer unix seconds, 2000–2100);
   a document without it is a schema error, i.e. an outage of that source. The
-  committed mock feeds were regenerated accordingly, and jsDelivr caches `@main`
-  for hours, so a purge may be needed after editing fixtures.
+  committed mock feeds were regenerated accordingly.
+* **Slot C is serving stale fixtures.** `rawcdn.githack.com` answers branch URLs
+  with `cache-control: max-age=31536000, immutable` and offers no purge, so the
+  documents it cached before `release_ts` existed are still served without it.
+  Observed after the push: raw.githubusercontent.com and jsDelivr serve the new
+  files, GitHack serves the old ones. Effect: for those pre-existing epochs slot
+  C counts as an outage, so a live round resolves on A+B (still `VERIFIED`, 2
+  sources) but has no third source to fall back on. Fixes: rotate slot C to a
+  commit-pinned prefix (7-day timelock) or publish fixtures under new epoch ids.
+  Editing a fixture on `main` is otherwise not an operation to rely on: mirrors
+  cache branch refs for minutes to a year.
 * An executed epoch can be revised: re-proposing it succeeds only with a strictly
   newer `release_ts`, and a cancelled or expired revision leaves the previously
   executed stance live.
