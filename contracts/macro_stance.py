@@ -354,14 +354,41 @@ def _resolve_quorum(states) -> dict:
 
 
 PAYLOAD_KEYS = ("verdict", "stance", "source_count", "release_hash", "release_ts")
+# A challenge round carries one extra field: positive proof that the STAGED
+# release is invalid. Proposal rounds never carry it.
+CHALLENGE_KEY = "contradicted"
+
+
+def _contradicts(states, staged_hash: str) -> int:
+    """1 only on POSITIVE proof against the staged release:
+      * at least one source serves an explicit RETRACTED record, or
+      * at least two sources serve a CONFIRMED release whose hash (which binds
+        epoch, rate, cpi, stance AND release_ts) differs from the staged one.
+    404s, 5xx, timeouts and every other lag/outage symptom are absence of
+    evidence and never count, so a CDN purge or propagation delay can not
+    cancel a valid release or slash its reporter."""
+    differing = 0
+    for kind, _stance, rhash, _rts in states:
+        if kind == SRC_RETRACTED:
+            return 1
+        if kind == SRC_CONFIRMED and rhash != staged_hash:
+            differing += 1
+    return 1 if differing >= 2 else 0
 
 
 def _payload_ok(p) -> bool:
     """Exact 5-key schema + types + cross-field invariants. Used by the
     validator on the leader's result and by the contract before it trusts the
     consensus output (defence in depth against a forged payload)."""
-    if not isinstance(p, dict) or len(p) != len(PAYLOAD_KEYS):
+    if not isinstance(p, dict):
         return False
+    extra = len(p) - len(PAYLOAD_KEYS)
+    if extra < 0 or extra > 1:
+        return False
+    if extra == 1:
+        c = p.get(CHALLENGE_KEY)
+        if not _is_int(c) or c not in (0, 1):
+            return False
     for k in PAYLOAD_KEYS:
         if k not in p:
             return False
@@ -379,6 +406,13 @@ def _payload_ok(p) -> bool:
     return s == 0 and h == "" and t == 0
 
 
+def _with_proof(states, against: str) -> dict:
+    payload = _resolve_quorum(states)
+    if against != "":
+        payload[CHALLENGE_KEY] = _contradicts(states, against)
+    return payload
+
+
 def _validator_agrees(leader_payload, mine) -> bool:
     """`run_validator` core: leader payload must be schema-valid and equal to
     the validator's own independent re-derivation on all five fields."""
@@ -387,7 +421,7 @@ def _validator_agrees(leader_payload, mine) -> bool:
     for k in PAYLOAD_KEYS:
         if leader_payload[k] != mine[k]:
             return False
-    return True
+    return leader_payload.get(CHALLENGE_KEY) == mine.get(CHALLENGE_KEY)
 
 
 def _host_of(url: str) -> str:
@@ -893,8 +927,9 @@ class MacroStance(gl.contract.Contract):
         if now > int(ep.activates_at) + PROPOSAL_VALIDITY_WINDOW:
             raise gl.vm.UserError(f"{ERR_WINDOW}")
 
-        res = self._run_quorum(epoch_id)
+        res = self._run_quorum(epoch_id, ep.release_hash)
         verdict = int(res["verdict"])
+        contradicted = int(res[CHALLENGE_KEY]) == 1
         challenger = _key(gl.message.sender_address)
         reporter_hex = _key(ep.reporter)
         reporter_bond = int(ep.bond)
@@ -904,17 +939,10 @@ class MacroStance(gl.contract.Contract):
             and str(res["release_hash"]) == ep.release_hash
         )
         outcome = "UPHELD"
-        if verdict == QUORUM_FAILURE:
-            # Inconclusive (an outage): the challenger is not punished, the
-            # staged epoch is left to run its timelock.
-            self._credit(challenger, bond)
-            outcome = "INCONCLUSIVE"
-        elif same:
-            # Feeds still confirm the staged release: frivolous challenge,
-            # its bond compensates the reporter.
-            self._credit(reporter_hex, bond)
-        else:
-            # Retracted, conflicting or superseded: cancel and slash.
+        if contradicted:
+            # POSITIVE proof of invalidity (an explicit RETRACTED record, or
+            # two sources serving a conflicting CONFIRMED release): cancel,
+            # slash the reporter to the challenger, revoke the release.
             self.total_escrow -= reporter_bond
             self._credit(challenger, bond + reporter_bond)
             ep.status = EP_CANCELLED
@@ -928,9 +956,26 @@ class MacroStance(gl.contract.Contract):
             self.epochs[epoch_id] = ep
             self.pending_epoch = ""
             outcome = "CANCELLED"
+        elif same:
+            # Feeds still confirm the staged release: frivolous challenge,
+            # its bond compensates the reporter.
+            self._credit(reporter_hex, bond)
+        elif verdict == QUORUM_FAILURE:
+            # Inconclusive (an outage): the challenger is not punished, the
+            # staged epoch is left to run its timelock.
+            self._credit(challenger, bond)
+            outcome = "INCONCLUSIVE"
+        else:
+            # No proof either way (404 / propagation lag / unreachable
+            # quorum): absence of evidence is not invalidity. The release is
+            # UPHELD -- not cancelled, not revoked, the reporter's bond is
+            # untouched -- and the challenger, who was not shown wrong, is
+            # refunded rather than punished.
+            self._credit(challenger, bond)
         view = self._epoch_view(epoch_id)
         view["challenge_outcome"] = outcome
         view["challenge_verdict"] = verdict
+        view["challenge_contradicted"] = contradicted
         return view
 
     @gl.public.write
@@ -1301,7 +1346,9 @@ class MacroStance(gl.contract.Contract):
             return 0
         return (x_max * idx) // RAY
 
-    def _run_quorum(self, epoch_id: str) -> dict:
+    def _run_quorum(self, epoch_id: str, against: str = "") -> dict:
+        """One 2-of-3 round. With `against` (a staged release hash) the payload
+        also carries `contradicted`: positive proof the staged release is invalid."""
         urls: list = []
         for i in range(SLOT_COUNT):
             urls.append(str(self.feed_url[(i)]) + epoch_id + ".json")
@@ -1310,7 +1357,7 @@ class MacroStance(gl.contract.Contract):
             states = []
             for u in urls:
                 states.append(_fetch_source(u, epoch_id))
-            return _resolve_quorum(states)
+            return _with_proof(states, against)
 
         def validator_fn(leaders_res: gl.vm.Result) -> bool:
             if not isinstance(leaders_res, gl.vm.Return):
@@ -1318,15 +1365,20 @@ class MacroStance(gl.contract.Contract):
             states = []
             for u in urls:
                 states.append(_fetch_source(u, epoch_id))
-            return _validator_agrees(leaders_res.calldata, _resolve_quorum(states))
+            return _validator_agrees(leaders_res.calldata, _with_proof(states, against))
 
         res = gl.vm.run_nondet(leader_fn, validator_fn)
         if not _payload_ok(res):
             raise gl.vm.UserError(f"{ERR_PAYLOAD}")
-        return {
+        if (CHALLENGE_KEY in res) != (against != ""):
+            raise gl.vm.UserError(f"{ERR_PAYLOAD}")
+        out = {
             "verdict": int(res["verdict"]),
             "stance": int(res["stance"]),
             "source_count": int(res["source_count"]),
             "release_hash": str(res["release_hash"]),
             "release_ts": int(res["release_ts"]),
         }
+        if against != "":
+            out[CHALLENGE_KEY] = int(res[CHALLENGE_KEY])
+        return out

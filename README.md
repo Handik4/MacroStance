@@ -15,9 +15,9 @@ single discrete output and a human-scale window to object.
 | | |
 |---|---|
 | Network | GenLayer **Studio Next**, chain `61997` |
-| Contract | [`0x6F5836e013b56738e1c27BDbFA36fB001369D867`](https://explorer-studio-next.genlayer.com/address/0x6F5836e013b56738e1c27BDbFA36fB001369D867) |
-| Source SHA-256 (local == on-chain) | `43d824659dbc7cf11d7863eeb29ac8101c4930118ae89ca65ab1ce81625af0e8` |
-| Deploy tx | `0x7473f0d0fb4cfb3e1507ed91473fe9ae348cdb904837efea32d9471148ee6260` |
+| Contract | [`0xab10d3fc63cB2598870f3A06d183e4fca6156A4d`](https://explorer-studio-next.genlayer.com/address/0xab10d3fc63cB2598870f3A06d183e4fca6156A4d) |
+| Source SHA-256 (local == on-chain) | `5b14ef72692e0a596e02014f0cd7b51ae6c6df95ca4c94e63fd97712fe4b52a3` |
+| Deploy tx | `0x211500cababbd3b2d2468617e256de707b4637ec4285998dbcbf34d228cde74d` |
 | Runner pin | `py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng` |
 
 ---
@@ -44,7 +44,7 @@ single discrete output and a human-scale window to object.
        bond → treasury               bond → reporter (retry)             stage 24 h, bond escrowed
                                                                                 │
                               challenge_staged_epoch (bonded) ◄── until executed or expired ┤
-                              retraction / conflict ⇒ CANCELLED,                │ after 24 h, anyone
+                              RETRACTED / 2 conflicting sources ⇒ CANCELLED,    │ after 24 h, anyone
                               reporter bond → challenger                        ▼
                                                                   execute_stance_transition
                                                                   active stance ← tier row; bond + keeper reward → reporter
@@ -66,7 +66,7 @@ deploy/deploy_macro_stance.ts    `genlayer deploy` script with strict receipt + 
 scripts/export_abi.py            ABI export and frontend call-site check
 scripts/gen_mock_feeds.py        regenerates deployments/mock_feeds
 scripts/verify_feeds.py           live HTTP check: every fixture on every registry host
-tests/                           864 direct-mode tests (pytest)
+tests/                           870 direct-mode tests (pytest)
 frontend/                        Next.js 16.4.1 + React 19 + Tailwind 4 terminal UI, 806 vitest tests
 ```
 
@@ -191,9 +191,16 @@ ordered combinations replayed byte-for-byte by the TypeScript port.)
 | `VERIFIED`, then executed | escrowed → refunded + keeper reward (≤ 0.01 GEN, paid from forfeited bonds) | — |
 | `QUORUM_FAILURE` | returned immediately | — |
 | `REJECTED_RELEASE` | forfeited → treasury | — |
-| challenge succeeds (retraction / conflict / superseded / feeds gone) | slashed → challenger | returned |
-| challenge fails (still confirmed) | kept | forfeited → reporter |
-| challenge inconclusive (outage) | stays escrowed | returned |
+| challenge succeeds — **positive proof**: ≥ 1 explicit `RETRACTED` record, or ≥ 2 sources serving a `CONFIRMED` release whose hash differs | slashed → challenger; release hash revoked | returned |
+| challenge fails (still confirmed by quorum) | kept | forfeited → reporter |
+| challenge fails (**no proof**: 404 / propagation lag / mixed outage, e.g. 1 `CONFIRMED` + 2× 404) | kept; stage stays `STAGED`, hash **not** revoked | returned |
+| challenge inconclusive (outage, quorum still reachable) | stays escrowed | returned |
+
+A challenge only cancels on evidence *against* the staged release. Absence of
+evidence (a `404` from a CDN purge or lagging mirror, a 5xx, a timeout) never
+slashes the reporter and never revokes the release. The challenge round carries
+a sixth payload field, `contradicted`, that validators recompute and must agree
+on; proposal rounds keep the 5-key payload.
 
 Payouts are pull-pattern (`claim_payout`); every wei sits in exactly one of
 `total_escrow`, `total_claimable`, `treasury`, `total_collateral`
@@ -207,10 +214,11 @@ Payouts are pull-pattern (`claim_payout`); every wei sits in exactly one of
 |---|---|---|
 | Caller injects a malicious URL (SSRF, path traversal) | No URL parameter exists; epoch id grammar is `^\d{4}-Q[1-4]-[A-Z0-9]{2,12}$`; URL = registry prefix + id + `.json` | Governor can register any `https` host (timelocked) |
 | One host registered under several names to fake a quorum | Exact host *and* last-two-label domain unique across active + staged slots, re-checked at activation | The two-label approximation also rejects distinct hosts under `co.uk`-style suffixes (fails safe) |
-| Leader smuggles free text or a forged verdict | Payload is exactly 5 typed keys with cross-field invariants; validators recompute and require equality; contract re-validates before touching state | — |
+| Leader smuggles free text or a forged verdict | Payload is exactly 5 typed keys (6 in a challenge round) with cross-field invariants; validators recompute and require equality; contract re-validates before touching state | — |
 | Outage forfeits an honest reporter | Rule 6 / oracle-checked; unreachable ⇒ retryable | A *persistent* outage of 2 hosts blocks syncing (liveness, not safety) |
 | Stale or replayed release rolls parameters back | `seq` monotonic by quarter **and** `release_ts` strictly greater than the live release's, for the same epoch id or any other id; cancelled releases are revoked | The feeds must carry an honest, monotone `release_ts`; a publisher that back-dates a revision cannot supersede (it only fails to apply) |
-| Bad release activates before anyone can react | 24 h timelock + bonded challenge re-query, which stays available until the stage executes or expires (a retraction on day 2 or day 5 still aborts it) | Challenger must act within the window; one retracting source is enough to cancel (fail-closed), so a compromised mirror can grief the reporter's bond |
+| Bad release activates before anyone can react | 24 h timelock + bonded challenge re-query, which stays available until the stage executes or expires (a retraction on day 2 or day 5 still aborts it) | Challenger must act within the window; one `RETRACTED` source is enough to cancel, so a compromised mirror that *serves a retraction* can grief the reporter's bond. A mirror that merely 404s or lags cannot (no proof, no slash) |
+| Challenge hits CDN purge / propagation lag and falsely cancels a valid release, stealing the bond | Slashing, cancellation and revocation require **positive proof** (explicit `RETRACTED`, or ≥ 2 sources confirming a different release hash). `404` / 5xx / timeout is absence of evidence: release UPHELD, reporter bond intact, hash not revoked, challenger refunded | A genuinely bad release whose feeds were merely *taken down* (404, no retraction record) is not cancelled by a challenge; publishers must retract explicitly |
 | Feed numbers differ but stance matches | Release hash binds `epoch|rate|cpi|stance`; a differing hash is a different release | — |
 | Rounding exploits in the vault | Scaled debt and debt are `ceil`; repay scaled is `floor`; index growth `ceil`; LTV by cross-multiplication; dust repays refused; `available_to_borrow` is a **closed-form inverse** of the borrow rule (exact at any index) | Borrowing exactly `floor(collateral·ltv)` can fail by ≤ `idx/RAY + 1` wei — use `available_to_borrow` |
 | Stale mirror re-serves a release a challenge already cancelled | Cancelled hashes are revoked per epoch; proposing one reverts `ERR_STALE_RELEASE` (reporter keeps the bond); execute re-checks | Only *revoked* releases are ordered. Two unrelated hashes for one epoch have no feed-supplied order (see §8) |
@@ -219,7 +227,8 @@ Payouts are pull-pattern (`claim_payout`); every wei sits in exactly one of
 | A far-future `release_ts` becoming a high-water mark that blocks every later release | Static bounds (2000–2100) in every validator, plus a contract guard: more than 24 h ahead of the block clock reverts `ERR_FUTURE_RELEASE` | A release dated up to 24 h ahead is accepted and raises the mark accordingly |
 | Account key confusion (checksum vs lowercase) | One canonical lowercase key (found and fixed by a probe test) | — |
 | GitHub / CDN caching serves a stale file | Validators agree on whatever they observe; disagreement forces rotation | `raw.githubusercontent.com` caches ~5 min: a retraction can be visible late |
-| Governor key compromise | Rotations timelocked; `transfer_governor`; treasury withdrawal | Single key; no multisig. **The deployed governor is the CLI deployer (see §6)** |
+| Governor key compromise or malicious governor | Rotations are timelocked (7 days) and `transfer_governor` exists | **The timelock is an advance warning and a capital-exit window for borrowers and lenders, not an on-chain veto**: nothing on-chain can block a single malicious governor from activating a staged rotation once the delay elapses. Single key; no multisig. **The deployed governor is the CLI deployer (see §6).** For production use a decentralized multisig (e.g. Safe) or a DAO timelock as governor |
+| Governor incentive to harvest reporter bonds | `REJECTED_RELEASE` (3× 404, i.e. unreleased proposals) forfeits the bond into `treasury`, which only the governor can withdraw | **Forfeited reporter bonds accrue to the protocol treasury controlled by the deployer key**, so the governor has a standing (if small) incentive to see premature proposals rejected. Mainnet should route forfeited bonds to an unspendable burn address or a reserve / insurance backstop, removing that incentive |
 | Emitted native transfer fails after the tx | Debit-before-transfer with restore on enqueue failure | Async settlement failures are outside the frame (same as any `emit_transfer`) |
 
 **What the vault is not.** Debt is a **ledger of notional units**: collateral is
@@ -242,9 +251,9 @@ to demonstrate stance-bound risk parameters, not to be a money market.
 | `tests/test_audit_recheck.py` | 47 | **recheck**: release-timestamp rollback guard, challenge window through the validity window, current-quarter bound (incl. every quarter boundary) |
 | `tests/test_temporal_invariants.py` | 27 | **audit #1 #2 #7**: revoked releases, proposal expiry, large-index borrow ceiling |
 | `tests/test_epoch_lifecycle.py` | 36 | bonds, 24 h timelock, monotonic epochs, rewards, claims |
-| `tests/test_challenge.py` | 21 | retraction slashing, windows, frivolous / inconclusive challenges |
+| `tests/test_challenge.py` | 27 | retraction slashing, windows, frivolous / inconclusive challenges, **404-lag / no-proof challenges never slash** |
 | `tests/test_mock_feeds.py`, `test_pickling.py`, `test_accounting.py`, `test_vectors.py` | 20 | fixtures, cloudpickle closures, value conservation, TS parity vectors |
-| **pytest total** | **864** | |
+| **pytest total** | **870** | |
 | `frontend/src/lib/*.test.ts` | **806** | stance/quorum/classification parity vectors incl. `release_ts` and the quarter bound (535), input parsing (76), receipts (39), lending math incl. large-index ceiling (38), strict JSON (34), SDK fee + receipt flow (32), SerialLoader incl. `readAt` (21), account-keyed tx status (14), monotone chain clock (10), unknown-state display (7) |
 
 Roughly 280 of the pytest cases and ~470 of the vitest cases are exhaustive or
@@ -260,7 +269,7 @@ export GENVM_VERSION=v0.6.0-rc3      # see "Runner pin" below
 .venv/bin/genvm-lint check     contracts/macro_stance.py   # 0 errors
 .venv/bin/genvm-lint typecheck contracts/macro_stance.py   # 0 errors
 .venv/bin/python scripts/export_abi.py --check
-.venv/bin/python -m pytest -q                              # 864 passed
+.venv/bin/python -m pytest -q                              # 870 passed
 
 # Frontend
 cd frontend
@@ -303,7 +312,8 @@ a new transaction.
 
 | | Address | Source SHA-256 | Status |
 |---|---|---|---|
-| **Current** (third check of `549ee91`) | `0x6F5836e013b56738e1c27BDbFA36fB001369D867` | `43d82465…af0e8` | live; tx `0x7473f0d0…6260`; **commit-pinned registry** |
+| **Current** (challenge proof-of-invalidity, after `8d48086`) | `0xab10d3fc63cB2598870f3A06d183e4fca6156A4d` | `5b14ef72…52a3` | live; tx `0x211500ca…e74d`; positive-proof challenge slashing; commit-pinned registry |
+| Superseded (challenge cancelled on 404 lag) | `0x6F5836e013b56738e1c27BDbFA36fB001369D867` | `43d82465…af0e8` | `deployments/history/studio-next.8d48086.json` |
 | Superseded (branch-URL registry) | `0xd13BF8a675565E0cA08383f94dD350cbf70B74F0` | `43d82465…af0e8` | same source, branch prefixes; `deployments/history/studio-next.549ee91.json` |
 | Superseded (recheck of `dda2887`) | `0xdb529461aaD3511d6454e93764FE074746286966` | `2e3384c3…bdd3` | `deployments/history/studio-next.0b2cdb2.json` |
 | Superseded (original) | `0x3AE6f881382c62811169921Fb77D97a0c18e49B3` | `f0774263…c5163` | `deployments/history/studio-next.dda2887.json` |
@@ -446,10 +456,15 @@ a ref instead of read from loader state) and is fixed rather than suppressed.
 * An executed epoch can be revised: re-proposing it succeeds only with a strictly
   newer `release_ts`, and a cancelled or expired revision leaves the previously
   executed stance live.
-* Single governor key; no multisig.
+* Single governor key; no multisig. The 7-day registry timelock gives users
+  time to exit; it does **not** veto a malicious governor (§4).
+* Forfeited reporter bonds (`REJECTED_RELEASE`) go to the treasury, withdrawable
+  by the governor key (§4); production should burn or ring-fence them.
 * Registrable-domain uniqueness is approximated by the last two labels.
 * One pending transition at a time: a staged-but-unexecuted epoch blocks new
   proposals until anyone executes it after 24 h.
 * The vault is a simulator; debt is not a token.
-* A `404` on two mirrors during a challenge cancels the stage (verdict
-  `REJECTED_RELEASE`), by design.
+* A challenge cancels a stage only on positive proof (a `RETRACTED` record or
+  two sources confirming a different release). Taking a feed *down* (404) does
+  not cancel it; the release proceeds to execution unless someone publishes a
+  retraction or a conflicting release before then.

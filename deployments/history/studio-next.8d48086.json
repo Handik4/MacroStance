@@ -1,0 +1,66 @@
+{
+  "network": "studio-next",
+  "chain_id": 61997,
+  "rpc_url": "https://studio-next.genlayer.com/api",
+  "contract_address": "0x6F5836e013b56738e1c27BDbFA36fB001369D867",
+  "explorer_url": "https://explorer-studio-next.genlayer.com/address/0x6F5836e013b56738e1c27BDbFA36fB001369D867",
+  "deploy_tx": "0x7473f0d0fb4cfb3e1507ed91473fe9ae348cdb904837efea32d9471148ee6260",
+  "source": "contracts/macro_stance.py",
+  "runner": "py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng",
+  "source_sha256": "43d824659dbc7cf11d7863eeb29ac8101c4930118ae89ca65ab1ce81625af0e8",
+  "onchain_sha256": "43d824659dbc7cf11d7863eeb29ac8101c4930118ae89ca65ab1ce81625af0e8",
+  "source_matches_onchain": true,
+  "receipt": {
+    "status": "ACCEPTED",
+    "execution": "FINISHED_WITH_RETURN",
+    "consensus": "MAJORITY_AGREE"
+  },
+  "constructor_args": [
+    "https://raw.githubusercontent.com/Handik4/MacroStance/e2cd0c0216747473a90d5cd738e7675f97a9b6cd/deployments/mock_feeds/a/",
+    "https://cdn.jsdelivr.net/gh/Handik4/MacroStance@e2cd0c0216747473a90d5cd738e7675f97a9b6cd/deployments/mock_feeds/b/",
+    "https://rawcdn.githack.com/Handik4/MacroStance/e2cd0c0216747473a90d5cd738e7675f97a9b6cd/deployments/mock_feeds/c/"
+  ],
+  "constructor_readback": {
+    "status": "calldata_verified",
+    "detail": "state read failed (read failed: An internal error was received.); the deployment transaction's calldata carries exactly the three constructor arguments"
+  },
+  "fee_deposit_wei": "100000000000010352",
+  "tx_created_timestamp": "1792053120",
+  "recorded_at": "2026-10-15T08:32:25.991Z",
+  "public_methods": {
+    "views": [
+      "claimable_of",
+      "classify_feed_response",
+      "derive_stance",
+      "feed_prefix_error",
+      "get_account_health",
+      "get_active_params",
+      "get_epoch",
+      "get_epoch_by_index",
+      "get_epoch_count",
+      "get_feed_registry",
+      "get_protocol_overview",
+      "get_risk_table",
+      "get_solvency",
+      "has_epoch",
+      "parse_epoch_id",
+      "resolve_verdict",
+      "whoami"
+    ],
+    "writes": [
+      "activate_feed_rotation",
+      "borrow_against_collateral",
+      "cancel_feed_rotation",
+      "challenge_staged_epoch",
+      "claim_payout",
+      "deposit_collateral",
+      "execute_stance_transition",
+      "propose_epoch_sync",
+      "repay",
+      "stage_feed_rotation",
+      "transfer_governor",
+      "withdraw_collateral",
+      "withdraw_treasury"
+    ]
+  }
+}

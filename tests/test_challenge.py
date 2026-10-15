@@ -61,8 +61,60 @@ def test_same_stance_but_revised_numbers_also_cancels(direct_vm, staged, direct_
     assert challenge(staged, direct_vm, direct_charlie, EP[0])["challenge_outcome"] == "CANCELLED"
 
 
-def test_feeds_gone_404_cancels(direct_vm, staged, direct_charlie):
+def test_challenge_with_404_lag_does_not_slash_reporter_or_revoke_valid_release(
+    direct_vm, staged, direct_bob, direct_charlie
+):
+    """1 CONFIRMED + 2x 404 (CDN purge / propagation lag) is absence of evidence,
+    not proof of invalidity: the release is UPHELD, the reporter's bond is safe,
+    the hash is not revoked and the release executes normally."""
+    before = staged.get_epoch(EP[0])
     set_feeds(direct_vm, NOT_FOUND, NOT_FOUND, feed_doc(*EP[:3]))
+    res = challenge(staged, direct_vm, direct_charlie, EP[0])
+    bob = addr_hex(staged, direct_vm, direct_bob)
+    ch = addr_hex(staged, direct_vm, direct_charlie)
+    assert res["challenge_outcome"] == "UPHELD" and res["status"] == "STAGED"
+    assert not res["challenge_contradicted"]
+    assert res["bond"] == str(BOND)  # reporter bond untouched
+    assert ov(staged)["pending_epoch"] == EP[0] and ov(staged)["total_escrow"] == str(BOND)
+    assert staged.claimable_of(ch) == str(BOND)  # challenger refunded, not punished
+    assert staged.claimable_of(bob) == "0"
+    assert res["revision"] == before["revision"]  # revision not advanced -> hash not revoked
+    assert conserved(staged, 2 * BOND)
+    # the valid release is still executable and the reporter gets the bond back
+    set_feeds(direct_vm, *[feed_doc(*EP[:3])] * 3)
+    warp_by(direct_vm, DAY)
+    assert staged.execute_stance_transition(EP[0])["stance"] == HAWKISH
+    assert staged.claimable_of(bob) == str(BOND)
+    assert conserved(staged, 2 * BOND)
+
+
+@pytest.mark.parametrize("pattern", ["lag", "outage_mix", "all_404"])
+def test_no_proof_patterns_never_cancel(direct_vm, staged, direct_charlie, pattern):
+    docs = {
+        "lag": (NOT_FOUND, NOT_FOUND, feed_doc(*EP[:3])),
+        "outage_mix": (NOT_FOUND, OUTAGE, feed_doc(*EP[:3])),
+        "all_404": (NOT_FOUND, NOT_FOUND, NOT_FOUND),
+    }[pattern]
+    set_feeds(direct_vm, *docs)
+    res = challenge(staged, direct_vm, direct_charlie, EP[0])
+    assert res["challenge_outcome"] in ("UPHELD", "INCONCLUSIVE") and res["status"] == "STAGED"
+
+
+def test_one_conflicting_source_is_not_proof(direct_vm, staged, direct_charlie):
+    other = feed_doc(EP[0], 50, 400)
+    set_feeds(direct_vm, other, NOT_FOUND, NOT_FOUND)
+    res = challenge(staged, direct_vm, direct_charlie, EP[0])
+    assert res["challenge_outcome"] == "UPHELD" and res["status"] == "STAGED"
+
+
+def test_two_conflicting_sources_are_proof(direct_vm, staged, direct_charlie):
+    other = feed_doc(EP[0], 50, 400)
+    set_feeds(direct_vm, other, other, NOT_FOUND)
+    assert challenge(staged, direct_vm, direct_charlie, EP[0])["challenge_outcome"] == "CANCELLED"
+
+
+def test_retraction_plus_404s_is_proof(direct_vm, staged, direct_charlie):
+    set_feeds(direct_vm, retracted_doc(EP[0]), NOT_FOUND, NOT_FOUND)
     assert challenge(staged, direct_vm, direct_charlie, EP[0])["challenge_outcome"] == "CANCELLED"
 
 
