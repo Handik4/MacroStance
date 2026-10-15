@@ -15,9 +15,9 @@ single discrete output and a human-scale window to object.
 | | |
 |---|---|
 | Network | GenLayer **Studio Next**, chain `61997` |
-| Contract | [`0x3AE6f881382c62811169921Fb77D97a0c18e49B3`](https://explorer-studio-next.genlayer.com/address/0x3AE6f881382c62811169921Fb77D97a0c18e49B3) |
-| Source SHA-256 (local == on-chain) | `f077426394d7680d5d83b39d5b5edce1f600e77a2bd18391f66cad04e6ec5163` |
-| Deploy tx | `0x5dfb93411ebb6de91c1f59e158d03ade0e6992a8e068391bd63b4160fba328fa` |
+| Contract | [`0xdb529461aaD3511d6454e93764FE074746286966`](https://explorer-studio-next.genlayer.com/address/0xdb529461aaD3511d6454e93764FE074746286966) |
+| Source SHA-256 (local == on-chain) | `2e3384c3d6e13bf560cfa0739aba76697236e27f44ba153d295094f0a8a1bdd3` |
+| Deploy tx | `0x4822dfca1cba3bb33446207e49129939ddc77a2b1abc141c03a9d1a0cf34f9f5` |
 | Runner pin | `py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng` |
 
 ---
@@ -60,12 +60,13 @@ contracts/macro_stance.py        the Intelligent Contract (single file)
 deployments/
   mock_feeds/{a,b,c}/            deterministic feed fixtures, one directory per slot
   macro_stance_abi.json          ABI reflected from the contract (scripts/export_abi.py)
-  studio-next.json               deployment record
+  studio-next.json               current deployment record
+  history/                       superseded deployment records
 deploy/deploy_macro_stance.ts    `genlayer deploy` script with strict receipt + source-hash verification
 scripts/export_abi.py            ABI export and frontend call-site check
 scripts/gen_mock_feeds.py        regenerates deployments/mock_feeds
-tests/                           758 direct-mode tests (pytest)
-frontend/                        Next.js 14.2.35 + Tailwind terminal UI, 722 vitest tests
+tests/                           794 direct-mode tests (pytest)
+frontend/                        Next.js 14.2.35 + Tailwind terminal UI, 776 vitest tests
 ```
 
 ---
@@ -78,6 +79,9 @@ frontend/                        Next.js 14.2.35 + Tailwind terminal UI, 722 vit
 | 2 | Deterministic stance buckets; parameters bound to the tier only | `_derive_stance` (integer math, HAWKISH → DOVISH → NEUTRAL); `RISK_TABLE` indexed by stance | `test_stance_rules.py`, TS parity vectors |
 | 3 | 2-of-3 quorum; an outage that could complete quorum never costs the reporter | `_resolve_quorum`; exact 4-key payload in `_payload_ok` / `_validator_agrees` | `test_quorum_resolution.py` (independent oracle, exhaustive), `test_validator.py` |
 | 4 | 24 h activation timelock; retraction breaks it | `activates_at`; `challenge_staged_epoch` re-queries; only one pending transition; epochs monotonic by quarter | `test_epoch_lifecycle.py`, `test_challenge.py` |
+| 4a | A revised release can never be rolled back to its older version | per-epoch `revision`, `revoked_hashes` (every cancelled release), contract-wide `active_version`; a staged release records the version it was staged against | `test_temporal_invariants.py` |
+| 4b | A staged transition cannot be applied arbitrarily late | `PROPOSAL_VALIDITY_WINDOW` = 7 d after `activates_at`; past it `execute_stance_transition` *commits* an `EXPIRED` status and releases the bond | `test_temporal_invariants.py` |
+| 4c | Epoch ids cannot name a distant future | year ≤ block-clock year + 1, checked before any network or bond handling | `test_temporal_invariants.py` |
 | 5 | Vault enforces the active tier in integer BPS, zero dust | RAY-scaled global index, ceil in the protocol's favour, LTV checked by cross-multiplication | `test_vault.py`, `test_accounting.py` |
 
 **On "step-change guard".** The brief names it without defining it. It is
@@ -193,7 +197,10 @@ Payouts are pull-pattern (`claim_payout`); every wei sits in exactly one of
 | Stale or replayed epoch rolls parameters back | `seq` monotonic by quarter; executed epochs terminal | Same-quarter re-releases allowed under a different tag |
 | Bad release activates before anyone can react | 24 h timelock + bonded challenge re-query | Challenger must act within the window; one retracting source is enough to cancel (fail-closed), so a compromised mirror can grief the reporter's bond |
 | Feed numbers differ but stance matches | Release hash binds `epoch|rate|cpi|stance`; a differing hash is a different release | — |
-| Rounding exploits in the vault | Scaled debt and debt are `ceil`; repay scaled is `floor`; index growth `ceil`; LTV by cross-multiplication; dust repays refused | Borrowing exactly `floor(collateral·ltv)` can fail by ≤ 2 wei — `available_to_borrow` is the exact bound |
+| Rounding exploits in the vault | Scaled debt and debt are `ceil`; repay scaled is `floor`; index growth `ceil`; LTV by cross-multiplication; dust repays refused; `available_to_borrow` is a **closed-form inverse** of the borrow rule (exact at any index) | Borrowing exactly `floor(collateral·ltv)` can fail by ≤ `idx/RAY + 1` wei — use `available_to_borrow` |
+| Stale mirror re-serves a release a challenge already cancelled | Cancelled hashes are revoked per epoch; proposing one reverts `ERR_STALE_RELEASE` (reporter keeps the bond); execute re-checks | Only *revoked* releases are ordered. Two unrelated hashes for one epoch have no feed-supplied order (see §8) |
+| A stage nobody executes sits forever, then applies stale data | 7-day validity window; expired stages release the bond; a stuck stage auto-expires on the next proposal so it cannot block the protocol | — |
+| Year-2200 / far-future epoch ids | Rejected as malformed when the year exceeds block-clock year + 1 | Ids for the *current or next* year are still unverifiable until published |
 | Account key confusion (checksum vs lowercase) | One canonical lowercase key (found and fixed by a probe test) | — |
 | GitHub / CDN caching serves a stale file | Validators agree on whatever they observe; disagreement forces rotation | `raw.githubusercontent.com` caches ~5 min: a retraction can be visible late |
 | Governor key compromise | Rotations timelocked; `transfer_governor`; treasury withdrawal | Single key; no multisig. **The deployed governor is the CLI deployer (see §6)** |
@@ -216,11 +223,12 @@ to demonstrate stance-bound risk parameters, not to be a money market.
 | `tests/test_validator.py` | 54 | forged payloads, wrong types, extra keys, validator disagreement |
 | `tests/test_vault.py` | 52 | LTV boundaries, exact interest, reserve factor, rounding, tightening |
 | `tests/test_epoch_ids.py` | 42 | grammar |
+| `tests/test_temporal_invariants.py` | 36 | **audit findings #1 #2 #3 #7**: revision rollback, proposal expiry, future-year bound, large-index borrow ceiling |
 | `tests/test_epoch_lifecycle.py` | 36 | bonds, 24 h timelock, monotonic epochs, rewards, claims |
 | `tests/test_challenge.py` | 21 | retraction slashing, windows, frivolous / inconclusive challenges |
 | `tests/test_mock_feeds.py`, `test_pickling.py`, `test_accounting.py`, `test_vectors.py` | 20 | fixtures, cloudpickle closures, value conservation, TS parity vectors |
-| **pytest total** | **758** | |
-| `frontend/src/lib/*.test.ts` | **722** | receipt classification (39), input parsing (76), stance/quorum/classification parity vectors (497), SerialLoader (17), lending math (27), strict JSON (34), SDK fee + receipt flow (32) |
+| **pytest total** | **794** | |
+| `frontend/src/lib/*.test.ts` | **776** | stance/quorum/classification parity vectors (505), input parsing (76), receipts (39), lending math incl. large-index ceiling (38), strict JSON (34), SDK fee + receipt flow (32), SerialLoader incl. `readAt` (21), account-keyed tx status (14), monotone chain clock (10), unknown-state display (7) |
 
 Roughly 280 of the pytest cases and ~470 of the vitest cases are exhaustive or
 golden-vector enumerations; the hand-written scenario tests are the remainder.
@@ -235,13 +243,13 @@ export GENVM_VERSION=v0.6.0-rc3      # see "Runner pin" below
 .venv/bin/genvm-lint check     contracts/macro_stance.py   # 0 errors
 .venv/bin/genvm-lint typecheck contracts/macro_stance.py   # 0 errors
 .venv/bin/python scripts/export_abi.py --check
-.venv/bin/python -m pytest -q                              # 758 passed
+.venv/bin/python -m pytest -q                              # 794 passed
 
 # Frontend
 cd frontend
 npm ci
 npx tsc --noEmit
-npm test                      # 722 passed
+npm test                      # 776 passed
 npm run build                 # static export -> out/
 ```
 
@@ -273,34 +281,43 @@ Direct mode executes only the leader; validator logic is exercised through
 re-runs verification and recording for an existing deployment without submitting
 a new transaction.
 
-### What happened on the recorded deployment — read this
+### Deployments
 
-* The deployment was **decided `ACCEPTED`**, `FINISHED_WITH_RETURN`, result
-  `MAJORITY_AGREE` (3 AGREE / 2 IDLE of 5 validators). Local and on-chain source
-  SHA-256 are identical (step 4 ✔).
-* **My first run of the script aborted after the transaction was already
-  decided**, because its consensus check used a wrong numeric table (it expected
-  `6`; the SDK maps `1 → MAJORITY_AGREE`). The contract was *not* re-deployed;
-  the script and the frontend classifier were fixed from the SDK's own tables,
-  and the recording was completed in record-only mode.
+| | Address | Source SHA-256 | Status |
+|---|---|---|---|
+| **Current** (audit hardening) | `0xdb529461aaD3511d6454e93764FE074746286966` | `2e3384c3…bdd3` | live; tx `0x4822dfca…f9f5` |
+| Superseded (audited commit `dda2887`) | `0x3AE6f881382c62811169921Fb77D97a0c18e49B3` | `f0774263…c5163` | still on-chain; record in `deployments/history/` |
+
+The superseded contract is not upgradable and remains callable; point nothing at it.
+
+### What to know about the recorded deployment
+
+* The current deployment was **decided `ACCEPTED`**, `FINISHED_WITH_RETURN`,
+  `MAJORITY_AGREE`, and the script's strict receipt gate passed on the first try.
+  Local and on-chain source SHA-256 are identical (step 4 ✔).
 * **Step 5 (registry read-back) could not be completed**: Studio Next's `gen_call`
-  was returning a server-side SQLAlchemy session error
+  has been returning a server-side SQLAlchemy session error
   (`Can't reconnect until invalid transaction is rolled back`) for *every*
-  contract, including an unrelated known-good one. `gen_getContractSchema` for
-  MacroStance works (30 methods). The record therefore carries
-  `constructor_readback.status = "unverified"` until that RPC recovers; rerun
-  `MACROSTANCE_RECORD_TX=0x5dfb… genlayer deploy --rpc …` to upgrade it.
+  contract, including an unrelated known-good one. `gen_getContractSchema` works.
+  The record therefore carries `constructor_readback.status = "unverified"`;
+  rerun `MACROSTANCE_RECORD_TX=0x4822… genlayer deploy --rpc …` to upgrade it
+  once the RPC recovers.
 * **The deployer / governor is the CLI's active account**
   `0x6Ec5cb7469a661B8E23B4867359893A25116eA19` (the keystore was named for a
   different project). It paid the 0.1 GEN fee deposit and is the contract's
   `governor`. Rotate with `transfer_governor` if that is not what you want.
-* **The mock feeds are not live yet.** The registry points at
-  `github.com/Handik4/MacroStance`, which does not exist until this repository is
-  pushed there. Until then a `propose_epoch_sync` would see three 404s and
-  `REJECTED_RELEASE` (bond to treasury). Nothing was pushed.
+* **The mock feeds are live.** The registry points at
+  `github.com/Handik4/MacroStance` on `main`; all three hosts (GitHub raw,
+  jsDelivr, GitHack) were observed serving `2026-Q3-FOMC.json`. They are served
+  from `main`, so editing a fixture changes what validators see (jsDelivr caches
+  branch refs for hours).
 * **No live consensus round has been executed on Studio Next**, so validator
-  agreement on `run_nondet` is unproven on a real network (the fee deposit of a
-  write exceeds the deployer's remaining balance).
+  agreement on `run_nondet` is unproven on a real network. A write needs a
+  ~0.1 GEN fee deposit on top of the 0.1 GEN bond.
+* An earlier version of the deploy script used a wrong numeric table for the
+  consensus result (`6`; the SDK maps `1 → MAJORITY_AGREE`) and aborted a
+  deployment after it was already decided. It was fixed from the SDK's own
+  tables and the frontend classifier has a regression test for it.
 
 ---
 
@@ -339,6 +356,17 @@ Hardening, each with unit tests:
 * **`SerialLoader`.** Single-flight with coalesced follow-ups (a polling tick
   never aborts a load), and **per-item `failedIds`** that only the same item's
   later success can clear.
+* **Account-keyed transaction banners.** Statuses live in a `TxStatusStore`
+  keyed by the originating address; `accountsChanged` purges every other
+  account's entries before the new address is rendered, and a late completion
+  from the old account is ignored by id.
+* **Monotone chain clock.** Activation / challenge / expiry countdowns are
+  anchored only on a *verified* overview read (`SerialLoader.readAt` is stamped
+  on success) and advance by a steady local interval; a failed RPC read can no
+  longer reset the timer, and the estimate never decreases.
+* **Unknown is not zero.** Collateral, debt, availability and claimable render
+  as `—` while unread or after a failed read, actions are disabled, and
+  `SyncAlert` says why.
 * **Input validation.** `^(0|[1-9]\d*)(\.\d{1,18})?$` over BigInt; rejects
   negative, zero, `1e3`, hex, `.5`, `5.`, thousands separators, 19 decimals.
 * **TS ⇄ Python parity.** Vectors are generated *from the contract*; the strict
@@ -364,6 +392,13 @@ endpoint): **12 findings (1 critical, 9 high, 2 moderate); production-only: 2
 ## 8. Known limitations
 
 * Untested on a live validator network (§6).
+* **Release ordering is only partial.** A challenge revokes the *specific* release it
+  cancels, so a stale mirror can never re-stage it. But two unrelated hashes for the
+  same epoch have no order unless the feeds carry a monotone version, and the
+  four-key validator payload deliberately has no field for one. Same-quarter
+  epochs with different tags are likewise unordered.
+* An executed epoch is terminal: a post-execution revision of the *same* epoch id
+  cannot be applied (it can only be rejected as stale), by design.
 * Single governor key; no multisig.
 * Registrable-domain uniqueness is approximated by the last two labels.
 * One pending transition at a time: a staged-but-unexecuted epoch blocks new

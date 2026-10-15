@@ -2,16 +2,16 @@
   "network": "studio-next",
   "chain_id": 61997,
   "rpc_url": "https://studio-next.genlayer.com/api",
-  "contract_address": "0x3AE6f881382c62811169921Fb77D97a0c18e49B3",
-  "explorer_url": "https://explorer-studio-next.genlayer.com/address/0x3AE6f881382c62811169921Fb77D97a0c18e49B3",
-  "deploy_tx": "0x5dfb93411ebb6de91c1f59e158d03ade0e6992a8e068391bd63b4160fba328fa",
+  "contract_address": "0xdb529461aaD3511d6454e93764FE074746286966",
+  "explorer_url": "https://explorer-studio-next.genlayer.com/address/0xdb529461aaD3511d6454e93764FE074746286966",
+  "deploy_tx": "0x4822dfca1cba3bb33446207e49129939ddc77a2b1abc141c03a9d1a0cf34f9f5",
   "source": "contracts/macro_stance.py",
   "runner": "py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng",
-  "source_sha256": "f077426394d7680d5d83b39d5b5edce1f600e77a2bd18391f66cad04e6ec5163",
-  "onchain_sha256": "f077426394d7680d5d83b39d5b5edce1f600e77a2bd18391f66cad04e6ec5163",
+  "source_sha256": "2e3384c3d6e13bf560cfa0739aba76697236e27f44ba153d295094f0a8a1bdd3",
+  "onchain_sha256": "2e3384c3d6e13bf560cfa0739aba76697236e27f44ba153d295094f0a8a1bdd3",
   "source_matches_onchain": true,
   "receipt": {
-    "status": "FINALIZED",
+    "status": "ACCEPTED",
     "execution": "FINISHED_WITH_RETURN",
     "consensus": "MAJORITY_AGREE"
   },
@@ -25,8 +25,8 @@
     "detail": "read failed: An internal error was received."
   },
   "fee_deposit_wei": "100000000000010352",
-  "tx_created_timestamp": "1792014721",
-  "recorded_at": "2026-10-14T21:59:43.536Z",
+  "tx_created_timestamp": "1792049346",
+  "recorded_at": "2026-10-15T07:29:15.249Z",
   "public_methods": {
     "views": [
       "claimable_of",
