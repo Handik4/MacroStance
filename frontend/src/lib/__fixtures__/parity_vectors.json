@@ -1,26 +1,29 @@
 {
  "classify": [
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "CONFIRMED",
-   "release_hash": "c2a8abad505dc866b680e2c4e3427017c7e0a7a1313a232a95ef262b0feac94e",
+   "release_hash": "b8004e01bd16655751c54901f526992435391db13fae5b16800707d70971830d",
+   "release_ts": 1790000000,
    "stance": 2,
    "status": 200
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": -25, \"cpi_yoy_bps\": 190}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": -25, \"cpi_yoy_bps\": 190, \"release_ts\": 1790000000}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "CONFIRMED",
-   "release_hash": "cf9ad07c3bc30cef280cd12f9f700d6dbbe1c6190b9242e234825cae023ed42e",
+   "release_hash": "a6916ce4b965dd7035807d7f1ff9eca74c292a950f778b98f819055a29d24eeb",
+   "release_ts": 1790000000,
    "stance": 0,
    "status": 200
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 0, \"cpi_yoy_bps\": 250}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 0, \"cpi_yoy_bps\": 250, \"release_ts\": 1790000000}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "CONFIRMED",
-   "release_hash": "dd883256fd671af69ae64c24032d26478e851eac9b6a2ee9c0ffedc8b9cf1fdf",
+   "release_hash": "98e0bc3f79b2b9702dc27222d72fb8d53246150e8d22d7911aab93794012cbcd",
+   "release_ts": 1790000000,
    "stance": 1,
    "status": 200
   },
@@ -29,6 +32,7 @@
    "epoch_id": "2026-Q4-FOMC",
    "kind": "RETRACTED",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 200
   },
@@ -37,14 +41,16 @@
    "epoch_id": "2026-Q4-FOMC",
    "kind": "NOT_FOUND",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 404
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 500
   },
@@ -53,22 +59,25 @@
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 503
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 429
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 301
   },
@@ -77,6 +86,7 @@
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 200
   },
@@ -85,6 +95,7 @@
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 200
   },
@@ -93,183 +104,296 @@
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 200
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": \"25\", \"cpi_yoy_bps\": 320}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": \"25\", \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 200
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": true, \"cpi_yoy_bps\": 320}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": true, \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 200
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 25.5}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 25.5, \"release_ts\": 1790000000}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 200
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 2001, \"cpi_yoy_bps\": 320}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 2001, \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 200
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": -1001}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": -1001, \"release_ts\": 1790000000}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 200
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"PENDING\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"PENDING\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 200
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q3-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
+   "body": "{\"epoch_id\": \"2026-Q3-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 200
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"extra\": \"ignored\"}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000, \"extra\": \"ignored\"}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "CONFIRMED",
-   "release_hash": "c2a8abad505dc866b680e2c4e3427017c7e0a7a1313a232a95ef262b0feac94e",
+   "release_hash": "b8004e01bd16655751c54901f526992435391db13fae5b16800707d70971830d",
+   "release_ts": 1790000000,
    "stance": 2,
    "status": 200
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"pad\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000, \"pad\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 200
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 2000, \"cpi_yoy_bps\": 10000}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 2000, \"cpi_yoy_bps\": 10000, \"release_ts\": 1790000000}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "CONFIRMED",
-   "release_hash": "d971462e3328f6068b4c41b0cec29e4de0cd3d3589afb968b847b4c9700d45ea",
+   "release_hash": "4629c43547bf27472758bf2ecb187339d472a281fb0735e0836e784b319438ef",
+   "release_ts": 1790000000,
    "stance": 2,
    "status": 200
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25.0, \"cpi_yoy_bps\": 320}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": null}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 200
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 3.2e2}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": \"1790000000\"}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 200
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 2.5E1, \"cpi_yoy_bps\": 320}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": true}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 200
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": -0, \"cpi_yoy_bps\": 250}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": 0}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "release_ts": 0,
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": 946684800}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "CONFIRMED",
-   "release_hash": "dd883256fd671af69ae64c24032d26478e851eac9b6a2ee9c0ffedc8b9cf1fdf",
+   "release_hash": "551022715c3dd4fd92f656dc6e1d2bb915b1bfcfc62bbe42453606345f220b73",
+   "release_ts": 946684800,
+   "stance": 2,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": 946684799}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "release_ts": 0,
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": 4102444800}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "CONFIRMED",
+   "release_hash": "c84a6e3e678fd35b0b7d19f0bc75f6d0f85efdbd6281d69f9aa2fb970436b350",
+   "release_ts": 4102444800,
+   "stance": 2,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": 4102444801}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "release_ts": 0,
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000.0}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "release_ts": 0,
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "release_ts": 0,
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25.0, \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "release_ts": 0,
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 3.2e2, \"release_ts\": 1790000000}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "release_ts": 0,
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 2.5E1, \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "release_ts": 0,
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": -0, \"cpi_yoy_bps\": 250, \"release_ts\": 1790000000}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "CONFIRMED",
+   "release_hash": "98e0bc3f79b2b9702dc27222d72fb8d53246150e8d22d7911aab93794012cbcd",
+   "release_ts": 1790000000,
    "stance": 1,
    "status": 200
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 0, \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 0, \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "CONFIRMED",
-   "release_hash": "c2a8abad505dc866b680e2c4e3427017c7e0a7a1313a232a95ef262b0feac94e",
+   "release_hash": "b8004e01bd16655751c54901f526992435391db13fae5b16800707d70971830d",
+   "release_ts": 1790000000,
    "stance": 2,
    "status": 200
   },
   {
    "body": "  \n{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}\n ",
    "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "release_ts": 0,
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "\ufeff{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "release_ts": 0,
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": NaN, \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000}",
+   "epoch_id": "2026-Q4-FOMC",
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "release_ts": 0,
+   "stance": 0,
+   "status": 200
+  },
+  {
+   "body": "{\"epoch\\u005fid\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000}",
+   "epoch_id": "2026-Q4-FOMC",
    "kind": "CONFIRMED",
-   "release_hash": "c2a8abad505dc866b680e2c4e3427017c7e0a7a1313a232a95ef262b0feac94e",
+   "release_hash": "b8004e01bd16655751c54901f526992435391db13fae5b16800707d70971830d",
+   "release_ts": 1790000000,
    "stance": 2,
    "status": 200
   },
   {
-   "body": "\ufeff{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"release_ts\": 1790000000} trailing",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 200
   },
   {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": NaN, \"cpi_yoy_bps\": 320}",
+   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000, \"release_ts\": 1790000000}",
    "epoch_id": "2026-Q4-FOMC",
    "kind": "OUTAGE",
    "release_hash": "",
-   "stance": 0,
-   "status": 200
-  },
-  {
-   "body": "{\"epoch\\u005fid\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320}",
-   "epoch_id": "2026-Q4-FOMC",
-   "kind": "CONFIRMED",
-   "release_hash": "c2a8abad505dc866b680e2c4e3427017c7e0a7a1313a232a95ef262b0feac94e",
-   "stance": 2,
-   "status": 200
-  },
-  {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320} trailing",
-   "epoch_id": "2026-Q4-FOMC",
-   "kind": "OUTAGE",
-   "release_hash": "",
-   "stance": 0,
-   "status": 200
-  },
-  {
-   "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000}",
-   "epoch_id": "2026-Q4-FOMC",
-   "kind": "OUTAGE",
-   "release_hash": "",
+   "release_ts": 0,
    "stance": 0,
    "status": 200
   },
   {
    "body": "{\"epoch_id\": \"2026-Q4-FOMC\", \"status\": \"CONFIRMED\", \"rate_change_bps\": 25, \"cpi_yoy_bps\": 320, \"note\": \"caf\u00e9\"}",
    "epoch_id": "2026-Q4-FOMC",
-   "kind": "CONFIRMED",
-   "release_hash": "c2a8abad505dc866b680e2c4e3427017c7e0a7a1313a232a95ef262b0feac94e",
-   "stance": 2,
+   "kind": "OUTAGE",
+   "release_hash": "",
+   "release_ts": 0,
+   "stance": 0,
    "status": 200
   }
  ],
@@ -322,4968 +446,5832 @@
  "resolve": [
   {
    "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "release_ts": 1790000000,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "release_ts": 1790000000,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "release_ts": 1790000000,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "release_ts": 1790000000,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "release_ts": 1790000000,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "release_ts": 1790000500,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "release_ts": 1790000000,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "release_ts": 1790000000,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 1,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "release_ts": 1790000000,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "release_ts": 1790000500,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "release_ts": 1790000500,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "release_ts": 1790000500,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "release_ts": 1790000500,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "release_ts": 1790000500,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "release_ts": 1790000500,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "release_ts": 1790000500,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 1,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+   "release_ts": 1790001000,
    "source_count": 3,
    "stance": 2,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+   "release_ts": 1790001000,
    "source_count": 2,
    "stance": 2,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+   "release_ts": 1790001000,
    "source_count": 2,
    "stance": 2,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+   "release_ts": 1790001000,
    "source_count": 2,
    "stance": 2,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+   "release_ts": 1790001000,
    "source_count": 2,
    "stance": 2,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 1,
    "stance": 0,
    "states": [
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
-    ],
-    [
-     "CONFIRMED",
-     2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
-    ]
-   ],
-   "verdict": 0
-  },
-  {
-   "release_hash": "",
-   "source_count": 3,
-   "stance": 0,
-   "states": [
-    [
-     "RETRACTED",
-     0,
-     ""
-    ],
-    [
-     "NOT_FOUND",
-     0,
-     ""
-    ],
-    [
-     "RETRACTED",
-     0,
-     ""
-    ]
-   ],
-   "verdict": 0
-  },
-  {
-   "release_hash": "",
-   "source_count": 3,
-   "stance": 0,
-   "states": [
-    [
-     "RETRACTED",
-     0,
-     ""
-    ],
-    [
-     "NOT_FOUND",
-     0,
-     ""
-    ],
-    [
-     "NOT_FOUND",
-     0,
-     ""
-    ]
-   ],
-   "verdict": 0
-  },
-  {
-   "release_hash": "",
-   "source_count": 2,
-   "stance": 0,
-   "states": [
-    [
-     "RETRACTED",
-     0,
-     ""
-    ],
-    [
-     "NOT_FOUND",
-     0,
-     ""
-    ],
-    [
-     "OUTAGE",
-     0,
-     ""
-    ]
-   ],
-   "verdict": 0
-  },
-  {
-   "release_hash": "",
-   "source_count": 2,
-   "stance": 0,
-   "states": [
-    [
-     "RETRACTED",
-     0,
-     ""
-    ],
-    [
-     "OUTAGE",
-     0,
-     ""
-    ],
-    [
-     "CONFIRMED",
-     0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    ]
-   ],
-   "verdict": 0
-  },
-  {
-   "release_hash": "",
-   "source_count": 2,
-   "stance": 0,
-   "states": [
-    [
-     "RETRACTED",
-     0,
-     ""
-    ],
-    [
-     "OUTAGE",
-     0,
-     ""
-    ],
-    [
-     "CONFIRMED",
-     0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
-    ]
-   ],
-   "verdict": 0
-  },
-  {
-   "release_hash": "",
-   "source_count": 2,
-   "stance": 0,
-   "states": [
-    [
-     "RETRACTED",
-     0,
-     ""
-    ],
-    [
-     "OUTAGE",
-     0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
-   "source_count": 2,
+   "release_ts": 0,
+   "source_count": 3,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
-    ],
-    [
-     "OUTAGE",
-     0,
-     ""
-    ],
-    [
-     "RETRACTED",
-     0,
-     ""
-    ]
-   ],
-   "verdict": 0
-  },
-  {
-   "release_hash": "",
-   "source_count": 2,
-   "stance": 0,
-   "states": [
-    [
-     "RETRACTED",
-     0,
-     ""
-    ],
-    [
-     "OUTAGE",
-     0,
-     ""
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
+    ],
+    [
+     "RETRACTED",
+     0,
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     "",
+     0
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     "",
+     0
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ],
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     "",
+     0
+    ],
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     "",
+     0
+    ],
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     "",
+     0
+    ],
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     "",
+     0
+    ],
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ],
+    [
+     "RETRACTED",
+     0,
+     "",
+     0
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "RETRACTED",
+     0,
+     "",
+     0
+    ],
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
    "source_count": 1,
    "stance": 0,
    "states": [
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "release_ts": 1790000000,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "release_ts": 1790000500,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+   "release_ts": 1790001000,
    "source_count": 2,
    "stance": 2,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
-    ],
-    [
-     "CONFIRMED",
-     2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
-    ]
-   ],
-   "verdict": 0
-  },
-  {
-   "release_hash": "",
-   "source_count": 3,
-   "stance": 0,
-   "states": [
-    [
-     "NOT_FOUND",
-     0,
-     ""
-    ],
-    [
-     "RETRACTED",
-     0,
-     ""
-    ],
-    [
-     "RETRACTED",
-     0,
-     ""
-    ]
-   ],
-   "verdict": 0
-  },
-  {
-   "release_hash": "",
-   "source_count": 3,
-   "stance": 0,
-   "states": [
-    [
-     "NOT_FOUND",
-     0,
-     ""
-    ],
-    [
-     "RETRACTED",
-     0,
-     ""
-    ],
-    [
-     "NOT_FOUND",
-     0,
-     ""
-    ]
-   ],
-   "verdict": 0
-  },
-  {
-   "release_hash": "",
-   "source_count": 2,
-   "stance": 0,
-   "states": [
-    [
-     "NOT_FOUND",
-     0,
-     ""
-    ],
-    [
-     "RETRACTED",
-     0,
-     ""
-    ],
-    [
-     "OUTAGE",
-     0,
-     ""
-    ]
-   ],
-   "verdict": 0
-  },
-  {
-   "release_hash": "",
-   "source_count": 3,
-   "stance": 0,
-   "states": [
-    [
-     "NOT_FOUND",
-     0,
-     ""
-    ],
-    [
-     "NOT_FOUND",
-     0,
-     ""
-    ],
-    [
-     "CONFIRMED",
-     0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    ]
-   ],
-   "verdict": 0
-  },
-  {
-   "release_hash": "",
-   "source_count": 3,
-   "stance": 0,
-   "states": [
-    [
-     "NOT_FOUND",
-     0,
-     ""
-    ],
-    [
-     "NOT_FOUND",
-     0,
-     ""
-    ],
-    [
-     "CONFIRMED",
-     0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
-    ]
-   ],
-   "verdict": 0
-  },
-  {
-   "release_hash": "",
-   "source_count": 3,
-   "stance": 0,
-   "states": [
-    [
-     "NOT_FOUND",
-     0,
-     ""
-    ],
-    [
-     "NOT_FOUND",
-     0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
-    ],
-    [
-     "NOT_FOUND",
-     0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
+    ],
+    [
+     "RETRACTED",
+     0,
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 3,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
+    ],
+    [
+     "RETRACTED",
+     0,
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
-    ],
-    [
-     "NOT_FOUND",
-     0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
-     "NOT_FOUND",
+     "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
-   "source_count": 2,
+   "release_ts": 0,
+   "source_count": 3,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
-     "OUTAGE",
+     "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ],
+    [
+     "RETRACTED",
+     0,
+     "",
+     0
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
+   "source_count": 3,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ],
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ],
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 1,
    "stance": 0,
    "states": [
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "release_ts": 1790000000,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 1,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "release_ts": 1790000500,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 1,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+   "release_ts": 1790001000,
    "source_count": 2,
    "stance": 2,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 1
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 1,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
-    ],
-    [
-     "CONFIRMED",
-     2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
-    ]
-   ],
-   "verdict": 0
-  },
-  {
-   "release_hash": "",
-   "source_count": 2,
-   "stance": 0,
-   "states": [
-    [
-     "OUTAGE",
-     0,
-     ""
-    ],
-    [
-     "RETRACTED",
-     0,
-     ""
-    ],
-    [
-     "RETRACTED",
-     0,
-     ""
-    ]
-   ],
-   "verdict": 0
-  },
-  {
-   "release_hash": "",
-   "source_count": 2,
-   "stance": 0,
-   "states": [
-    [
-     "OUTAGE",
-     0,
-     ""
-    ],
-    [
-     "RETRACTED",
-     0,
-     ""
-    ],
-    [
-     "NOT_FOUND",
-     0,
-     ""
-    ]
-   ],
-   "verdict": 0
-  },
-  {
-   "release_hash": "",
-   "source_count": 1,
-   "stance": 0,
-   "states": [
-    [
-     "OUTAGE",
-     0,
-     ""
-    ],
-    [
-     "RETRACTED",
-     0,
-     ""
-    ],
-    [
-     "OUTAGE",
-     0,
-     ""
-    ]
-   ],
-   "verdict": 0
-  },
-  {
-   "release_hash": "",
-   "source_count": 2,
-   "stance": 0,
-   "states": [
-    [
-     "OUTAGE",
-     0,
-     ""
-    ],
-    [
-     "NOT_FOUND",
-     0,
-     ""
-    ],
-    [
-     "CONFIRMED",
-     0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    ]
-   ],
-   "verdict": 2
-  },
-  {
-   "release_hash": "",
-   "source_count": 2,
-   "stance": 0,
-   "states": [
-    [
-     "OUTAGE",
-     0,
-     ""
-    ],
-    [
-     "NOT_FOUND",
-     0,
-     ""
-    ],
-    [
-     "CONFIRMED",
-     0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
-    ]
-   ],
-   "verdict": 2
-  },
-  {
-   "release_hash": "",
-   "source_count": 2,
-   "stance": 0,
-   "states": [
-    [
-     "OUTAGE",
-     0,
-     ""
-    ],
-    [
-     "NOT_FOUND",
-     0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
-   "verdict": 2
+   "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
-    ],
-    [
-     "NOT_FOUND",
-     0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
+    ],
+    [
+     "RETRACTED",
+     0,
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
+    ],
+    [
+     "RETRACTED",
+     0,
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
-    ],
-    [
-     "NOT_FOUND",
-     0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
    "source_count": 1,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
+    ],
+    [
+     "RETRACTED",
+     0,
+     "",
+     0
+    ],
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
-    ],
-    [
-     "OUTAGE",
-     0,
-     ""
-    ]
-   ],
-   "verdict": 2
-  },
-  {
-   "release_hash": "",
-   "source_count": 1,
-   "stance": 0,
-   "states": [
-    [
-     "OUTAGE",
-     0,
-     ""
-    ],
-    [
-     "OUTAGE",
-     0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
-   "source_count": 1,
+   "release_ts": 0,
+   "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
-     "OUTAGE",
+     "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      0,
-     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
-   "source_count": 1,
+   "release_ts": 0,
+   "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
-     "OUTAGE",
+     "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "CONFIRMED",
      2,
-     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
-   "source_count": 1,
+   "release_ts": 0,
+   "source_count": 2,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
-     "OUTAGE",
+     "NOT_FOUND",
      0,
-     ""
+     "",
+     0
     ],
     [
      "RETRACTED",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 0
   },
   {
    "release_hash": "",
+   "release_ts": 0,
+   "source_count": 2,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
    "source_count": 1,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
-    ],
-    [
-     "OUTAGE",
-     0,
-     ""
+     "",
+     0
     ],
     [
      "NOT_FOUND",
      0,
-     ""
+     "",
+     0
+    ],
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
     ]
    ],
    "verdict": 2
   },
   {
    "release_hash": "",
+   "release_ts": 0,
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ],
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     1790000000
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ],
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ],
+    [
+     "CONFIRMED",
+     0,
+     "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     1790000500
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ],
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ],
+    [
+     "CONFIRMED",
+     2,
+     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     1790001000
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ],
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ],
+    [
+     "RETRACTED",
+     0,
+     "",
+     0
+    ]
+   ],
+   "verdict": 0
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
+   "source_count": 1,
+   "stance": 0,
+   "states": [
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ],
+    [
+     "OUTAGE",
+     0,
+     "",
+     0
+    ],
+    [
+     "NOT_FOUND",
+     0,
+     "",
+     0
+    ]
+   ],
+   "verdict": 2
+  },
+  {
+   "release_hash": "",
+   "release_ts": 0,
    "source_count": 0,
    "stance": 0,
    "states": [
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ],
     [
      "OUTAGE",
      0,
-     ""
+     "",
+     0
     ]
    ],
    "verdict": 2

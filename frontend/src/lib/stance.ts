@@ -38,6 +38,9 @@ export const RATE_MAX_BPS = 2000;
 export const CPI_MIN_BPS = -1000;
 export const CPI_MAX_BPS = 10000;
 export const MAX_FEED_BODY = 4096;
+/** Static bounds on a feed document's `release_ts` (unix seconds). */
+export const RELEASE_TS_MIN = 946684800; // 2000-01-01
+export const RELEASE_TS_MAX = 4102444800; // 2100-01-01
 
 export function riskForStance(stance: number): RiskRow {
   const row = RISK_TABLE[stance];
@@ -77,16 +80,28 @@ export function epochYear(epochId: string): number {
   return seq < 0 ? -1 : Math.floor(seq / 4);
 }
 
+/** `year*4 + quarter-1` of the quarter containing `unixSeconds` (UTC). */
+export function quarterSeqOf(unixSeconds: number): number {
+  const d = new Date(unixSeconds * 1000);
+  return d.getUTCFullYear() * 4 + Math.floor(d.getUTCMonth() / 3);
+}
+
+/** Human form of an epoch sequence value, e.g. 8107 -> "2026-Q4". */
+export function formatQuarter(seq: number): string {
+  return `${Math.floor(seq / 4)}-Q${(seq % 4) + 1}`;
+}
+
 /**
- * Why the contract would refuse `epochId`, or null. `maxYear` is the
- * overview's `max_epoch_year` (current chain year + 1): ids naming a later
- * year are rejected as malformed on-chain, so the form refuses them first.
+ * Why the contract would refuse `epochId`, or null. `maxSeq` is the
+ * overview's `max_epoch_seq`: the quarter containing the block clock. An id
+ * naming a later quarter reverts ERR_FUTURE_EPOCH on-chain (a future id would
+ * stage and then lock out every earlier quarter via monotonic ordering).
  */
-export function epochIdProblem(epochId: string, maxYear: number | null): string | null {
+export function epochIdProblem(epochId: string, maxSeq: number | null): string | null {
   const seq = parseEpochId(epochId);
   if (seq < 0) return "Epoch id must look like 2026-Q4-FOMC.";
-  if (maxYear !== null && Math.floor(seq / 4) > maxYear) {
-    return `Year ${Math.floor(seq / 4)} is beyond the next calendar year (${maxYear}).`;
+  if (maxSeq !== null && seq > maxSeq) {
+    return `${formatQuarter(seq)} has not begun yet; the latest allowed quarter is ${formatQuarter(maxSeq)}.`;
   }
   return null;
 }
@@ -97,9 +112,11 @@ export interface SourceState {
   kind: SourceKind;
   stance: number;
   releaseHash: string;
+  /** publication timestamp of the release (0 unless CONFIRMED) */
+  releaseTs: number;
 }
 
-const OUTAGE: SourceState = { kind: "OUTAGE", stance: 0, releaseHash: "" };
+const OUTAGE: SourceState = { kind: "OUTAGE", stance: 0, releaseHash: "", releaseTs: 0 };
 
 function toHex(buf: ArrayBuffer): string {
   return Array.from(new Uint8Array(buf), (b) => b.toString(16).padStart(2, "0")).join("");
@@ -110,8 +127,11 @@ export async function releaseHash(
   rateChangeBps: number,
   cpiYoyBps: number,
   stance: number,
+  releaseTs: number,
 ): Promise<string> {
-  const canon = `${epochId}|${rateChangeBps}|${cpiYoyBps}|${stance}`;
+  // The timestamp is part of the identity: same numbers, later publication,
+  // is a different (newer) release.
+  const canon = `${epochId}|${rateChangeBps}|${cpiYoyBps}|${stance}|${releaseTs}`;
   const digest = await globalThis.crypto.subtle.digest("SHA-256", new TextEncoder().encode(canon));
   return toHex(digest);
 }
@@ -135,7 +155,7 @@ export async function classifyResponse(
   epochId: string,
 ): Promise<SourceState> {
   if (!Number.isInteger(status)) return OUTAGE;
-  if (status === 404) return { kind: "NOT_FOUND", stance: 0, releaseHash: "" };
+  if (status === 404) return { kind: "NOT_FOUND", stance: 0, releaseHash: "", releaseTs: 0 };
   if (status !== 200) return OUTAGE;
   const size = new TextEncoder().encode(body).length;
   if (size === 0 || size > MAX_FEED_BODY) return OUTAGE;
@@ -148,7 +168,7 @@ export async function classifyResponse(
   if (!isPlainObject(doc)) return OUTAGE;
   if (doc.epoch_id !== epochId) return OUTAGE;
   const st = doc.status;
-  if (st === "RETRACTED") return { kind: "RETRACTED", stance: 0, releaseHash: "" };
+  if (st === "RETRACTED") return { kind: "RETRACTED", stance: 0, releaseHash: "", releaseTs: 0 };
   if (st !== "CONFIRMED") return OUTAGE;
   const rate = doc.rate_change_bps;
   const cpi = doc.cpi_yoy_bps;
@@ -156,8 +176,15 @@ export async function classifyResponse(
   if (rate < RATE_MIN_BPS || rate > RATE_MAX_BPS || cpi < CPI_MIN_BPS || cpi > CPI_MAX_BPS) {
     return OUTAGE;
   }
+  const ts = doc.release_ts;
+  if (!isIntField(ts) || ts < RELEASE_TS_MIN || ts > RELEASE_TS_MAX) return OUTAGE;
   const stance = deriveStance(rate, cpi);
-  return { kind: "CONFIRMED", stance, releaseHash: await releaseHash(epochId, rate, cpi, stance) };
+  return {
+    kind: "CONFIRMED",
+    stance,
+    releaseHash: await releaseHash(epochId, rate, cpi, stance, ts),
+    releaseTs: ts,
+  };
 }
 
 // ----------------------------------------------------------------- quorum
@@ -169,6 +196,7 @@ export interface QuorumResult {
   stance: number;
   sourceCount: number;
   releaseHash: string;
+  releaseTs: number;
 }
 
 /** Fold three source states into the 4-field validator payload. */
@@ -176,7 +204,7 @@ export function resolveQuorum(states: readonly SourceState[]): QuorumResult {
   let clean = 0;
   let outages = 0;
   let retracted = 0;
-  const groups = new Map<string, { stance: number; hash: string; n: number }>();
+  const groups = new Map<string, { stance: number; hash: string; n: number; ts: number }>();
   const stances: number[] = [];
   for (const s of states) {
     if (s.kind === "OUTAGE") {
@@ -187,17 +215,17 @@ export function resolveQuorum(states: readonly SourceState[]): QuorumResult {
     if (s.kind === "RETRACTED") retracted++;
     else if (s.kind === "CONFIRMED") {
       const key = `${s.stance}:${s.releaseHash}`;
-      const g = groups.get(key) ?? { stance: s.stance, hash: s.releaseHash, n: 0 };
+      const g = groups.get(key) ?? { stance: s.stance, hash: s.releaseHash, n: 0, ts: s.releaseTs };
       g.n++;
       groups.set(key, g);
       stances.push(s.stance);
     }
   }
-  const reject = (): QuorumResult => ({ verdict: 0, stance: 0, sourceCount: clean, releaseHash: "" });
+  const reject = (): QuorumResult => ({ verdict: 0, stance: 0, sourceCount: clean, releaseHash: "", releaseTs: 0 });
   if (retracted >= 1) return reject();
 
   // best group: highest count, ties broken by smallest (stance, hash) like Python's sorted keys
-  let best: { stance: number; hash: string; n: number } | null = null;
+  let best: { stance: number; hash: string; n: number; ts: number } | null = null;
   const ordered = [...groups.values()].sort((a, b) =>
     a.stance !== b.stance ? a.stance - b.stance : a.hash < b.hash ? -1 : a.hash > b.hash ? 1 : 0,
   );
@@ -206,12 +234,12 @@ export function resolveQuorum(states: readonly SourceState[]): QuorumResult {
 
   if (best !== null && bestN >= 2) {
     if (stances.some((s) => s !== best!.stance)) return reject();
-    return { verdict: 1, stance: best.stance, sourceCount: bestN, releaseHash: best.hash };
+    return { verdict: 1, stance: best.stance, sourceCount: bestN, releaseHash: best.hash, releaseTs: best.ts };
   }
   if (new Set(stances).size > 1) return reject();
   if (bestN + outages < 2) return reject();
   if (outages === 0) return reject();
-  return { verdict: 2, stance: 0, sourceCount: clean, releaseHash: "" };
+  return { verdict: 2, stance: 0, sourceCount: clean, releaseHash: "", releaseTs: 0 };
 }
 
 export function buildFeedUrl(prefix: string, epochId: string): string {

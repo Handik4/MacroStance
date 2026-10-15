@@ -53,7 +53,7 @@ export default function EpochSyncDesk({ overview, epochs, account, claimable, cl
   const busy = write?.phase === "pending";
 
   const proposalError = (() => {
-    const idProblem = epochIdProblem(epochId, overview?.max_epoch_year ?? null);
+    const idProblem = epochIdProblem(epochId, overview?.max_epoch_seq ?? null);
     if (idProblem) return idProblem;
     if (overview?.pending_epoch) return `Epoch ${overview.pending_epoch} is already staged; wait for it to execute or be challenged.`;
     if (overview && seq < overview.last_executed_seq) return "That quarter is older than the last executed epoch (stale).";
@@ -68,6 +68,9 @@ export default function EpochSyncDesk({ overview, epochs, account, claimable, cl
   // parameters untouched) instead of applying a stale release.
   const untilExpiry = staged && chainNow !== null ? staged.expires_at - chainNow : null;
   const expired = untilExpiry !== null && untilExpiry < 0;
+  // A staged release stays challengeable until it executes or expires, not just
+  // for the first 24 h: a retraction on day 2 or day 5 must still abort it.
+  const challengeable = untilExpiry !== null && untilExpiry >= 0;
 
   return (
     <section className="panel" aria-labelledby="desk-title">
@@ -136,7 +139,7 @@ export default function EpochSyncDesk({ overview, epochs, account, claimable, cl
               </div>
               <div className="border-t border-slate-200 pt-3">
                 <label className="block">
-                  <span className="label">Challenger bond (GEN) — only valid inside the window</span>
+                  <span className="label">Challenger bond (GEN) — valid until the stage executes or expires</span>
                   <input
                     className="field mt-1"
                     inputMode="decimal"
@@ -147,7 +150,7 @@ export default function EpochSyncDesk({ overview, epochs, account, claimable, cl
                 {!challengeParsed.ok && <p className="mt-1 font-mono text-[11px] text-hawkish">{challengeParsed.error}</p>}
                 <button
                   className="btn-ghost mt-2"
-                  disabled={!account || busy || !challengeParsed.ok || remaining === null || remaining <= 0}
+                  disabled={!account || busy || !challengeParsed.ok || !challengeable}
                   onClick={() => {
                     if (challengeParsed.ok) {
                       const w = challengeParsed.wei;

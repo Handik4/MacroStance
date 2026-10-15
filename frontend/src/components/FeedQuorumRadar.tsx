@@ -50,7 +50,7 @@ async function fetchSlot(slot: FeedSlot, epochId: string, signal: AbortSignal): 
     url,
     http,
     note,
-    state: { kind: "OUTAGE", stance: 0, releaseHash: "" },
+    state: { kind: "OUTAGE", stance: 0, releaseHash: "", releaseTs: 0 },
   });
   const timeout = new AbortController();
   const timer = setTimeout(() => timeout.abort(), 8000);
@@ -157,6 +157,7 @@ export default function FeedQuorumRadar({ registry }: { registry: FeedSlot[] | n
                 {r && (
                   <div className="mt-1 truncate font-mono text-[11px] text-slate-500" title={r.url}>
                     {r.http !== null ? `HTTP ${r.http}` : r.note} · {short(r.state.releaseHash)}
+                    {r.state.releaseTs > 0 && ` · published ${new Date(r.state.releaseTs * 1000).toISOString().slice(0, 16).replace("T", " ")}Z`}
                   </div>
                 )}
                 {failed && <div className="font-mono text-[11px] text-hawkish">read failed</div>}
@@ -187,6 +188,11 @@ export default function FeedQuorumRadar({ registry }: { registry: FeedSlot[] | n
               <span className="font-mono text-xs font-bold tracking-[0.14em]">{VERDICT_NAMES[quorum.verdict]}</span>
               {quorum.verdict === 1 && <StanceBadge stance={quorum.stance} />}
               <span className="num text-xs">{quorum.sourceCount} source(s)</span>
+              {quorum.verdict === 1 && (
+                <span className="font-mono text-[11px] text-slate-600">
+                  release_ts {quorum.releaseTs} — must be newer than the live release
+                </span>
+              )}
             </div>
             <p className="mt-1 text-sm">{VERDICT_TEXT[quorum.verdict]}</p>
           </div>
