@@ -64,6 +64,7 @@ ERR_NO_BALANCE = "ERR_NO_CLAIMABLE_BALANCE"
 ERR_TRANSFER = "ERR_TRANSFER_FAILED_RESTORED"
 ERR_PAYLOAD = "ERR_FORGED_PAYLOAD"
 ERR_STANCE = "ERR_INVALID_STANCE"
+ERR_STALE_RELEASE = "ERR_STALE_RELEASE"
 
 # --- Stance tiers and their bound risk tables (basis points) ------------------
 DOVISH = 0
@@ -109,9 +110,10 @@ EP_EXECUTED = "EXECUTED"
 EP_CANCELLED = "CANCELLED"
 EP_REJECTED = "REJECTED"
 EP_QUORUM_FAILED = "QUORUM_FAILED"
+EP_EXPIRED = "EXPIRED"
 # States from which an epoch may be (re-)proposed. EXECUTED and STAGED are
 # terminal / in-flight; the rest are retryable.
-RETRYABLE = (EP_CANCELLED, EP_REJECTED, EP_QUORUM_FAILED)
+RETRYABLE = (EP_CANCELLED, EP_REJECTED, EP_QUORUM_FAILED, EP_EXPIRED)
 
 # --- Economics (wei; 1 GEN == 10 ** 18) ---------------------------------------
 ATTO = 10**18
@@ -122,6 +124,12 @@ KEEPER_REWARD = ATTO // 100  # paid from forfeited bonds, never from escrow
 
 # --- Time --------------------------------------------------------------------
 ACTIVATION_TIMELOCK = 24 * 3600
+# A staged transition must be executed inside [activates_at, activates_at +
+# PROPOSAL_VALIDITY_WINDOW]. Past it the release is too old to apply blindly:
+# the call expires it, releases the bond and leaves the stance untouched.
+PROPOSAL_VALIDITY_WINDOW = 7 * 24 * 3600
+# Epoch ids may name at most the next calendar year (block clock).
+MAX_EPOCH_YEARS_AHEAD = 1
 FEED_ROTATION_TIMELOCK = 7 * 24 * 3600
 SECONDS_PER_YEAR = 365 * 24 * 3600
 
@@ -191,6 +199,10 @@ def _parse_epoch_id(epoch_id: str) -> int:
     if y < 2000 or y > 2200:
         return -1
     return y * 4 + (int(quarter[1]) - 1)
+
+
+def _year_of(ts: int) -> int:
+    return datetime.fromtimestamp(ts, timezone.utc).year
 
 
 def _is_hex64(s) -> bool:
@@ -433,6 +445,8 @@ class Epoch:
     attempts: u256
     last_verdict: u256
     resolved_by: str  # challenger address hex on cancellation, else ""
+    base_version: u256  # contract active_version when this release was staged
+    revision: u256  # times a release of this epoch was revoked by a challenge
 
 
 @allow_storage
@@ -474,6 +488,15 @@ class MacroStance(gl.contract.Contract):
     total_scaled_debt: u256
     reserves_accrued: u256
 
+    # Release lineage. `active_version` counts executed transitions; a staged
+    # release records the value it was staged against and may only execute
+    # against the same one. `revoked_hashes` holds "<epoch>|<release_hash>"
+    # for every release a challenge cancelled: a stale mirror serving it again
+    # can never be staged or executed.
+    active_version: u256
+    active_epoch_revision: u256
+    revoked_hashes: TreeMap[str, bool]
+
     def __init__(self, feed_a: str, feed_b: str, feed_c: str):
         self.governor = gl.message.sender_address
         feeds = [feed_a, feed_b, feed_c]
@@ -506,6 +529,8 @@ class MacroStance(gl.contract.Contract):
         self.index_updated_at = (self._now())
         self.total_scaled_debt = (0)
         self.reserves_accrued = (0)
+        self.active_version = (0)
+        self.active_epoch_revision = (0)
 
     # ------------------------------------------------------------------ views
     @gl.public.view
@@ -523,6 +548,10 @@ class MacroStance(gl.contract.Contract):
             "reserve_factor_bps": t[2],
             "pending_epoch": self.pending_epoch,
             "last_executed_seq": int(self.last_executed_seq),
+            "active_version": int(self.active_version),
+            "active_epoch_revision": int(self.active_epoch_revision),
+            "proposal_validity_window": PROPOSAL_VALIDITY_WINDOW,
+            "max_epoch_year": _year_of(self._now()) + MAX_EPOCH_YEARS_AHEAD,
             "epoch_count": int(self.epoch_count),
             "treasury": str(self.treasury),
             "total_escrow": str(self.total_escrow),
@@ -712,25 +741,41 @@ class MacroStance(gl.contract.Contract):
         seq = _parse_epoch_id(epoch_id)
         if seq < 0:
             raise gl.vm.UserError(f"{ERR_EPOCH_ID}")
+        now = self._now()
+        # A release cannot be published for a year that has not nearly begun.
+        if seq // 4 > _year_of(now) + MAX_EPOCH_YEARS_AHEAD:
+            raise gl.vm.UserError(f"{ERR_EPOCH_ID} year beyond next calendar year")
         bond = int(gl.message.value)
         if bond < REPORTER_BOND:
             raise gl.vm.UserError(f"{ERR_BOND} reporter bond below minimum")
         if bond > MAX_BOND:
             raise gl.vm.UserError(f"{ERR_BOND} reporter bond above maximum")
         if self.pending_epoch != "":
-            raise gl.vm.UserError(f"{ERR_PENDING}")
+            pending = self.epochs[self.pending_epoch]
+            if now > int(pending.activates_at) + PROPOSAL_VALIDITY_WINDOW:
+                # A stuck, never-executed stage must not block the protocol
+                # forever: expire it (releasing its bond) and carry on.
+                self._expire_staged(self.pending_epoch, pending)
+            else:
+                raise gl.vm.UserError(f"{ERR_PENDING}")
         if seq < int(self.last_executed_seq):
             raise gl.vm.UserError(f"{ERR_STALE}")
         attempts = 0
+        revision = 0
         if epoch_id in self.epochs:
             prev = self.epochs[epoch_id]
             if prev.status not in RETRYABLE:
                 raise gl.vm.UserError(f"{ERR_EPOCH_STATE} {prev.status}")
             attempts = int(prev.attempts)
+            revision = int(prev.revision)
 
         res = self._run_quorum(epoch_id)
         verdict = int(res["verdict"])
-        now = self._now()
+        if verdict == VERIFIED_STANCE and self._is_revoked(epoch_id, str(res["release_hash"])):
+            # The mirrors are serving a release that a challenge already
+            # cancelled (stale cache, or a replayed retraction). Revert so the
+            # honest reporter keeps the bond; the revoked release never stages.
+            raise gl.vm.UserError(f"{ERR_STALE_RELEASE}")
         sender = gl.message.sender_address
         status = EP_QUORUM_FAILED
         activates_at = 0
@@ -761,6 +806,8 @@ class MacroStance(gl.contract.Contract):
                 attempts=(attempts + 1),
                 last_verdict=(verdict),
                 resolved_by="",
+                base_version=(int(self.active_version)),
+                revision=(revision),
             ),
         )
         return self._epoch_view(epoch_id)
@@ -809,6 +856,10 @@ class MacroStance(gl.contract.Contract):
             ep.bond = (0)
             ep.resolved_by = challenger
             ep.last_verdict = (verdict)
+            # The cancelled release is revoked for good and the epoch's
+            # revision advances: re-serving it can never be staged again.
+            self.revoked_hashes[self._revoke_key(epoch_id, ep.release_hash)] = True
+            ep.revision = (int(ep.revision) + 1)
             self.epochs[epoch_id] = ep
             self.pending_epoch = ""
             outcome = "CANCELLED"
@@ -824,11 +875,31 @@ class MacroStance(gl.contract.Contract):
         ep = self.epochs[epoch_id]
         if ep.status != EP_STAGED:
             raise gl.vm.UserError(f"{ERR_EPOCH_STATE} {ep.status}")
-        if self._now() < int(ep.activates_at):
+        now = self._now()
+        if now < int(ep.activates_at):
             raise gl.vm.UserError(f"{ERR_TIMELOCK}")
+        if now > int(ep.activates_at) + PROPOSAL_VALIDITY_WINDOW:
+            # Too old to apply blindly. This must COMMIT (so it cannot revert):
+            # the bond is released, the stage is cleared, parameters untouched.
+            refund = int(ep.bond)
+            self._expire_staged(epoch_id, ep)
+            return {
+                "epoch_id": epoch_id,
+                "status": EP_EXPIRED,
+                "stance": int(self.active_stance),
+                "stance_name": STANCE_NAMES[int(self.active_stance)],
+                "reporter_refund": str(refund),
+                "keeper_reward": "0",
+            }
         seq = _parse_epoch_id(epoch_id)
         if seq < int(self.last_executed_seq):
             raise gl.vm.UserError(f"{ERR_STALE}")
+        # Release lineage: the stage must still be against the live version and
+        # must not be a release a challenge has since revoked.
+        if int(ep.base_version) != int(self.active_version):
+            raise gl.vm.UserError(f"{ERR_STALE_RELEASE}")
+        if self._is_revoked(epoch_id, ep.release_hash):
+            raise gl.vm.UserError(f"{ERR_STALE_RELEASE}")
         # Interest through `now` accrues at the OLD stance's rate.
         self._accrue_global()
         stance = int(ep.stance)
@@ -836,6 +907,8 @@ class MacroStance(gl.contract.Contract):
         self.active_epoch_id = epoch_id
         self.active_since = (self._now())
         self.last_executed_seq = (seq)
+        self.active_version = (int(self.active_version) + 1)
+        self.active_epoch_revision = (int(ep.revision))
         self.pending_epoch = ""
         bond = int(ep.bond)
         reward = KEEPER_REWARD if int(self.treasury) >= KEEPER_REWARD else int(self.treasury)
@@ -848,6 +921,7 @@ class MacroStance(gl.contract.Contract):
         t = _risk_for(stance)
         return {
             "epoch_id": epoch_id,
+            "status": EP_EXECUTED,
             "stance": stance,
             "stance_name": STANCE_NAMES[stance],
             "max_ltv_bps": t[0],
@@ -1065,6 +1139,21 @@ class MacroStance(gl.contract.Contract):
             return (int(p.collateral), int(p.scaled_debt))
         return (0, 0)
 
+    def _revoke_key(self, epoch_id: str, release_hash: str) -> str:
+        return f"{epoch_id}|{release_hash}"
+
+    def _is_revoked(self, epoch_id: str, release_hash: str) -> bool:
+        return self._revoke_key(epoch_id, release_hash) in self.revoked_hashes
+
+    def _expire_staged(self, epoch_id: str, ep: Epoch) -> None:
+        bond = int(ep.bond)
+        self.total_escrow -= bond
+        self._credit(_key(ep.reporter), bond)
+        ep.status = EP_EXPIRED
+        ep.bond = (0)
+        self.epochs[epoch_id] = ep
+        self.pending_epoch = ""
+
     def _store_epoch(self, epoch_id: str, ep: Epoch) -> None:
         if epoch_id not in self.epochs:
             self.epoch_index[self.epoch_count] = epoch_id
@@ -1090,6 +1179,9 @@ class MacroStance(gl.contract.Contract):
             "activates_at": int(e.activates_at),
             "attempts": int(e.attempts),
             "resolved_by": e.resolved_by,
+            "base_version": int(e.base_version),
+            "revision": int(e.revision),
+            "expires_at": (int(e.activates_at) + PROPOSAL_VALIDITY_WINDOW) if int(e.activates_at) > 0 else 0,
             "seq": _parse_epoch_id(epoch_id),
         }
 
@@ -1115,21 +1207,25 @@ class MacroStance(gl.contract.Contract):
         self.index_updated_at = (now)
 
     def _max_borrow(self, collateral: int, scaled: int, idx: int, max_ltv: int) -> int:
-        capacity = collateral * max_ltv // BPS
-        debt = _ceil_div(scaled * idx, RAY)
-        cand = capacity - debt
-        if cand <= 0:
+        """Exact largest `amount` that `borrow_against_collateral` accepts.
+
+        The borrow check is `ceil((scaled + ceil(a*RAY/idx)) * idx / RAY) <= D`
+        with `D = floor(collateral * ltv / BPS)`. Both ceilings invert in closed
+        form, so there is no search and no bound on how far `idx` has drifted:
+
+            ceil(y / RAY) <= D        <=>  y <= D * RAY
+            x := ceil(a*RAY/idx)      <=  floor(D*RAY/idx) - scaled
+            ceil(a*RAY/idx) <= X      <=>  a <= floor(X * idx / RAY)
+
+        (An earlier version walked down from `capacity - debt` four steps; the
+        post-borrow overshoot is up to `idx/RAY + 1` wei, so once the index had
+        grown past ~3.0 it reported 0 for a position that could still borrow.)
+        """
+        d_max = collateral * max_ltv // BPS
+        x_max = (d_max * RAY) // idx - scaled
+        if x_max <= 0:
             return 0
-        # Ceil rounding can push the post-borrow debt a wei or two over; walk
-        # down (bounded: the overshoot is at most idx/RAY + 1) to the exact max.
-        for _ in range(4):
-            after = _ceil_div((scaled + _ceil_div(cand * RAY, idx)) * idx, RAY)
-            if after * BPS <= collateral * max_ltv:
-                return cand
-            cand -= 1
-            if cand <= 0:
-                return 0
-        return 0
+        return (x_max * idx) // RAY
 
     def _run_quorum(self, epoch_id: str) -> dict:
         urls: list = []
