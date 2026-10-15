@@ -1,0 +1,67 @@
+{
+  "network": "studio-next",
+  "chain_id": 61997,
+  "rpc_url": "https://studio-next.genlayer.com/api",
+  "contract_address": "0xd13BF8a675565E0cA08383f94dD350cbf70B74F0",
+  "explorer_url": "https://explorer-studio-next.genlayer.com/address/0xd13BF8a675565E0cA08383f94dD350cbf70B74F0",
+  "deploy_tx": "0xcf2e869cc4d4557f573fa58792046e5cf5b2d7fad2db373665f24b0475a65ab3",
+  "source": "contracts/macro_stance.py",
+  "runner": "py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng",
+  "source_sha256": "43d824659dbc7cf11d7863eeb29ac8101c4930118ae89ca65ab1ce81625af0e8",
+  "onchain_sha256": "43d824659dbc7cf11d7863eeb29ac8101c4930118ae89ca65ab1ce81625af0e8",
+  "source_matches_onchain": true,
+  "receipt": {
+    "status": "ACCEPTED",
+    "execution": "FINISHED_WITH_RETURN",
+    "consensus": "MAJORITY_AGREE"
+  },
+  "constructor_args": [
+    "https://raw.githubusercontent.com/Handik4/MacroStance/main/deployments/mock_feeds/a/",
+    "https://cdn.jsdelivr.net/gh/Handik4/MacroStance@main/deployments/mock_feeds/b/",
+    "https://rawcdn.githack.com/Handik4/MacroStance/main/deployments/mock_feeds/c/"
+  ],
+  "constructor_readback": {
+    "status": "unverified",
+    "detail": "read failed: An internal error was received."
+  },
+  "fee_deposit_wei": "100000000000010352",
+  "tx_created_timestamp": "1792050942",
+  "recorded_at": "2026-10-15T07:56:09.171Z",
+  "public_methods": {
+    "views": [
+      "claimable_of",
+      "classify_feed_response",
+      "derive_stance",
+      "feed_prefix_error",
+      "get_account_health",
+      "get_active_params",
+      "get_epoch",
+      "get_epoch_by_index",
+      "get_epoch_count",
+      "get_feed_registry",
+      "get_protocol_overview",
+      "get_risk_table",
+      "get_solvency",
+      "has_epoch",
+      "parse_epoch_id",
+      "resolve_verdict",
+      "whoami"
+    ],
+    "writes": [
+      "activate_feed_rotation",
+      "borrow_against_collateral",
+      "cancel_feed_rotation",
+      "challenge_staged_epoch",
+      "claim_payout",
+      "deposit_collateral",
+      "execute_stance_transition",
+      "propose_epoch_sync",
+      "repay",
+      "stage_feed_rotation",
+      "transfer_governor",
+      "withdraw_collateral",
+      "withdraw_treasury"
+    ]
+  },
+  "superseded_reason": "third check of 549ee91: registry prefixes were branch URLs (CDN cache skew between slots); redeployed with commit-pinned prefixes"
+}

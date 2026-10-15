@@ -15,9 +15,9 @@ single discrete output and a human-scale window to object.
 | | |
 |---|---|
 | Network | GenLayer **Studio Next**, chain `61997` |
-| Contract | [`0xd13BF8a675565E0cA08383f94dD350cbf70B74F0`](https://explorer-studio-next.genlayer.com/address/0xd13BF8a675565E0cA08383f94dD350cbf70B74F0) |
+| Contract | [`0x6F5836e013b56738e1c27BDbFA36fB001369D867`](https://explorer-studio-next.genlayer.com/address/0x6F5836e013b56738e1c27BDbFA36fB001369D867) |
 | Source SHA-256 (local == on-chain) | `43d824659dbc7cf11d7863eeb29ac8101c4930118ae89ca65ab1ce81625af0e8` |
-| Deploy tx | `0xcf2e869cc4d4557f573fa58792046e5cf5b2d7fad2db373665f24b0475a65ab3` |
+| Deploy tx | `0x7473f0d0fb4cfb3e1507ed91473fe9ae348cdb904837efea32d9471148ee6260` |
 | Runner pin | `py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng` |
 
 ---
@@ -65,8 +65,9 @@ deployments/
 deploy/deploy_macro_stance.ts    `genlayer deploy` script with strict receipt + source-hash verification
 scripts/export_abi.py            ABI export and frontend call-site check
 scripts/gen_mock_feeds.py        regenerates deployments/mock_feeds
+scripts/verify_feeds.py           live HTTP check: every fixture on every registry host
 tests/                           864 direct-mode tests (pytest)
-frontend/                        Next.js 14.2.35 + Tailwind terminal UI, 806 vitest tests
+frontend/                        Next.js 16.4.1 + React 19 + Tailwind 4 terminal UI, 806 vitest tests
 ```
 
 ---
@@ -265,6 +266,7 @@ export GENVM_VERSION=v0.6.0-rc3      # see "Runner pin" below
 cd frontend
 npm ci
 npx tsc --noEmit
+npm run lint                 # eslint, 0 errors / 0 warnings
 npm test                      # 806 passed
 npm run build                 # static export -> out/
 ```
@@ -301,9 +303,10 @@ a new transaction.
 
 | | Address | Source SHA-256 | Status |
 |---|---|---|---|
-| **Current** (recheck of `0b2cdb2`) | `0xd13BF8a675565E0cA08383f94dD350cbf70B74F0` | `43d82465…af0e8` | live; tx `0xcf2e869c…5ab3` |
-| Superseded (audit of `dda2887`) | `0xdb529461aaD3511d6454e93764FE074746286966` | `2e3384c3…bdd3` | still on-chain; `deployments/history/studio-next.0b2cdb2.json` |
-| Superseded (original) | `0x3AE6f881382c62811169921Fb77D97a0c18e49B3` | `f0774263…c5163` | still on-chain; `deployments/history/studio-next.dda2887.json` |
+| **Current** (third check of `549ee91`) | `0x6F5836e013b56738e1c27BDbFA36fB001369D867` | `43d82465…af0e8` | live; tx `0x7473f0d0…6260`; **commit-pinned registry** |
+| Superseded (branch-URL registry) | `0xd13BF8a675565E0cA08383f94dD350cbf70B74F0` | `43d82465…af0e8` | same source, branch prefixes; `deployments/history/studio-next.549ee91.json` |
+| Superseded (recheck of `dda2887`) | `0xdb529461aaD3511d6454e93764FE074746286966` | `2e3384c3…bdd3` | `deployments/history/studio-next.0b2cdb2.json` |
+| Superseded (original) | `0x3AE6f881382c62811169921Fb77D97a0c18e49B3` | `f0774263…c5163` | `deployments/history/studio-next.dda2887.json` |
 
 Superseded contracts are not upgradable and remain callable; point nothing at them.
 
@@ -312,22 +315,36 @@ Superseded contracts are not upgradable and remain callable; point nothing at th
 * The current deployment was **decided `ACCEPTED`**, `FINISHED_WITH_RETURN`,
   `MAJORITY_AGREE`, and the script's strict receipt gate passed on the first try.
   Local and on-chain source SHA-256 are identical (step 4 ✔).
-* **Step 5 (registry read-back) could not be completed**: Studio Next's `gen_call`
-  has been returning a server-side SQLAlchemy session error
+* **Registry state read-back is unavailable; calldata verification stands in.**
+  Studio Next's `gen_call` has returned a server-side SQLAlchemy session error
   (`Can't reconnect until invalid transaction is rolled back`) for *every*
-  contract, including an unrelated known-good one. `gen_getContractSchema` works.
-  The record therefore carries `constructor_readback.status = "unverified"`;
-  rerun `MACROSTANCE_RECORD_TX=0xcf2e… genlayer deploy --rpc …` to upgrade it
-  once the RPC recovers.
+  contract, including an unrelated known-good one, and for both
+  `latest-nonfinal` and `latest-final`. The deploy script therefore records
+  `constructor_readback.status`:
+  `verified` (live `get_feed_registry` equals the constructor arguments),
+  `calldata_verified` (the deploy transaction's own calldata carries exactly the
+  three arguments; an *input* check, not a state read — **this is the current
+  level**) or `unverified`. Non-`gen_call` RPCs work and were used: the
+  transaction (`FINALIZED`, `MAJORITY_AGREE`, 3 AGREE / 2 IDLE), the deployed
+  source (`gen_getContractCode`, hash equal) and the schema (30 methods).
+  Re-run `MACROSTANCE_RECORD_TX=0x7473… genlayer deploy --rpc …` once the RPC
+  recovers to upgrade to `verified`.
 * **The deployer / governor is the CLI's active account**
   `0x6Ec5cb7469a661B8E23B4867359893A25116eA19` (the keystore was named for a
   different project). It paid the 0.1 GEN fee deposit and is the contract's
   `governor`. Rotate with `transfer_governor` if that is not what you want.
-* **The mock feeds are live.** The registry points at
-  `github.com/Handik4/MacroStance` on `main`; all three hosts (GitHub raw,
-  jsDelivr, GitHack) were observed serving `2026-Q3-FOMC.json`. They are served
-  from `main`, so editing a fixture changes what validators see (jsDelivr caches
-  branch refs for hours).
+* **The registry is pinned to a commit.** All three prefixes contain the commit
+  SHA `e2cd0c02…` that last changed `deployments/mock_feeds/`. A commit URL names
+  immutable bytes, so no CDN can hold a stale copy and nothing needs purging.
+  This replaced branch (`main`) prefixes, which three CDNs cache on three clocks:
+  across the project's history jsDelivr, then GitHack, then jsDelivr again served
+  pre-`release_ts` documents (GitHack answers with `immutable, max-age=1y` and
+  has no purge). `python scripts/verify_feeds.py` fetches every fixture from
+  every host and checks it against the committed file: **24 documents served and
+  valid, 4 scenario fixtures correctly 404, 0 problems**. The branch-ref jsDelivr
+  entries were also purged (`purge.jsdelivr.net`, all 8 files `finished`).
+  **Changing a fixture needs a new commit and therefore a registry rotation
+  (7-day timelock) or a redeploy** — that is the deliberate trade.
 * **No live consensus round has been executed on Studio Next**, so validator
   agreement on `run_nondet` is unproven on a real network. A write needs a
   ~0.1 GEN fee deposit on top of the 0.1 GEN bond.
@@ -392,17 +409,22 @@ Hardening, each with unit tests:
 
 ### npm audit disclosure
 
-`npm audit` against the official registry (the default mirror has no audit
-endpoint): **12 findings (1 critical, 9 high, 2 moderate); production-only: 2
-(1 critical, 1 high)**. Reproduce: `npm audit --registry=https://registry.npmjs.org`.
+`npm audit --registry=https://registry.npmjs.org` (the default mirror has no
+audit endpoint): **0 vulnerabilities, 0 in production dependencies** (was 12:
+1 critical, 9 high, 2 moderate). Clean-room `npm ci` from the committed
+lockfile reproduces the same tree.
 
-| Package | Sev. | Scope | Advisory class | Status |
-|---|---|---|---|---|
-| `next@14.2.35` | critical | direct, prod | 23 advisories, all in the **server runtime**: Image Optimizer (incl. AVIF RCE), Server Components / Server Actions DoS, rewrites SSRF, middleware / i18n bypass, WebSocket-upgrade SSRF, cache poisoning | **Accepted — version pinned by the brief.** Mitigated structurally: `output: "export"` ships plain files and **no Next server**. Not mitigated for anyone running `next dev` / a custom server; fix is `next@15.5.24+` (major) |
-| `postcss@8.4.31` (nested in `next`) | high | transitive, prod build | `sourceMappingURL` file read; `</style>` XSS | Build-time only on our own CSS. Our direct `postcss` is 8.5.30 (patched) |
-| `tailwindcss@3.4.19` → `braces`, `micromatch`, `fast-glob`, `chokidar`, `postcss-nested`, `postcss-selector-parser` | high / moderate | direct, dev | ReDoS / DoS on attacker-controlled glob or selector input | Build-time on our own sources. Fix is Tailwind 4 (config-breaking); deferred |
-| `eslint-config-next` → `@next/eslint-plugin-next`, `glob` | high | direct, dev | `glob` CLI `-c` command injection | The `glob` CLI is never invoked. Fix is a Next 16 major |
-| `vitest`, `@vitest/mocker`, `tinypool` | — | — | — | **Resolved** by upgrading to `vitest@5.0.4` |
+| Finding (before) | Resolution |
+|---|---|
+| `next@14.2.35`, **critical** — 23 advisories in the server runtime (Image Optimizer incl. AVIF RCE, Server Components / Actions DoS, rewrites SSRF, middleware / i18n bypass, WebSocket SSRF, cache poisoning) | **Upgraded to `next@16.4.1`**, the first release npm reports clean. This departs from the original brief's 14.2.35 pin; the audit was the stronger requirement. Independently, `output: "export"` ships plain files and **no Next server**, so these server-runtime classes were never reachable from the deployed artifact — kept as defence in depth. `next dev` is a developer-machine surface only |
+| `postcss@8.4.31` nested in `next`, high | Next 16.4.1 vendors `postcss@8.5.23` |
+| `tailwindcss@3.4.19` → `braces`, `micromatch`, `fast-glob`, `chokidar`, `postcss-nested`, `postcss-selector-parser`, high / moderate | **Migrated to Tailwind 4** (CSS-first `@theme`, `@tailwindcss/postcss`), which drops that glob chain |
+| `eslint-config-next` → `@next/eslint-plugin-next` → `fast-glob` → `micromatch` → `braces` (advisory range `*`, **no patched release exists**; npm's suggested "fix" is a downgrade) | **Removed the Next ESLint preset.** ESLint 9 now runs `typescript-eslint`, `eslint-plugin-react-hooks` (incl. the React 19 compiler rules) and `jsx-a11y`. Dropped: Next-specific rules for `<img>`, `<a href="/…">`, `next/script`, pages-router — none used by this static client app. Lint: 0 errors, 0 warnings |
+| `vitest`, `@vitest/mocker`, `tinypool` | Upgraded to `vitest@5.0.4` (previous round) |
+
+What the upgrade also surfaced: React 19's hook rules flagged a ref written from
+inside a loader callback; that was a real smell (the epoch count was shadowed in
+a ref instead of read from loader state) and is fixed rather than suppressed.
 
 ---
 
@@ -416,16 +438,11 @@ endpoint): **12 findings (1 critical, 9 high, 2 moderate); production-only: 2
 * **Feed documents must carry `release_ts`** (integer unix seconds, 2000–2100);
   a document without it is a schema error, i.e. an outage of that source. The
   committed mock feeds were regenerated accordingly.
-* **Slot C is serving stale fixtures.** `rawcdn.githack.com` answers branch URLs
-  with `cache-control: max-age=31536000, immutable` and offers no purge, so the
-  documents it cached before `release_ts` existed are still served without it.
-  Observed after the push: raw.githubusercontent.com and jsDelivr serve the new
-  files, GitHack serves the old ones. Effect: for those pre-existing epochs slot
-  C counts as an outage, so a live round resolves on A+B (still `VERIFIED`, 2
-  sources) but has no third source to fall back on. Fixes: rotate slot C to a
-  commit-pinned prefix (7-day timelock) or publish fixtures under new epoch ids.
-  Editing a fixture on `main` is otherwise not an operation to rely on: mirrors
-  cache branch refs for minutes to a year.
+* **Fixtures are commit-pinned, so they are immutable by design.** Updating a
+  fixture means a new commit and a registry rotation (7-day timelock) or a new
+  deployment. Epoch ids already executed are unaffected.
+* Studio Next's `gen_call` read path was unavailable throughout; live state
+  (`get_protocol_overview`, `get_feed_registry`) has not been read back (§6).
 * An executed epoch can be revised: re-proposing it succeeds only with a strictly
   newer `release_ts`, and a cancelled or expired revision leaves the previously
   executed stance live.
