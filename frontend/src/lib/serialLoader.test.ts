@@ -145,21 +145,19 @@ describe("SerialLoader: single flight, no overlapping abort loops", () => {
   });
 
   it("the follow-up pass reads the LATEST requested ids", async () => {
-    const seen: string[][] = [];
-    let current: string[] = [];
+    const read: string[] = [];
     const gate = deferred<void>();
     const l = new SerialLoader<number>(async (id) => {
-      current.push(id);
-      if (seen.length === 0) await gate.promise;
+      read.push(id);
+      if (id === "a") await gate.promise; // hold only the first load open
       return 1;
     });
-    const p = l.refresh(["a"]);
-    void l.refresh(["b"]);
-    void l.refresh(["c"]);
+    const first = l.refresh(["a"]);
+    void l.refresh(["b"]); // superseded before it ever runs...
+    void l.refresh(["c"]); // ...by this one
     gate.resolve();
-    seen.push(current);
-    await p;
-    expect(current).toEqual(["a", "c"]);
+    await first;
+    expect(read).toEqual(["a", "c"]);
   });
 
   it("loading flag toggles and notifies subscribers", async () => {

@@ -75,17 +75,12 @@ export function useMacroStance(): Terminal {
   const txStore = useMemo(() => new TxStatusStore(), []);
   const clock = useMemo(() => new ChainClock(), []);
   useSyncExternalStore(txStore.subscribe, txStore.getVersion, txStore.getVersion);
-  const epochCount = useRef(0);
 
   // ---- public loader (stable for the page lifetime)
   const publicLoader = useMemo(
     () =>
       new SerialLoader<PublicValue>(async (id, signal) => {
-        if (id === "overview") {
-          const o = await client.getOverview(signal);
-          epochCount.current = Number(o.epoch_count);
-          return o;
-        }
+        if (id === "overview") return client.getOverview(signal);
         if (id === "registry") return client.getFeedRegistry(signal);
         if (id.startsWith("epoch:")) return client.getEpochByIndex(Number(id.slice(6)), signal);
         throw new Error(`unknown item ${id}`);
@@ -102,7 +97,6 @@ export function useMacroStance(): Terminal {
         if (id === "claimable") return client.claimableOf(account, signal);
         throw new Error(`unknown item ${id}`);
       }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [client, account],
   );
 
@@ -126,17 +120,18 @@ export function useMacroStance(): Terminal {
 
   const refresh = useCallback(() => {
     if (!client.configured) return;
-    const ids = ["overview", "registry"];
-    for (let i = 0; i < epochCount.current; i++) ids.push(`epoch:${i}`);
-    void publicLoader.refresh(ids).then(() => {
-      // epoch count may have grown in this pass: pick up new rows immediately
-      const want = epochCount.current;
+    const epochIds = () => {
+      const o = publicLoader.getState().values.get("overview") as Overview | undefined;
+      const n = o ? Number(o.epoch_count) : 0;
+      const ids = ["overview", "registry"];
+      for (let i = 0; i < n; i++) ids.push(`epoch:${i}`);
+      return ids;
+    };
+    void publicLoader.refresh(epochIds()).then(() => {
+      // the epoch count may have grown in this pass: pick up new rows now
+      const next = epochIds();
       const have = [...publicLoader.getState().values.keys()].filter((k) => k.startsWith("epoch:")).length;
-      if (want !== have) {
-        const next = ["overview", "registry"];
-        for (let i = 0; i < want; i++) next.push(`epoch:${i}`);
-        void publicLoader.refresh(next);
-      }
+      if (next.length - 2 !== have) void publicLoader.refresh(next);
       setReadAtMs(Date.now());
     });
     if (account) void accountLoader.refresh(["health", "claimable"]);

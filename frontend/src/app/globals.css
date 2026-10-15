@@ -1,6 +1,36 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Tailwind 4 is CSS-first: the theme that used to live in tailwind.config.ts. */
+@theme {
+  --color-paper: #faf8f3;
+  --color-ink: #0b1220;
+  --color-rule: #d9d4c7;
+
+  /* stance palette */
+  --color-dovish: #047857;
+  --color-dovish-soft: #d1fae5;
+  --color-dovish-ink: #064e3b;
+  --color-neutral: #1d4ed8;
+  --color-neutral-soft: #dbeafe;
+  --color-neutral-ink: #1e3a8a;
+  --color-hawkish: #b91c1c;
+  --color-hawkish-soft: #fee2e2;
+  --color-hawkish-ink: #7f1d1d;
+
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-mono: "SF Mono", ui-monospace, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+/* Tailwind 4 defaults borders to currentColor; keep the v3 look. */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-slate-200);
+  }
+}
 
 :root {
   --paper: #faf8f3;
